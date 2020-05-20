@@ -1,7 +1,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
 
-interface SearchBarProps {}
+interface SearchBarProps {
+  searchRecipe: SearchRecipe;
+}
 
 export const SearchBar: React.FC<SearchBarProps> = ({}) => {
   const [search, setSearch] = useState('');
