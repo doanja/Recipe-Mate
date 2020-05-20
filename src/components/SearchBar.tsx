@@ -5,22 +5,21 @@ interface SearchBarProps {
   searchRecipe: SearchRecipe;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({}) => {
-  const [search, setSearch] = useState('');
+export const SearchBar: React.FC<SearchBarProps> = ({ searchRecipe }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   const handleSubmit = () => {
-    //   call some function
-    console.log('TODO: call some function to make api call and display results', search);
-    setSearch('');
+    searchRecipe(searchQuery);
+    setSearchQuery('');
   };
 
   return (
     <InputGroup className='mt-3'>
-      <FormControl placeholder='Search Recipe' value={search} onChange={handleChange} />
+      <FormControl placeholder='Search Recipe' value={searchQuery} onChange={handleChange} />
       <InputGroup.Append>
         <Button variant='outline-secondary' onClick={handleSubmit}>
           Search
