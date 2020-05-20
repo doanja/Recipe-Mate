@@ -17,8 +17,10 @@ const App: React.FC = () => {
 
     API.search(queryText, from, to)
       .then(res => {
-        // console.log('res.data.hits :>> ', res.data.hits);
-        setRecipes(res.data.hits);
+        // let arr = res.data.hits.map(hit => <Recipe>{});
+        // setRecipes(arr);
+        console.log('res.data.hits :>> ', res.data.hits);
+        console.log('recipes :>> ', recipes);
       })
       .catch(err => console.log(err));
   };
