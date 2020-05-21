@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Button } from 'react-bootstrap';
-import { RecipeResult } from './RecipeResult';
+import { Container, Button, CardDeck, Row } from 'react-bootstrap';
+import { RecipePreview } from './RecipePreview';
 
 interface RecipeResultsProps {
   recipes: Array<Recipe>;
@@ -14,17 +14,28 @@ export const RecipeResults: React.FC<RecipeResultsProps> = ({
   nextRecipeResults,
 }) => {
   return (
-    <Container fluid>
-      <h1>Search Results</h1>
-      {recipes.map((recipe, key) => (
-        <RecipeResult key={key} recipe={recipe} />
-      ))}
-      <Button variant='primary' onClick={previousRecipeResults}>
-        Previous
-      </Button>
-      <Button variant='danger' onClick={nextRecipeResults}>
-        Next
-      </Button>
+    <Container fluid className='my-3'>
+      <h3>Search Results</h3>
+
+      <hr />
+      <CardDeck>
+        <Row>
+          {recipes.map((recipe, key) => (
+            <RecipePreview key={key} recipe={recipe} />
+          ))}
+        </Row>
+      </CardDeck>
+
+      <hr />
+
+      <div>
+        <Button variant='primary' onClick={previousRecipeResults}>
+          Previous
+        </Button>
+        <Button variant='danger' onClick={nextRecipeResults}>
+          Next
+        </Button>
+      </div>
     </Container>
   );
 };
