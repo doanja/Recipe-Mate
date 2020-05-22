@@ -7,7 +7,7 @@ interface RecipePreview {
 
 export const RecipePreview: React.FC<RecipePreview> = ({ recipe }) => {
   return (
-    <Col sm={1} md={4} lg={6}>
+    <Col sm={1} md={6} lg={4}>
       <Card>
         <Card.Img variant='top' src={recipe.image} />
 

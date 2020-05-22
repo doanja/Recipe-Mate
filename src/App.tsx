@@ -25,14 +25,17 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('recipes :>> ', recipes);
-  }, [recipes]);
+    searchRecipe('cheese');
+  }, []);
+
+  useEffect(() => {
+    if (q) searchRecipe(q, from, to);
+  }, [from, to]);
 
   const previousRecipeResults = () => {
     if (to > 10) {
       setFrom(from - 10);
       setTo(to - 10);
-      searchRecipe(q, from, to);
     }
   };
 
@@ -41,7 +44,6 @@ const App: React.FC = () => {
     console.log('from :>> ', from);
     setTo(to + 2);
     console.log('to :>> ', to);
-    searchRecipe(q, from, to);
   };
 
   return (

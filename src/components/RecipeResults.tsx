@@ -1,6 +1,8 @@
 import React from 'react';
-import { Container, Button, CardDeck, Row } from 'react-bootstrap';
+import { Container, CardDeck, Row } from 'react-bootstrap';
 import { RecipePreview } from './RecipePreview';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface RecipeResultsProps {
   recipes: Array<Recipe>;
@@ -28,13 +30,17 @@ export const RecipeResults: React.FC<RecipeResultsProps> = ({
 
       <hr />
 
-      <div>
-        <Button variant='primary' onClick={previousRecipeResults}>
-          Previous
-        </Button>
-        <Button variant='danger' onClick={nextRecipeResults}>
-          Next
-        </Button>
+      <div className='d-block test'>
+        <FontAwesomeIcon
+          icon={faArrowLeft}
+          className='icon float-left'
+          onClick={previousRecipeResults}
+        />
+        <FontAwesomeIcon
+          icon={faArrowRight}
+          className='icon float-right'
+          onClick={nextRecipeResults}
+        />
       </div>
     </Container>
   );
