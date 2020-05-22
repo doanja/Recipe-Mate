@@ -3,13 +3,19 @@ import { Card, Col, Row } from 'react-bootstrap';
 
 interface RecipePreview {
   recipe: Recipe;
+  loadRecipeDetails: LoadRecipeDetails;
 }
 
-export const RecipePreview: React.FC<RecipePreview> = ({ recipe }) => {
+export const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) => {
   return (
     <Col sm={1} md={6} lg={4}>
       <Card>
-        <Card.Img variant='top' src={recipe.image} />
+        <Card.Img
+          variant='top'
+          src={recipe.image}
+          className='img'
+          onClick={() => loadRecipeDetails(recipe)}
+        />
 
         <Card.Body className='text-center'>
           <Card.Title as='h5'> {recipe.label}</Card.Title>

@@ -5,53 +5,62 @@ import { SearchBar } from './components/SearchBar';
 
 import API from './services/recipe';
 import { RecipeResults } from './components/RecipeResults';
+import { RecipeContainer } from './components/RecipeContainer';
 
 const App: React.FC = () => {
   const [recipes, setRecipes] = useState([]);
-  const [q, setQ] = useState('');
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(2);
+  const [queryText, setQueryText] = useState('');
+  const [startingOffset, setStartingOffset] = useState(0);
+  const [endingOffset, setEndingOffset] = useState(2);
 
-  const searchRecipe: SearchRecipe = (queryText, from, to) => {
-    setQ(queryText);
-
-    API.search(queryText, from, to)
-      .then(res => {
-        let arr = res.data.hits.map((hit: any) => hit.recipe);
-
-        setRecipes(arr);
-      })
-      .catch(err => console.log(err));
-  };
+  const [recipe, setRecipe] = useState<Recipe>();
 
   useEffect(() => {
     searchRecipe('cheese');
   }, []);
 
   useEffect(() => {
-    if (q) searchRecipe(q, from, to);
-  }, [from, to]);
+    if (queryText) searchRecipe(queryText, startingOffset, endingOffset);
+  }, [startingOffset, endingOffset]);
+
+  const searchRecipe: SearchRecipe = (queryText, from, to) => {
+    setQueryText(queryText);
+
+    API.search(queryText, from, to)
+      .then(res => {
+        let arr = res.data.hits.map((hit: any) => hit.recipe);
+        setRecipes(arr);
+      })
+      .catch(err => console.log(err));
+  };
 
   const previousRecipeResults = () => {
-    if (to > 10) {
-      setFrom(from - 10);
-      setTo(to - 10);
+    if (endingOffset > 10) {
+      setStartingOffset(startingOffset - 10);
+      setEndingOffset(endingOffset - 10);
     }
   };
 
   const nextRecipeResults = () => {
-    setFrom(from + 2);
-    console.log('from :>> ', from);
-    setTo(to + 2);
-    console.log('to :>> ', to);
+    setStartingOffset(startingOffset + 2);
+    setEndingOffset(endingOffset + 2);
+  };
+
+  const loadRecipeDetails: LoadRecipeDetails = recipe => {
+    setRecipes([]);
+    setRecipe(recipe);
   };
 
   return (
     <Container className='container'>
       <SearchBar searchRecipe={searchRecipe} />
-      {recipes.length ? (
+
+      {recipe ? (
+        <RecipeContainer recipe={recipe} />
+      ) : recipes.length ? (
         <RecipeResults
           recipes={recipes}
+          loadRecipeDetails={loadRecipeDetails}
           previousRecipeResults={previousRecipeResults}
           nextRecipeResults={nextRecipeResults}
         />

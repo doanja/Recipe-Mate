@@ -10,3 +10,7 @@
   cursor: pointer;
   color: red;
 }
+
+.img:hover {
+  cursor: pointer;
+}

@@ -104,3 +104,5 @@ type SearchRecipe = (queryText: string, from?: number, to?: number) => void;
 type PreviousRecipeResults = () => void;
 
 type NextRecipeResults = () => void;
+
+type LoadRecipeDetails = (recipe: Recipe) => void;
