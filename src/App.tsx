@@ -12,8 +12,7 @@ const App: React.FC = () => {
   const [queryText, setQueryText] = useState('');
   const [startingOffset, setStartingOffset] = useState(0);
   const [endingOffset, setEndingOffset] = useState(2);
-
-  const [recipe, setRecipe] = useState<Recipe>();
+  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
 
   useEffect(() => {
     searchRecipe('cheese');
@@ -25,6 +24,7 @@ const App: React.FC = () => {
 
   const searchRecipe: SearchRecipe = (queryText, from, to) => {
     setQueryText(queryText);
+    setRecipe(undefined);
 
     API.search(queryText, from, to)
       .then(res => {
