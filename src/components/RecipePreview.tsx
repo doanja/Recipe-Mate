@@ -1,5 +1,6 @@
-import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, ListGroup, Collapse } from 'react-bootstrap';
+import '../App.css';
 
 interface RecipePreview {
   recipe: Recipe;
@@ -7,34 +8,36 @@ interface RecipePreview {
 }
 
 export const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Col sm={1} md={6} lg={4}>
-      <Card>
-        <Card.Img
-          variant='top'
-          src={recipe.image}
-          className='img'
-          onClick={() => loadRecipeDetails(recipe)}
-        />
+    <Card>
+      <Card.Img
+        variant='top'
+        src={recipe.image}
+        className='img'
+        onClick={() => loadRecipeDetails(recipe)}
+      />
+      <Card.Header>{recipe.label}</Card.Header>
+      <ListGroup variant='flush'>
+        <ListGroup.Item>{recipe.yield} calories</ListGroup.Item>
+        <ListGroup.Item>{recipe.ingredients.length} ingredients</ListGroup.Item>
+        <ListGroup.Item className='tag' onClick={() => setOpen(!open)}>
+          View Recipe Tags
+        </ListGroup.Item>
 
-        <Card.Body className='text-center'>
-          <Card.Title as='h5'> {recipe.label}</Card.Title>
-          <Row>
-            <Col sm={6}>
-              <Card.Subtitle className='mb-2 text-muted'>{recipe.yield} calories</Card.Subtitle>
-            </Col>
+        <Collapse in={open}>
+          <ListGroup>
+            {recipe.healthLabels.map(label => (
+              <ListGroup.Item>- {label.replace(/-/g, ' ')}</ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Collapse>
+      </ListGroup>
 
-            <Col sm={6}>
-              <Card.Subtitle className='mb-2 text-muted'>
-                {recipe.ingredients.length} ingredients
-              </Card.Subtitle>
-            </Col>
-          </Row>
-        </Card.Body>
-        <Card.Footer className='text-center'>
-          <Card.Link href={recipe.url}>Source</Card.Link>
-        </Card.Footer>
-      </Card>
-    </Col>
+      <Card.Footer className='text-center'>
+        <Card.Link href={recipe.url}>Source</Card.Link>
+      </Card.Footer>
+    </Card>
   );
 };
