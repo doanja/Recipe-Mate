@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// https://developer.edamam.com/edamam-docs-recipe-api
-
 export default {
   search: (
     queryText: string,

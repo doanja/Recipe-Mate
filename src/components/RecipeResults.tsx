@@ -30,7 +30,7 @@ export const RecipeResults: React.FC<RecipeResultsProps> = ({
 
       <hr />
 
-      <div className='d-block test'>
+      <div className='d-block'>
         <FontAwesomeIcon
           icon={faArrowLeft}
           className='icon float-left'

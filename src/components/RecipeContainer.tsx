@@ -9,7 +9,6 @@ export const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe }) => {
   console.log('recipe :>> ', recipe);
   return (
     <div>
-      <h1>recipe container</h1>
       <Ingredients recipe={recipe} />
     </div>
   );
