@@ -25,3 +25,17 @@
   color: darkblue;
   background-color: '#444444';
 }
+
+.ingredient:nth-child(odd) {
+  background-color: #fff;
+}
+
+.ingredient:hover {
+  background-color: #eee;
+  color: black;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+}

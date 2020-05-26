@@ -23,11 +23,9 @@ export const RecipeResults: React.FC<RecipeResultsProps> = ({
 
       <hr />
       <CardDeck>
-        {/* <Row> */}
         {recipes.map((recipe, key) => (
           <RecipePreview key={key} recipe={recipe} loadRecipeDetails={loadRecipeDetails} />
         ))}
-        {/* </Row> */}
       </CardDeck>
 
       <hr />

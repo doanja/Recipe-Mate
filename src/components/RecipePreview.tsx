@@ -18,7 +18,7 @@ export const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetai
         className='img'
         onClick={() => loadRecipeDetails(recipe)}
       />
-      <Card.Header>{recipe.label}</Card.Header>
+      <Card.Header className='text-center'>{recipe.label}</Card.Header>
       <ListGroup variant='flush'>
         <ListGroup.Item>{recipe.yield} calories</ListGroup.Item>
         <ListGroup.Item>{recipe.ingredients.length} ingredients</ListGroup.Item>
