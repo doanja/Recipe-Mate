@@ -6,7 +6,6 @@ interface RecipeContainerProps {
 }
 
 export const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe }) => {
-  console.log('recipe :>> ', recipe);
   return (
     <div>
       <Ingredients recipe={recipe} />

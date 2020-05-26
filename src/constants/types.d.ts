@@ -1,21 +1,11 @@
 type Recipe = {
-  uri: string;
-  label: string;
+  id: number;
   image: string;
-  source: string;
-  url: string;
-  shareAs: string;
-  yield: number;
-  dietLabels: Array<string>;
-  healthLabels: Array<string>;
-  cautions: Array<string>;
-  ingredientLines: Array<string>;
-  ingredients: Array<Ingredient>;
-  calories: number;
-  totalWeight: number;
-  totalTime: number;
-  totalNutrients: TotalNutrients;
-  totalDaily: TotalDaily;
+  openLicense: number;
+  readyInMinutes: number;
+  servings: number;
+  sourceUrl: string;
+  title: string;
 };
 
 type Ingredient = {
@@ -100,6 +90,18 @@ type TotalDaily = {
 };
 
 type SearchRecipe = (queryText: string, from?: number, to?: number) => void;
+
+type searchSpoonacular = (
+  query: string,
+  cuisine?: string,
+  diet?: string,
+  excludeIngredients?: string,
+  intolerances?: string,
+  apiKey?: string,
+  offset?: number,
+  number?: number,
+  instructionsRequired?: boolean
+) => void;
 
 type PreviousRecipeResults = () => void;
 

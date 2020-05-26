@@ -11,11 +11,12 @@ export const Ingredients: React.FC<IngredientsProps> = ({ recipe }) => {
   return (
     <ListGroup className='shadow-sm' id='Ingredients'>
       <ListGroup.Item className='ingredient bg-primary mt-3'>
-        <p className='d-inline text-light'>Ingredients for {recipe?.label}</p>
+        <p className='d-inline text-light'>Ingredients for {recipe?.title}</p>
       </ListGroup.Item>
-      {recipe?.ingredientLines.map(line => (
+      {/* TODO: call api for ingredients */}
+      {/* {recipe?.ingredientLines.map(line => (
         <Ingredient ingredient={line} />
-      ))}
+      ))} */}
     </ListGroup>
   );
 };

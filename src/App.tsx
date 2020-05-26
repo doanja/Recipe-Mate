@@ -15,20 +15,53 @@ const App: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
 
   useEffect(() => {
-    searchRecipe('cheese');
+    // searchRecipe('cheese');
+    searchSpoonacular('cake');
   }, []);
 
   useEffect(() => {
-    if (queryText) searchRecipe(queryText, startingOffset, endingOffset);
+    // if (queryText) searchRecipe(queryText, startingOffset, endingOffset);
   }, [startingOffset, endingOffset]);
 
-  const searchRecipe: SearchRecipe = (queryText, from, to) => {
-    setQueryText(queryText);
+  // const searchRecipe: SearchRecipe = (queryText, from, to) => {
+  //   setQueryText(queryText);
+  //   setRecipe(undefined);
+
+  //   API.search(queryText, from, to)
+  //     .then(res => {
+  //       let arr = res.data.hits.map((hit: any) => hit.recipe);
+  //       setRecipes(arr);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  const searchSpoonacular: searchSpoonacular = (
+    query,
+    cuisine,
+    diet,
+    excludeIngrediuents,
+    intolerances,
+    apiKey,
+    offset,
+    number,
+    instructionsRequired
+  ) => {
+    setQueryText(query);
     setRecipe(undefined);
 
-    API.search(queryText, from, to)
+    API.searchRecipe(
+      query,
+      cuisine,
+      diet,
+      excludeIngrediuents,
+      intolerances,
+      apiKey,
+      offset,
+      number,
+      instructionsRequired
+    )
       .then(res => {
-        let arr = res.data.hits.map((hit: any) => hit.recipe);
+        let arr = res.data.results.map((result: any) => console.log(result));
         setRecipes(arr);
       })
       .catch(err => console.log(err));
@@ -53,7 +86,7 @@ const App: React.FC = () => {
 
   return (
     <Container className='container'>
-      <SearchBar searchRecipe={searchRecipe} />
+      {/* <SearchBar searchRecipe={searchRecipe} /> */}
 
       {recipe ? (
         <RecipeContainer recipe={recipe} />
