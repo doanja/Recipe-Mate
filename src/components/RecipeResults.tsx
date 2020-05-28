@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, CardDeck } from 'react-bootstrap';
-import { RecipePreview } from './RecipePreview';
+import RecipePreview from './RecipePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,7 +11,7 @@ interface RecipeResultsProps {
   nextRecipeResults: NextRecipeResults;
 }
 
-export const RecipeResults: React.FC<RecipeResultsProps> = ({
+const RecipeResults: React.FC<RecipeResultsProps> = ({
   recipes,
   loadRecipeDetails,
   previousRecipeResults,
@@ -45,3 +45,5 @@ export const RecipeResults: React.FC<RecipeResultsProps> = ({
     </Container>
   );
 };
+
+export default RecipeResults;

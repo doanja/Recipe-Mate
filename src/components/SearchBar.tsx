@@ -5,7 +5,7 @@ interface SearchBarProps {
   getRecipe: getRecipe;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
   const [input, setInput] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,3 +28,5 @@ export const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
     </InputGroup>
   );
 };
+
+export default SearchBar;

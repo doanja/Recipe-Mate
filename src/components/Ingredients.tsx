@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ingredient } from './Ingredient';
+import Ingredient from './Ingredient';
 import { ListGroup } from 'react-bootstrap';
 import '../App.css';
 
@@ -7,7 +7,7 @@ interface IngredientsProps {
   recipe?: Recipe;
 }
 
-export const Ingredients: React.FC<IngredientsProps> = ({ recipe }) => {
+const Ingredients: React.FC<IngredientsProps> = ({ recipe }) => {
   const [ingredients, setIngredients] = useState<Array<ExtendedIngredients> | undefined>([]);
 
   setIngredients(recipe?.extendedIngredients);
@@ -24,3 +24,5 @@ export const Ingredients: React.FC<IngredientsProps> = ({ recipe }) => {
     </ListGroup>
   );
 };
+
+export default Ingredients;

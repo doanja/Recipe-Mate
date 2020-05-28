@@ -8,7 +8,7 @@ interface IngredientProps {
   ingredient: ExtendedIngredients;
 }
 
-export const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
+const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -19,3 +19,5 @@ export const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
     </ListGroup.Item>
   );
 };
+
+export default Ingredient;

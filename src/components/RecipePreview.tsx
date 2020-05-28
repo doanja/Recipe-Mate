@@ -7,7 +7,7 @@ interface RecipePreview {
   loadRecipeDetails: LoadRecipeDetails;
 }
 
-export const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) => {
+const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -42,3 +42,5 @@ export const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetai
     </Card>
   );
 };
+
+export default RecipePreview;

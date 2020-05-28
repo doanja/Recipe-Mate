@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
+import { SearchBar, RecipeResults, RecipeContainer } from './components/index';
+import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import './App.css';
-
-import { SearchBar } from './components/SearchBar';
-import { RecipeResults } from './components/RecipeResults';
-import { RecipeContainer } from './components/RecipeContainer';
-
-import { RecipeService } from './services/recipe';
 
 const App: React.FC = () => {
   const client = new RecipeService('355b1f4de8e34560a7a8ac33df39c3c2');
