@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import Container from 'react-bootstrap/Container';
-import { SearchBar } from './components/SearchBar';
 
-import API, { RecipeService } from './services/recipe';
+import Container from 'react-bootstrap/Container';
+import './App.css';
+
+import { SearchBar } from './components/SearchBar';
 import { RecipeResults } from './components/RecipeResults';
 import { RecipeContainer } from './components/RecipeContainer';
-import { AxiosResponse } from 'axios';
+
+import API, { RecipeService } from './services/recipe';
 
 const App: React.FC = () => {
-  const client = new RecipeService('695d34427006452f835927d8591a5f3d');
+  const client = new RecipeService('355b1f4de8e34560a7a8ac33df39c3c2');
 
-  const [recipes, setRecipes] = useState<Array<Recipe>>([]); // array of recipes
+  const [recipes, setRecipes] = useState<Recipe[] | any>([]); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [startingOffset, setStartingOffset] = useState(0);
@@ -26,38 +27,15 @@ const App: React.FC = () => {
     if (searchQuery) getRecipe(searchQuery, startingOffset, endingOffset);
   }, [startingOffset, endingOffset]);
 
-  // async / await -> return promise
   useEffect(() => {
-    // Create an scoped async function in the hook
-    async function anyNameFunction() {
-      await loadRecipe();
-    }
+    const loadRecipes = async () => {
+      return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
+    };
 
-    // Execute the created function directly
-    anyNameFunction();
-
-    // let stuff: Array<Promise<AxiosResponse<Recipe>>> = recipeIds.map(id =>
-    //   client.getRecipeById(id)
-    // );
-
-    // for (const elements of stuff) {
-    //   elements.then(res => {
-    //     console.log(res.data);
-    //     // setRecipes(stuff);
-    //   });
-    // }
+    loadRecipes()
+      .then(res => setRecipes(res.map(newRecipe => newRecipe.data)))
+      .catch(err => console.log(err));
   }, [recipeIds]);
-
-  const loadRecipe = () => {
-    recipeIds.map(id => {
-      client
-        .getRecipeById(id)
-        .then(res => {
-          console.log(res.data);
-        })
-        .catch(err => console.log(err));
-    });
-  };
 
   const getRecipe: getRecipe = (
     query,
@@ -91,16 +69,6 @@ const App: React.FC = () => {
       })
       .catch(err => console.log(err));
   };
-
-  // const getRecipeById: getRecipeById = (id, apiKey, includeNutrition): Recipe => {
-  //   API.getRecipeById(id, apiKey, includeNutrition)
-  //     .then(res => {
-  //       // setRecipes([...recipes, res.data]);
-
-  //       return res.data;
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   const previousRecipeResults = () => {
     if (endingOffset > 10) {

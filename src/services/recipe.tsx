@@ -42,7 +42,7 @@ export default {
     diet: string = '',
     excludeIngredients: string = '',
     intolerances: string = '',
-    apiKey: string = '695d34427006452f835927d8591a5f3d'
+    apiKey: string = '355b1f4de8e34560a7a8ac33df39c3c2'
   ) => {
     return axios.get(
       `https://api.spoonacular.com/recipes/search?query=${query}&cuisine=${cuisine}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&apiKey=${apiKey}&offset=${offset}&number=${number}&=instructionsRequired${instructionsRequired}`
