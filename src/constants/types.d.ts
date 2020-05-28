@@ -107,7 +107,7 @@ type getRecipe = (
   apiKey?: string
 ) => void;
 
-type getRecipeById = (id: number, apiKey?: string, includeNutrition?: boolean) => void;
+type getRecipeById = (id: number, apiKey?: string, includeNutrition?: boolean) => Recipe;
 
 type PreviousRecipeResults = () => void;
 

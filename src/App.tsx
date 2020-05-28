@@ -9,6 +9,7 @@ import { RecipeContainer } from './components/RecipeContainer';
 
 const App: React.FC = () => {
   const [recipes, setRecipes] = useState<Array<Recipe>>([]); // array of recipes
+  const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [startingOffset, setStartingOffset] = useState(0);
   const [endingOffset, setEndingOffset] = useState(2);
@@ -49,21 +50,26 @@ const App: React.FC = () => {
     )
       .then(res => {
         // TODO: check if no recipes is found, render modal
-        res.data.results.forEach((recipe: any) => getRecipeById(recipe.id));
+        // res.data.results.forEach((recipe: any) => getRecipeById(recipe.id));
+        setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
       })
       .catch(err => console.log(err));
   };
 
-  const getRecipeById: getRecipeById = (id, apiKey, includeNutrition) => {
+  const getRecipeById: getRecipeById = (id, apiKey, includeNutrition): Recipe => {
     API.getRecipeById(id, apiKey, includeNutrition)
       .then(res => {
-        console.log('recipes :>> ', recipes);
-        console.log('res.data :>> ', res.data);
+        // setRecipes([...recipes, res.data]);
 
-        setRecipes([...recipes, res.data]);
+        return res.data;
       })
       .catch(err => console.log(err));
   };
+
+  useEffect(() => {
+    let stuff = recipeIds.map(id => getRecipeById(id));
+    setRecipes(stuff);
+  }, [recipeIds]);
 
   const previousRecipeResults = () => {
     if (endingOffset > 10) {
@@ -79,7 +85,7 @@ const App: React.FC = () => {
 
   const loadRecipeDetails: LoadRecipeDetails = recipe => {
     setRecipes([]);
-    // setRecipe(recipe);
+    setRecipe(recipe);
   };
 
   return (
