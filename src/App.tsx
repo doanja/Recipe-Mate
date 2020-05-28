@@ -7,7 +7,7 @@ import { SearchBar } from './components/SearchBar';
 import { RecipeResults } from './components/RecipeResults';
 import { RecipeContainer } from './components/RecipeContainer';
 
-import API, { RecipeService } from './services/recipe';
+import { RecipeService } from './services/recipe';
 
 const App: React.FC = () => {
   const client = new RecipeService('355b1f4de8e34560a7a8ac33df39c3c2');
@@ -17,16 +17,19 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [startingOffset, setStartingOffset] = useState(0);
   const [endingOffset, setEndingOffset] = useState(2);
-  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined); // used for the single detailed recipe
+  const [recipe, setRecipe] = useState<Recipe | any>(''); // used for the single detailed recipe
 
+  // TODO: remove this, used for testing in development only
   useEffect(() => {
-    getRecipe('cake');
+    getRecipeId('cake');
   }, []);
 
+  // handles switching offset
   useEffect(() => {
-    if (searchQuery) getRecipe(searchQuery, startingOffset, endingOffset);
+    if (searchQuery) getRecipeId(searchQuery, startingOffset, endingOffset);
   }, [startingOffset, endingOffset]);
 
+  // calls API and gets the recipe for each ID
   useEffect(() => {
     const loadRecipes = async () => {
       return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
@@ -37,34 +40,32 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   }, [recipeIds]);
 
-  const getRecipe: getRecipe = (
+  const getRecipeId: getRecipe = (
     query,
     cuisine,
     diet,
     excludeIngrediuents,
     intolerances,
-    apiKey,
     offset,
     number,
     instructionsRequired
   ) => {
     setSearchQuery(query);
-    setRecipe(undefined);
+    setRecipe('');
 
-    API.getRecipe(
-      query,
-      cuisine,
-      diet,
-      excludeIngrediuents,
-      intolerances,
-      apiKey,
-      offset,
-      number,
-      instructionsRequired
-    )
+    client
+      .getRecipe(
+        query,
+        cuisine,
+        diet,
+        excludeIngrediuents,
+        intolerances,
+        offset,
+        number,
+        instructionsRequired
+      )
       .then(res => {
         // TODO: check if no recipes is found, render modal
-        // res.data.results.forEach((recipe: any) => getRecipeById(recipe.id));
         setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
       })
       .catch(err => console.log(err));
@@ -90,7 +91,7 @@ const App: React.FC = () => {
   return (
     <Container className='container'>
       <h1>hi</h1>
-      <SearchBar getRecipe={getRecipe} />
+      <SearchBar getRecipe={getRecipeId} />
 
       {recipe ? (
         <RecipeContainer recipe={recipe} />

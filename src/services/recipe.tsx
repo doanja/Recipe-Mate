@@ -31,21 +31,3 @@ export class RecipeService {
     );
   }
 }
-
-export default {
-  getRecipe: (
-    query: string,
-    offset: number = 0,
-    number: number = 2,
-    instructionsRequired: boolean = true,
-    cuisine: string = '',
-    diet: string = '',
-    excludeIngredients: string = '',
-    intolerances: string = '',
-    apiKey: string = '355b1f4de8e34560a7a8ac33df39c3c2'
-  ) => {
-    return axios.get(
-      `https://api.spoonacular.com/recipes/search?query=${query}&cuisine=${cuisine}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&apiKey=${apiKey}&offset=${offset}&number=${number}&=instructionsRequired${instructionsRequired}`
-    );
-  },
-};
