@@ -1,107 +1,113 @@
 type Recipe = {
+  aggregateLikes: string;
+  analyzedInstructions: Array<Instructions>;
+  cheap: boolean;
+  cookingMinutes: number;
+  creditsText: string;
+  cuisines: Array<string>;
+  dairyFree: boolean;
+  diets: Array<string>;
+  dishTypes: Array<string>;
+  extendedIngredients: Array<ExtendedIngredients>;
+  gaps: string;
+  glutenFree: boolean;
+  healthScore: number;
   id: number;
   image: string;
-  openLicense: number;
+  imageType: string;
+  instructions: string;
+  lowFodmap: boolean;
+  occasions: Array<string>;
+  originalId: any;
+  preparationMinutes: number;
+  pricePerServing: number;
   readyInMinutes: number;
   servings: number;
+  sourceName: string;
   sourceUrl: string;
+  spoonacularScore: number;
+  summary: string;
+  sustainable: boolean;
   title: string;
+  vegan: boolean;
+  vegetarian: boolean;
+  veryHealthy: boolean;
+  veryPopular: boolean;
+  weightWatcherSmartPoints: number;
+  winePairing: WinePairings;
 };
 
-type Ingredient = {
-  text: string;
-  weight: number;
+type Instructions = {
+  name: string;
+  steps: Array<Steps>;
 };
 
-type TotalNutrients = {
-  ENERC_KCAL: NutritionStatistics;
-  FAT: NutritionStatistics;
-  FASAT: NutritionStatistics;
-  FATRN: NutritionStatistics;
-  FAMS: NutritionStatistics;
-  FAPU: NutritionStatistics;
-  CHOCDF: NutritionStatistics;
-  FIBTG: NutritionStatistics;
-  SUGAR: NutritionStatistics;
-  PROCNT: NutritionStatistics;
-  CHOLE: NutritionStatistics;
-  NA: NutritionStatistics;
-  CA: NutritionStatistics;
-  MG: NutritionStatistics;
-  K: NutritionStatistics;
-  FE: NutritionStatistics;
-  ZN: NutritionStatistics;
-  p: NutritionStatistics;
-  VITA_RAE: NutritionStatistics;
-  VITC: NutritionStatistics;
-  THIA: NutritionStatistics;
-  RIBF: NutritionStatistics;
-  NIA: NutritionStatistics;
-  VITB6A: NutritionStatistics;
-  FOLDFE: NutritionStatistics;
-  FOLFD: NutritionStatistics;
-  FOLAC: NutritionStatistics;
-  VITB12: NutritionStatistics;
-  VITD: NutritionStatistics;
-  TOCPHA: NutritionStatistics;
-  VITK1: NutritionStatistics;
-  WATER: NutritionStatistics;
+type Steps = {
+  equpiment: Array<Components>;
+  ingredients: Array<Components>;
+  number: number;
+  step: string;
 };
 
-type NutritionStatistics = {
-  label: string;
-  quantity: number;
+type Components = {
+  id: number;
+  image: string;
+  name: string;
+};
+
+type ExtendedIngredients = {
+  aisle: string;
+  amount: number;
+  consistency: string;
+  id: number;
+  image: string;
+  measures: Array<Measurements>;
+  meta: Array<string>;
+  metaInformation: Array<string>;
+  name: string;
+  original: string;
+  originalName: string;
+  originalString: string;
   unit: string;
 };
 
-type TotalDaily = {
-  ENERC_KCAL: NutritionStatistics;
-  FAT: NutritionStatistics;
-  FASAT: NutritionStatistics;
-  FATRN: NutritionStatistics;
-  FAMS: NutritionStatistics;
-  FAPU: NutritionStatistics;
-  CHOCDF: NutritionStatistics;
-  FIBTG: NutritionStatistics;
-  SUGAR: NutritionStatistics;
-  PROCNT: NutritionStatistics;
-  CHOLE: NutritionStatistics;
-  NA: NutritionStatistics;
-  CA: NutritionStatistics;
-  MG: NutritionStatistics;
-  K: NutritionStatistics;
-  FE: NutritionStatistics;
-  ZN: NutritionStatistics;
-  p: NutritionStatistics;
-  VITA_RAE: NutritionStatistics;
-  VITC: NutritionStatistics;
-  THIA: NutritionStatistics;
-  RIBF: NutritionStatistics;
-  NIA: NutritionStatistics;
-  VITB6A: NutritionStatistics;
-  FOLDFE: NutritionStatistics;
-  FOLFD: NutritionStatistics;
-  FOLAC: NutritionStatistics;
-  VITB12: NutritionStatistics;
-  VITD: NutritionStatistics;
-  TOCPHA: NutritionStatistics;
-  VITK1: NutritionStatistics;
-  WATER: NutritionStatistics;
+type Measurements = {
+  amount: number;
+  unitLong: string;
+  unitShort: string;
 };
 
-type SearchRecipe = (queryText: string, from?: number, to?: number) => void;
+type WinePairings = {
+  pairedWines: Array<string>;
+  pairingText: string;
+  productMatches: ProductMatch;
+};
 
-type searchSpoonacular = (
+type ProductMatch = {
+  averageRating: number;
+  description: string;
+  id: number;
+  imageUrl: string;
+  link: string;
+  price: string;
+  ratingCount: number;
+  score: number;
+  title: string;
+};
+
+type getRecipe = (
   query: string,
+  offset?: number,
+  number?: number,
+  instructionsRequired?: boolean,
   cuisine?: string,
   diet?: string,
   excludeIngredients?: string,
   intolerances?: string,
-  apiKey?: string,
-  offset?: number,
-  number?: number,
-  instructionsRequired?: boolean
+  apiKey?: string
 ) => void;
+
+type getRecipeById = (id: number, apiKey?: string, includeNutrition?: boolean) => void;
 
 type PreviousRecipeResults = () => void;
 

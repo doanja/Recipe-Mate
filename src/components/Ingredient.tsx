@@ -5,7 +5,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 
 interface IngredientProps {
-  ingredient: string;
+  ingredient: ExtendedIngredients;
 }
 
 export const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
@@ -15,7 +15,7 @@ export const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
     <ListGroup.Item className='ingredient' onClick={() => setChecked(!checked)}>
       <FontAwesomeIcon icon={checked ? faCheck : faSquare} className='mr-3' />
 
-      <p className={`${checked ? 'done d-inline' : 'd-inline'}`}>{ingredient}</p>
+      <p className={`${checked ? 'done d-inline' : 'd-inline'}`}>{ingredient.original}</p>
     </ListGroup.Item>
   );
 };

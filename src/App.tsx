@@ -8,34 +8,21 @@ import { RecipeResults } from './components/RecipeResults';
 import { RecipeContainer } from './components/RecipeContainer';
 
 const App: React.FC = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [queryText, setQueryText] = useState('');
+  const [recipes, setRecipes] = useState<Array<Recipe>>([]); // array of recipes
+  const [searchQuery, setSearchQuery] = useState('');
   const [startingOffset, setStartingOffset] = useState(0);
   const [endingOffset, setEndingOffset] = useState(2);
-  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined);
+  const [recipe, setRecipe] = useState<Recipe | undefined>(undefined); // used for the single detailed recipe
 
   useEffect(() => {
-    // searchRecipe('cheese');
-    searchSpoonacular('cake');
+    getRecipe('cake');
   }, []);
 
   useEffect(() => {
-    // if (queryText) searchRecipe(queryText, startingOffset, endingOffset);
+    if (searchQuery) getRecipe(searchQuery, startingOffset, endingOffset);
   }, [startingOffset, endingOffset]);
 
-  // const searchRecipe: SearchRecipe = (queryText, from, to) => {
-  //   setQueryText(queryText);
-  //   setRecipe(undefined);
-
-  //   API.search(queryText, from, to)
-  //     .then(res => {
-  //       let arr = res.data.hits.map((hit: any) => hit.recipe);
-  //       setRecipes(arr);
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  const searchSpoonacular: searchSpoonacular = (
+  const getRecipe: getRecipe = (
     query,
     cuisine,
     diet,
@@ -46,10 +33,10 @@ const App: React.FC = () => {
     number,
     instructionsRequired
   ) => {
-    setQueryText(query);
+    setSearchQuery(query);
     setRecipe(undefined);
 
-    API.searchRecipe(
+    API.getRecipe(
       query,
       cuisine,
       diet,
@@ -61,8 +48,19 @@ const App: React.FC = () => {
       instructionsRequired
     )
       .then(res => {
-        let arr = res.data.results.map((result: any) => console.log(result));
-        setRecipes(arr);
+        // TODO: check if no recipes is found, render modal
+        res.data.results.forEach((recipe: any) => getRecipeById(recipe.id));
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getRecipeById: getRecipeById = (id, apiKey, includeNutrition) => {
+    API.getRecipeById(id, apiKey, includeNutrition)
+      .then(res => {
+        console.log('recipes :>> ', recipes);
+        console.log('res.data :>> ', res.data);
+
+        setRecipes([...recipes, res.data]);
       })
       .catch(err => console.log(err));
   };
@@ -81,12 +79,13 @@ const App: React.FC = () => {
 
   const loadRecipeDetails: LoadRecipeDetails = recipe => {
     setRecipes([]);
-    setRecipe(recipe);
+    // setRecipe(recipe);
   };
 
   return (
     <Container className='container'>
-      {/* <SearchBar searchRecipe={searchRecipe} /> */}
+      <h1>hi</h1>
+      <SearchBar getRecipe={getRecipe} />
 
       {recipe ? (
         <RecipeContainer recipe={recipe} />

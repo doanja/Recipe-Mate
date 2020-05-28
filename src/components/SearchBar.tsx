@@ -1,25 +1,25 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
 
 interface SearchBarProps {
-  searchRecipe: SearchRecipe;
+  getRecipe: getRecipe;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ searchRecipe }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+export const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
+  const [input, setInput] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setInput(e.target.value);
   };
 
   const handleSubmit = () => {
-    searchRecipe(searchQuery);
-    setSearchQuery('');
+    getRecipe(input);
+    setInput('');
   };
 
   return (
     <InputGroup className='mt-3'>
-      <FormControl placeholder='Search Recipe' value={searchQuery} onChange={handleChange} />
+      <FormControl placeholder='Search Recipe' value={input} onChange={handleChange} />
       <InputGroup.Append>
         <Button variant='outline-secondary' onClick={handleSubmit}>
           Search
