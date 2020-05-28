@@ -3,11 +3,13 @@ import './App.css';
 import Container from 'react-bootstrap/Container';
 import { SearchBar } from './components/SearchBar';
 
-import API from './services/recipe';
+import API, { RecipeService } from './services/recipe';
 import { RecipeResults } from './components/RecipeResults';
 import { RecipeContainer } from './components/RecipeContainer';
 
 const App: React.FC = () => {
+  const client = new RecipeService('695d34427006452f835927d8591a5f3d');
+
   const [recipes, setRecipes] = useState<Array<Recipe>>([]); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,6 +24,11 @@ const App: React.FC = () => {
   useEffect(() => {
     if (searchQuery) getRecipe(searchQuery, startingOffset, endingOffset);
   }, [startingOffset, endingOffset]);
+
+  useEffect(() => {
+    let stuff: Array<Recipe> = recipeIds.map(id => client.getRecipeById(id));
+    setRecipes(stuff);
+  }, [recipeIds]);
 
   const getRecipe: getRecipe = (
     query,
@@ -65,11 +72,6 @@ const App: React.FC = () => {
       })
       .catch(err => console.log(err));
   };
-
-  useEffect(() => {
-    let stuff = recipeIds.map(id => getRecipeById(id));
-    setRecipes(stuff);
-  }, [recipeIds]);
 
   const previousRecipeResults = () => {
     if (endingOffset > 10) {

@@ -1,17 +1,23 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
+
+export class RecipeService {
+  private readonly apiKey: string;
+
+  constructor(apiKey: string) {
+    this.apiKey = apiKey;
+  }
+
+  public getRecipeById(
+    id: number,
+    includeNutrition: boolean = false
+  ): Promise<AxiosResponse<Recipe>> {
+    return axios.get<Recipe>(
+      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=${includeNutrition}&apiKey=${this.apiKey}`
+    );
+  }
+}
 
 export default {
-  search: (
-    queryText: string,
-    from: number = 0,
-    to: number = 2,
-    app_id: string = 'ab1a7c56',
-    app_key: string = '1eab44749250471f33b386e03aab1717'
-  ) => {
-    return axios.get(
-      `https://api.edamam.com/search?q=${queryText}&from=${from}&to=${to}&app_id=${app_id}&app_key=${app_key}`
-    );
-  },
   getRecipe: (
     query: string,
     offset: number = 0,
@@ -27,13 +33,13 @@ export default {
       `https://api.spoonacular.com/recipes/search?query=${query}&cuisine=${cuisine}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&apiKey=${apiKey}&offset=${offset}&number=${number}&=instructionsRequired${instructionsRequired}`
     );
   },
-  getRecipeById: (
-    id: number,
-    apiKey: string = '695d34427006452f835927d8591a5f3d',
-    includeNutrition: boolean = false
-  ) => {
-    return axios.get(
-      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=${includeNutrition}&apiKey=${apiKey}`
-    );
-  },
+  // getRecipeById: (
+  //   id: number,
+  //   apiKey: string = '695d34427006452f835927d8591a5f3d',
+  //   includeNutrition: boolean = false
+  // ) => {
+  //   return axios.get(
+  //     `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=${includeNutrition}&apiKey=${apiKey}`
+  //   );
+  // },
 };
