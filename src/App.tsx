@@ -81,6 +81,7 @@ const App: React.FC = () => {
   const loadSingleRecipe: loadSingleRecipe = recipe => {
     setRecipes([]);
     setRecipe(recipe);
+    console.log('recipe :>> ', recipe);
   };
 
   return (
@@ -93,6 +94,7 @@ const App: React.FC = () => {
         <RecipeResults
           recipes={recipes}
           loadSingleRecipe={loadSingleRecipe}
+          searchQuery={searchQuery}
           previousRecipeResults={previousRecipeResults}
           nextRecipeResults={nextRecipeResults}
         />

@@ -16,7 +16,11 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadSingleRecipe }) =>
   }, [recipe]);
 
   return (
-    <Card className='mt-3 card-shadow recipe-details' bg='dark' text='light'>
+    <Card
+      className='mt-3 card-shadow recipe-details'
+      bg='dark'
+      text='light'
+      onClick={() => loadSingleRecipe(recipe)}>
       <Card.Header>
         {recipe.title} - {`Ready in ${recipe.cookingMinutes} minutes`}
       </Card.Header>

@@ -1,26 +1,15 @@
-.container {
-  /* border: 1px solid red; */
-}
+/* .container {
+  border: 1px solid red;
+} */
 
 .icon:hover {
   cursor: pointer;
   color: red;
 }
 
-.img:hover {
+/* .img:hover {
   cursor: pointer;
-}
-
-.tag {
-  color: blue;
-  background-color: red;
-}
-
-.tag:hover {
-  cursor: pointer;
-  color: darkblue;
-  background-color: '#444444';
-}
+} */
 
 .ingredient:nth-child(odd) {
   background-color: #fff;

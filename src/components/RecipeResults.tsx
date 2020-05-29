@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, CardDeck } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import RecipePreview from './RecipePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 interface RecipeResultsProps {
   recipes: Array<Recipe>;
   loadSingleRecipe: loadSingleRecipe;
+  searchQuery: string;
   previousRecipeResults: PreviousRecipeResults;
   nextRecipeResults: NextRecipeResults;
 }
@@ -14,12 +15,13 @@ interface RecipeResultsProps {
 const RecipeResults: React.FC<RecipeResultsProps> = ({
   recipes,
   loadSingleRecipe,
+  searchQuery,
   previousRecipeResults,
   nextRecipeResults,
 }) => {
   return (
     <Container fluid className='my-3'>
-      <h3>Search Results</h3>
+      <h3>Search Results for '{searchQuery}'</h3>
 
       <hr />
 
