@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Ingredient from './Ingredient';
 import { ListGroup } from 'react-bootstrap';
 import '../App.css';
@@ -8,18 +8,14 @@ interface IngredientsProps {
 }
 
 const Ingredients: React.FC<IngredientsProps> = ({ recipe }) => {
-  const [ingredients, setIngredients] = useState<Array<ExtendedIngredients> | undefined>([]);
-
-  setIngredients(recipe?.extendedIngredients);
-
   return (
-    <ListGroup className='shadow-sm' id='Ingredients'>
-      <ListGroup.Item className='ingredient bg-primary mt-3'>
+    <ListGroup className='card-shadow'>
+      <ListGroup.Item className='ingredient bg-dark mt-3'>
         <p className='d-inline text-light'>Ingredients for {recipe?.title}</p>
       </ListGroup.Item>
-      {/* TODO: call api for ingredients */}
-      {ingredients?.map(ingredient => (
-        <Ingredient ingredient={ingredient} />
+
+      {recipe?.extendedIngredients.map(ingredient => (
+        <Ingredient key={ingredient.id} ingredient={ingredient.originalString} />
       ))}
     </ListGroup>
   );
