@@ -22,6 +22,7 @@ const RecipeResults: React.FC<RecipeResultsProps> = ({
       <h3>Search Results</h3>
 
       <hr />
+
       <CardDeck>
         {recipes.map((recipe, key) => (
           <RecipePreview key={key} recipe={recipe} loadRecipeDetails={loadRecipeDetails} />

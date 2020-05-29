@@ -11,7 +11,7 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) =
   const [open, setOpen] = useState(false);
 
   return (
-    <Card>
+    <Card className='test'>
       <Card.Img
         variant='top'
         src={recipe.image}
@@ -31,7 +31,7 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) =
             {/* {recipe.healthLabels.map(label => (
               <ListGroup.Item>- {label.replace(/-/g, ' ')}</ListGroup.Item>
             ))} */}
-            hello
+            TODO: RecipePreview show stuff here
           </ListGroup>
         </Collapse>
       </ListGroup>
