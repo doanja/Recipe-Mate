@@ -113,4 +113,4 @@ type PreviousRecipeResults = () => void;
 
 type NextRecipeResults = () => void;
 
-type LoadRecipeDetails = (recipe: Recipe) => void;
+type loadSingleRecipe = (recipe: Recipe) => void;

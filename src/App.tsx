@@ -10,8 +10,8 @@ const App: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[] | any>([]); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [startingOffset, setStartingOffset] = useState(0);
-  const [endingOffset, setEndingOffset] = useState(2);
+  const [startingResults, setStartingResults] = useState(0);
+  const [endingResults, setEndingResults] = useState(2);
   const [recipe, setRecipe] = useState<Recipe | any>(''); // used for the single detailed recipe
 
   // TODO: remove this, used for testing in development only
@@ -21,8 +21,8 @@ const App: React.FC = () => {
 
   // handles switching offset
   useEffect(() => {
-    if (searchQuery) getRecipeId(searchQuery, startingOffset, endingOffset);
-  }, [startingOffset, endingOffset]);
+    if (searchQuery) getRecipeId(searchQuery, startingResults, endingResults);
+  }, [startingResults, endingResults]);
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
@@ -67,18 +67,18 @@ const App: React.FC = () => {
   };
 
   const previousRecipeResults = () => {
-    if (endingOffset > 10) {
-      setStartingOffset(startingOffset - 10);
-      setEndingOffset(endingOffset - 10);
+    if (endingResults > 10) {
+      setStartingResults(startingResults - 10);
+      setEndingResults(endingResults - 10);
     }
   };
 
   const nextRecipeResults = () => {
-    setStartingOffset(startingOffset + 2);
-    setEndingOffset(endingOffset + 2);
+    setStartingResults(startingResults + 2);
+    setEndingResults(endingResults + 2);
   };
 
-  const loadRecipeDetails: LoadRecipeDetails = recipe => {
+  const loadSingleRecipe: loadSingleRecipe = recipe => {
     setRecipes([]);
     setRecipe(recipe);
   };
@@ -92,7 +92,7 @@ const App: React.FC = () => {
       ) : recipes.length ? (
         <RecipeResults
           recipes={recipes}
-          loadRecipeDetails={loadRecipeDetails}
+          loadSingleRecipe={loadSingleRecipe}
           previousRecipeResults={previousRecipeResults}
           nextRecipeResults={nextRecipeResults}
         />

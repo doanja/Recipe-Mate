@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
-import { Card, ListGroup, Collapse } from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import '../App.css';
 
 interface RecipePreview {
   recipe: Recipe;
-  loadRecipeDetails: LoadRecipeDetails;
+  loadSingleRecipe: loadSingleRecipe;
 }
 
-const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadRecipeDetails }) => {
-  const [open, setOpen] = useState(false);
-
+const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadSingleRecipe }) => {
   return (
-    <Card className='test'>
-      <Card.Img
-        variant='top'
-        src={recipe.image}
-        className='img'
-        onClick={() => loadRecipeDetails(recipe)}
-      />
-      <Card.Header className='text-center'>{recipe.title}</Card.Header>
-      <ListGroup variant='flush'>
-        <ListGroup.Item>Serves {recipe.servings}</ListGroup.Item>
-        <ListGroup.Item>Ready in {recipe.readyInMinutes} minutes</ListGroup.Item>
-        <ListGroup.Item className='tag' onClick={() => setOpen(!open)}>
-          View Recipe Tags
-        </ListGroup.Item>
-
-        <Collapse in={open}>
-          <ListGroup>
-            {/* {recipe.healthLabels.map(label => (
-              <ListGroup.Item>- {label.replace(/-/g, ' ')}</ListGroup.Item>
-            ))} */}
-            TODO: RecipePreview show stuff here
-          </ListGroup>
-        </Collapse>
-      </ListGroup>
-
-      <Card.Footer className='text-center'>
-        <Card.Link href={recipe.sourceUrl}>Source</Card.Link>
-      </Card.Footer>
+    <Card className='mt-3 shadow-sm recipe-details' bg='dark' text='light'>
+      <Card.Header>
+        {recipe.title} - {`Ready in ${recipe.cookingMinutes} minutes`}
+      </Card.Header>
+      <Row noGutters={true}>
+        <Col md={4} className='recipe-image card-bg'>
+          <img src={recipe.image} className='float-left mr-3' />
+        </Col>
+        <Col md={8} className='card-bg'>
+          <Card.Body>
+            <Card.Title>
+              {`Prep. Time: ${recipe.cookingMinutes}(s) - Serves: ${recipe.servings}`}
+            </Card.Title>
+            <Card.Text>
+              {`Ingredients: marshmallow fluff, nutella, pound cake, unsalted butter`}
+            </Card.Text>
+            <Button
+              variant='light'
+              className='px-2 recipe-details'
+              onClick={() => loadSingleRecipe(recipe)}>
+              View Recipe Details
+            </Button>
+          </Card.Body>
+        </Col>
+      </Row>
     </Card>
   );
 };

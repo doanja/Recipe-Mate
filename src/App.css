@@ -39,3 +39,17 @@
 .test {
   width: 100%;
 }
+
+.recipe-details {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.recipe-details:hover {
+  transform: scale(1.01);
+  z-index: 3;
+}
+
+.recipe-image img {
+  width: 100%;
+}

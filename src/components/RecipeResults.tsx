@@ -6,14 +6,14 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface RecipeResultsProps {
   recipes: Array<Recipe>;
-  loadRecipeDetails: LoadRecipeDetails;
+  loadSingleRecipe: loadSingleRecipe;
   previousRecipeResults: PreviousRecipeResults;
   nextRecipeResults: NextRecipeResults;
 }
 
 const RecipeResults: React.FC<RecipeResultsProps> = ({
   recipes,
-  loadRecipeDetails,
+  loadSingleRecipe,
   previousRecipeResults,
   nextRecipeResults,
 }) => {
@@ -23,11 +23,11 @@ const RecipeResults: React.FC<RecipeResultsProps> = ({
 
       <hr />
 
-      <CardDeck>
+      <div>
         {recipes.map((recipe, key) => (
-          <RecipePreview key={key} recipe={recipe} loadRecipeDetails={loadRecipeDetails} />
+          <RecipePreview key={key} recipe={recipe} loadSingleRecipe={loadSingleRecipe} />
         ))}
-      </CardDeck>
+      </div>
 
       <hr />
 
