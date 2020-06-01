@@ -33,9 +33,7 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadSingleRecipe }) =>
             <Card.Title>
               {`Prep. Time: ${recipe.cookingMinutes} minute(s) - Serves: ${recipe.servings}`}
             </Card.Title>
-            <Card.Text>
-              <h6>Ingredients: </h6>
-            </Card.Text>
+            <Card.Text>Ingredients:</Card.Text>
             <Card.Text>{`${ingredients.join(', ')}`}</Card.Text>
             <Button
               variant='dark'

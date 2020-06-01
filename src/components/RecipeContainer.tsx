@@ -1,5 +1,5 @@
 import React from 'react';
-import Ingredients from './Ingredients';
+import { Ingredients, Instructions } from './';
 
 interface RecipeContainerProps {
   recipe?: Recipe;
@@ -8,7 +8,8 @@ interface RecipeContainerProps {
 const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe }) => {
   return (
     <div>
-      <Ingredients recipe={recipe} />
+      <Ingredients title={recipe?.title} ingredients={recipe?.extendedIngredients} />
+      <Instructions title={recipe?.title} instructions={recipe?.instructions} />
     </div>
   );
 };
