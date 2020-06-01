@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import '../App.css';
-import Ingredient from './Ingredient';
 
 interface RecipePreview {
   recipe: Recipe;
@@ -17,7 +16,7 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadSingleRecipe }) =>
 
   return (
     <Card
-      className='mt-3 card-shadow recipe-details'
+      className='mt-3 card-shadow recipe-preview'
       bg='dark'
       text='light'
       onClick={() => loadSingleRecipe(recipe)}>
@@ -37,7 +36,7 @@ const RecipePreview: React.FC<RecipePreview> = ({ recipe, loadSingleRecipe }) =>
             <Card.Text>{`${ingredients.join(', ')}`}</Card.Text>
             <Button
               variant='dark'
-              className='px-2 recipe-details'
+              className='px-2 recipe-preview'
               onClick={() => loadSingleRecipe(recipe)}>
               View Recipe Details
             </Button>

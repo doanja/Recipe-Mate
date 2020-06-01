@@ -81,7 +81,6 @@ const App: React.FC = () => {
   const loadSingleRecipe: loadSingleRecipe = recipe => {
     setRecipes([]);
     setRecipe(recipe);
-    console.log('recipe :>> ', recipe);
   };
 
   return (
