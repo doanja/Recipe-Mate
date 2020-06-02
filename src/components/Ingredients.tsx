@@ -9,8 +9,8 @@ interface IngredientsProps {
 
 const Ingredients: React.FC<IngredientsProps> = ({ ingredients }) => {
   return (
-    <ListGroup className='recipe-detailed'>
-      <ListGroup.Item className='mt-3 bg-dark'>
+    <ListGroup className='mt-3 recipe-detailed'>
+      <ListGroup.Item className='bg-dark'>
         <p className='d-inline text-light'>Ingredients</p>
       </ListGroup.Item>
 

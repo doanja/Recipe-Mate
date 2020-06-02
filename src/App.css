@@ -1,40 +1,19 @@
 .container {
-  background-color: white;
+  /* background-color: #edeee8; */
   /* border: 1px dotted green; */
-}
-
-.test {
-  background-color: white;
-  border: 2px dotted red;
 }
 
 .icon:hover {
   cursor: pointer;
-  color: red;
+  color: #b7ab9f;
 }
 
 .done {
   text-decoration: line-through;
 }
 
-.recipe-preview {
-  transition: transform 0.2s;
-  cursor: pointer;
-}
-
-.recipe-preview:hover {
-  transform: scale(1.01);
-  z-index: 3;
-}
-
-.recipe-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .card-bg {
-  background-color: #f1ede9;
+  background-color: #edeee8;
 }
 
 .text-dark {
@@ -45,13 +24,21 @@
   color: 'white';
 }
 
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .recipe-preview {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
 .recipe-preview:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  transform: scale(1.01);
 }
 
 .recipe-detailed {

@@ -9,8 +9,8 @@ interface InstructionsProps {
 
 const Instructions: React.FC<InstructionsProps> = ({ instructions }) => {
   return (
-    <ListGroup className='recipe-detailed'>
-      <ListGroup.Item className='mt-3 bg-dark'>
+    <ListGroup className='mt-3 recipe-detailed'>
+      <ListGroup.Item className='bg-dark'>
         <p className='d-inline text-light'>Instructions</p>
       </ListGroup.Item>
 
