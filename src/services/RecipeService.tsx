@@ -24,10 +24,14 @@ export class RecipeService {
 
   public getRecipeById(
     id: number,
-    includeNutrition: boolean = false
+    includeNutrition: boolean = true
   ): Promise<AxiosResponse<Recipe>> {
     return axios.get<Recipe>(
       `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=${includeNutrition}&apiKey=${this.apiKey}`
     );
+  }
+
+  public getSimilarRecipes(id: number, number: number): Promise<AxiosResponse<any>> {
+    return axios.get<any>(`https://api.spoonacular.com/recipes/${id}/similar&number=${number}`);
   }
 }

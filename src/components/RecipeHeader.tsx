@@ -24,18 +24,20 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
               <ListGroup.Item>{`${recipe?.aggregateLikes} Likes`}</ListGroup.Item>
               <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
             </ListGroup>
-            <Button
-              variant='dark'
-              className='px-2 recipe-preview'
-              onClick={() => console.log('button clicked recipe?.sourceUrl')}>
-              Source
-            </Button>
-            <Button
-              variant='dark'
-              className='px-2 recipe-preview'
-              onClick={() => console.log('button clicked')}>
-              View Nutrition Facts
-            </Button>
+            <div className='mt-3 w-100'>
+              <Button
+                variant='dark'
+                className='px-2 recipe-preview'
+                onClick={() => console.log('button clicked recipe?.sourceUrl')}>
+                Source
+              </Button>
+              <Button
+                variant='dark'
+                className='px-2 recipe-preview'
+                onClick={() => console.log('button clicked')}>
+                View Nutrition Facts
+              </Button>
+            </div>
           </Card.Body>
         </Col>
       </Row>
