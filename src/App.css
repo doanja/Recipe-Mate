@@ -1,3 +1,13 @@
+.container {
+  background-color: white;
+  /* border: 1px dotted green; */
+}
+
+.test {
+  background-color: white;
+  border: 2px dotted red;
+}
+
 .icon:hover {
   cursor: pointer;
   color: red;
@@ -24,7 +34,7 @@
 }
 
 .card-bg {
-  background-color: #eee;
+  background-color: #f1ede9;
 }
 
 .text-dark {
@@ -35,11 +45,15 @@
   color: 'white';
 }
 
-.card-shadow {
+.recipe-preview {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
-.card-shadow:hover {
+.recipe-preview:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.recipe-detailed {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }

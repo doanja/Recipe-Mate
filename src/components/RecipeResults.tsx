@@ -25,11 +25,11 @@ const RecipeResults: React.FC<RecipeResultsProps> = ({
 
       <hr />
 
-      <div>
+      <React.Fragment>
         {recipes.map((recipe, key) => (
           <RecipePreview key={key} recipe={recipe} loadSingleRecipe={loadSingleRecipe} />
         ))}
-      </div>
+      </React.Fragment>
 
       <hr />
 

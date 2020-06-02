@@ -7,11 +7,13 @@ import './App.css';
 const App: React.FC = () => {
   const client = new RecipeService('355b1f4de8e34560a7a8ac33df39c3c2');
 
-  const [recipes, setRecipes] = useState<Recipe[] | any>([]); // array of recipes
+  const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | any>([]); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [startingResults, setStartingResults] = useState(0);
-  const [endingResults, setEndingResults] = useState(2);
+
+  const [searchOffset, setSearchOffset] = useState(0);
+  const [searchLimit, setSearchLimit] = useState(2);
   const [recipe, setRecipe] = useState<Recipe | any>(''); // used for the single detailed recipe
 
   // TODO: remove this, used for testing in development only
@@ -21,8 +23,8 @@ const App: React.FC = () => {
 
   // handles switching offset
   useEffect(() => {
-    if (searchQuery) getRecipeId(searchQuery, startingResults, endingResults);
-  }, [startingResults, endingResults, searchQuery]);
+    if (searchQuery) getRecipeId(searchQuery, searchOffset, searchLimit);
+  }, [searchOffset, searchLimit, searchQuery]);
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
@@ -31,7 +33,7 @@ const App: React.FC = () => {
     };
 
     loadRecipes()
-      .then(res => setRecipes(res.map(newRecipe => newRecipe.data)))
+      .then(res => setSearchedRecipes(res.map(newRecipe => newRecipe.data)))
       .catch(err => console.log(err));
   }, [recipeIds]);
 
@@ -47,6 +49,7 @@ const App: React.FC = () => {
   ) => {
     setSearchQuery(query);
     setRecipe('');
+    setRecipeIds([]);
 
     client
       .getRecipe(
@@ -67,31 +70,29 @@ const App: React.FC = () => {
   };
 
   const previousRecipeResults = () => {
-    if (endingResults > 10) {
-      setStartingResults(startingResults - 10);
-      setEndingResults(endingResults - 10);
+    if (searchLimit > 2) {
+      setSearchOffset(searchOffset - 2);
     }
   };
 
   const nextRecipeResults = () => {
-    setStartingResults(startingResults + 2);
-    setEndingResults(endingResults + 2);
+    setSearchOffset(searchOffset + 2);
   };
 
   const loadSingleRecipe: loadSingleRecipe = recipe => {
-    setRecipes([]);
+    setSearchedRecipes([]);
     setRecipe(recipe);
   };
 
   return (
-    <Container className='container'>
+    <Container>
       <SearchBar getRecipe={getRecipeId} />
 
       {recipe ? (
         <RecipeContainer recipe={recipe} />
-      ) : recipes.length ? (
+      ) : searchedRecipes.length ? (
         <RecipeResults
-          recipes={recipes}
+          recipes={searchedRecipes}
           loadSingleRecipe={loadSingleRecipe}
           searchQuery={searchQuery}
           previousRecipeResults={previousRecipeResults}

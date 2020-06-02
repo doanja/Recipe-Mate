@@ -12,10 +12,10 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe }) => {
   }, [recipe]);
 
   return (
-    <div className='mb-3'>
+    <div className='mb-3 test'>
       <RecipeHeader recipe={recipe} />
-      <Ingredients title={recipe?.title} ingredients={recipe?.extendedIngredients} />
-      <Instructions title={recipe?.title} instructions={instructions} />
+      <Ingredients ingredients={recipe?.extendedIngredients} />
+      <Instructions instructions={instructions} />
     </div>
   );
 };

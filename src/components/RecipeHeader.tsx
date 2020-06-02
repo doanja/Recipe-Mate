@@ -9,7 +9,7 @@ interface RecipeHeaderProps {
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
   console.log('recipe', recipe);
   return (
-    <Card className='mt-3 card-shadow ' bg='dark' text='light'>
+    <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
       <Card.Header>{recipe?.title}</Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image card-bg'>
