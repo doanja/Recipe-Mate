@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tags } from './';
 import { Card, Row, Col, Button, ListGroup } from 'react-bootstrap';
 import '../App.css';
 
@@ -21,10 +22,10 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
             <Card.Header>{`Prep. Time: ${recipe?.preparationMinutes} minute(s) ~ Ready In ${recipe?.readyInMinutes}`}</Card.Header>
             <ListGroup variant='flush'>
               <ListGroup.Item>{`Serves: ${recipe?.servings}`}</ListGroup.Item>
-              <ListGroup.Item>{`${recipe?.aggregateLikes} Likes`}</ListGroup.Item>
+              <ListGroup.Item>{`Likes: ${recipe?.aggregateLikes}`}</ListGroup.Item>
               <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
             </ListGroup>
-            <div className='mt-3 w-100'>
+            <div className='mt-3'>
               <Button
                 variant='dark'
                 className='px-2 recipe-preview'
@@ -38,6 +39,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
                 View Nutrition Facts
               </Button>
             </div>
+            <Tags warnings={['a', 'b', 'c']} />
           </Card.Body>
         </Col>
       </Row>

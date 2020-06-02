@@ -7,6 +7,7 @@ import RecipeHeader from './RecipeHeader';
 import RecipePreview from './RecipePreview';
 import RecipeResults from './RecipeResults';
 import SearchBar from './SearchBar';
+import Tags from './Tags';
 
 export {
   Ingredient,
@@ -18,4 +19,5 @@ export {
   RecipePreview,
   RecipeResults,
   SearchBar,
+  Tags,
 };
