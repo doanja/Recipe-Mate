@@ -13,7 +13,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
       <Card.Header>{recipe?.title}</Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image card-bg'>
-          <img src={recipe?.image} />
+          <img src={recipe?.image} alt={recipe?.title} />
         </Col>
         <Col md={8} className='card-bg'>
           <Card.Body className='text-dark'>

@@ -22,7 +22,7 @@ const App: React.FC = () => {
   // handles switching offset
   useEffect(() => {
     if (searchQuery) getRecipeId(searchQuery, startingResults, endingResults);
-  }, [startingResults, endingResults]);
+  }, [startingResults, endingResults, searchQuery]);
 
   // calls API and gets the recipe for each ID
   useEffect(() => {

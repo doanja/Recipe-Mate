@@ -12,7 +12,7 @@ const Ingredient: React.FC<IngredientProps> = ({ ingredient }) => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <ListGroup.Item className='ingredient' onClick={() => setChecked(!checked)}>
+    <ListGroup.Item action onClick={() => setChecked(!checked)}>
       <FontAwesomeIcon icon={checked ? faCheck : faSquare} className='mr-3' />
 
       <p className={`${checked ? 'done d-inline' : 'd-inline'}`}>{ingredient}</p>

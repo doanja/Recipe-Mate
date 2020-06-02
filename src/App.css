@@ -1,32 +1,10 @@
-/* .container {
-  border: 1px solid red;
-} */
-
 .icon:hover {
   cursor: pointer;
   color: red;
 }
 
-/* .img:hover {
-  cursor: pointer;
-} */
-
-.ingredient:nth-child(odd) {
-  background-color: #fff;
-}
-
-.ingredient:hover {
-  background-color: #eee;
-  color: black;
-  cursor: pointer;
-}
-
 .done {
   text-decoration: line-through;
-}
-
-.test {
-  width: 100%;
 }
 
 .recipe-preview {
