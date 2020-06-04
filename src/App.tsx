@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import './App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('c349623f18b2486ba4f62c40c8dd7fd6');
+  const client = new RecipeService('3f52830b3b6d46c98fa94f6e31602a82');
 
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | any>([]); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);

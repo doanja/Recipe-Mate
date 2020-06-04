@@ -42,7 +42,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
               <ListGroup.Item>{`Likes: ${recipe?.aggregateLikes}`}</ListGroup.Item>
               <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
             </ListGroup>
-            <RecipePreviewButtons />
+            <RecipePreviewButtons recipe={recipe} />
             <Tags tags={tags} />
           </Card.Body>
         </Col>
