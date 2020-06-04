@@ -5,6 +5,7 @@ import Instructions from './Instructions';
 import RecipeContainer from './RecipeContainer';
 import RecipeHeader from './RecipeHeader';
 import RecipePreview from './RecipePreview';
+import RecipePreviewButtons from './RecipePreviewButtons';
 import RecipeResults from './RecipeResults';
 import SearchBar from './SearchBar';
 import Tags from './Tags';
@@ -17,6 +18,7 @@ export {
   RecipeContainer,
   RecipeHeader,
   RecipePreview,
+  RecipePreviewButtons,
   RecipeResults,
   SearchBar,
   Tags,

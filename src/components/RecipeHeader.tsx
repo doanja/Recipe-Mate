@@ -1,6 +1,6 @@
-import React from 'react';
-import { Tags } from './';
-import { Card, Row, Col, Button, ListGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { RecipePreviewButtons, Tags } from './';
+import { Card, Row, Col, ListGroup } from 'react-bootstrap';
 import '../App.css';
 
 interface RecipeHeaderProps {
@@ -9,6 +9,24 @@ interface RecipeHeaderProps {
 
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
   console.log('recipe', recipe);
+
+  const [tags, setTags] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    const arr: Array<string> = [];
+
+    if (recipe?.cheap) arr.push('cheap');
+    if (recipe?.dairyFree) arr.push('dairy free');
+    if (recipe?.glutenFree) arr.push('gluten free');
+    if (recipe?.lowFodmap) arr.push('load food map');
+    if (recipe?.sustainable) arr.push('sustainable');
+    if (recipe?.vegan) arr.push('vegan');
+    if (recipe?.vegetarian) arr.push('vegetarian');
+    if (recipe?.veryHealthy) arr.push('healthy');
+    if (recipe?.veryPopular) arr.push('popular');
+
+    setTags(arr);
+  }, [recipe]);
 
   return (
     <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
@@ -25,21 +43,8 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
               <ListGroup.Item>{`Likes: ${recipe?.aggregateLikes}`}</ListGroup.Item>
               <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
             </ListGroup>
-            <div className='mt-3'>
-              <Button
-                variant='dark'
-                className='px-2 recipe-preview'
-                onClick={() => console.log('button clicked recipe?.sourceUrl')}>
-                Source
-              </Button>
-              <Button
-                variant='dark'
-                className='px-2 recipe-preview'
-                onClick={() => console.log('button clicked')}>
-                View Nutrition Facts
-              </Button>
-            </div>
-            <Tags warnings={['a', 'b', 'c']} />
+            <RecipePreviewButtons />
+            <Tags tags={tags} />
           </Card.Body>
         </Col>
       </Row>
