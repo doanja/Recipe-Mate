@@ -2,6 +2,7 @@ import Ingredient from './Ingredient';
 import Ingredients from './Ingredients';
 import Instruction from './Instruction';
 import Instructions from './Instructions';
+import NutritionInfo from './NutritionInfo';
 import RecipeContainer from './RecipeContainer';
 import RecipeHeader from './RecipeHeader';
 import RecipeModal from './RecipeModal';
@@ -16,6 +17,7 @@ export {
   Ingredients,
   Instruction,
   Instructions,
+  NutritionInfo,
   RecipeContainer,
   RecipeHeader,
   RecipeModal,

@@ -17,6 +17,7 @@ type Recipe = {
   imageType: string;
   instructions: string;
   lowFodmap: boolean;
+  nutrition: Nutrition;
   occasions: Array<string>;
   originalId: any;
   preparationMinutes: number;
@@ -68,6 +69,24 @@ type ExtendedIngredients = {
   original: string;
   originalName: string;
   originalString: string;
+  unit: string;
+};
+
+type Nutrition = {
+  caloricBreakdown: CaloricBreakdown;
+  nutrients: Array<Nutrients>;
+};
+
+type CaloricBreakdown = {
+  percentCarbs: number;
+  percentFat: number;
+  percentProtein: number;
+};
+
+type Nutrients = {
+  amount: number;
+  percentOfDailyNeeds: number;
+  title: string;
   unit: string;
 };
 

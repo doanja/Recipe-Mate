@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar, RecipeResults, RecipeContainer } from './components/index';
+import { SearchBar, RecipeResults, RecipeContainer } from './components/';
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import './App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('3f52830b3b6d46c98fa94f6e31602a82');
+  const client = new RecipeService('cfa6a01f5c164f0ab3fca508dcb9128d');
 
-  const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | any>([]); // array of recipes
+  const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState('');
 
   const [searchOffset, setSearchOffset] = useState(0);
-  const [searchLimit, setSearchLimit] = useState(2);
-  const [recipe, setRecipe] = useState<Recipe | any>(''); // used for the single detailed recipe
+
+  const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
 
   // TODO: remove this, used for testing in development only
   useEffect(() => {
     getRecipeId('cake');
   }, []);
 
-  // handles switching offset
+  // handles loading additional recipes when arrow buttons are clicked
   useEffect(() => {
-    if (searchQuery) getRecipeId(searchQuery, searchOffset, searchLimit);
-  }, [searchOffset, searchLimit, searchQuery]);
+    if (searchQuery) getRecipeId(searchQuery, searchOffset);
+  }, [searchOffset, searchQuery]);
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
@@ -48,7 +48,7 @@ const App: React.FC = () => {
     instructionsRequired
   ) => {
     setSearchQuery(query);
-    setRecipe('');
+    setRecipe(null);
     setRecipeIds([]);
 
     client
@@ -70,9 +70,7 @@ const App: React.FC = () => {
   };
 
   const previousRecipeResults = () => {
-    if (searchLimit > 2) {
-      setSearchOffset(searchOffset - 2);
-    }
+    if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
 
   const nextRecipeResults = () => {
@@ -90,7 +88,7 @@ const App: React.FC = () => {
 
       {recipe ? (
         <RecipeContainer recipe={recipe} />
-      ) : searchedRecipes.length ? (
+      ) : searchedRecipes ? (
         <RecipeResults
           recipes={searchedRecipes}
           loadSingleRecipe={loadSingleRecipe}

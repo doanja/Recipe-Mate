@@ -5,7 +5,7 @@ interface ModalProps {
   toggleModal: ToggleModal;
   showModal: boolean;
   modalHeading: string;
-  modalBody: string;
+  modalBody: JSX.Element;
 }
 
 const RecipeModal: React.FC<ModalProps> = ({ toggleModal, showModal, modalHeading, modalBody }) => {

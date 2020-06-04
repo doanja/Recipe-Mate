@@ -9,7 +9,7 @@ interface RecipeHeaderProps {
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
   console.log('recipe', recipe);
 
-  const [tags, setTags] = useState<Array<string>>([]);
+  const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
     const arr: Array<string> = [];

@@ -1,8 +1,29 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
-interface NutritionInfoProps {}
+interface NutritionInfoProps {
+  nutrients?: Array<Nutrients>;
+}
 
-export const NutritionInfo: React.FC<NutritionInfoProps> = ({}) => {
-  return <h1>test</h1>;
+const NutritionInfo: React.FC<NutritionInfoProps> = ({ nutrients }) => {
+  return (
+    <Table striped bordered hover size='sm' variant='dark'>
+      <thead>
+        <tr>
+          <th>Amount</th>
+          <th>% Daily Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {nutrients?.map((nutrient, index) => (
+          <tr key={index}>
+            <th>{`${nutrient?.title} ${nutrient?.amount}`}</th>
+            <th>{`${nutrient?.percentOfDailyNeeds}%`}</th>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  );
 };
+
+export default NutritionInfo;
