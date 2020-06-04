@@ -4,6 +4,7 @@ import Instruction from './Instruction';
 import Instructions from './Instructions';
 import RecipeContainer from './RecipeContainer';
 import RecipeHeader from './RecipeHeader';
+import RecipeModal from './RecipeModal';
 import RecipePreview from './RecipePreview';
 import RecipePreviewButtons from './RecipePreviewButtons';
 import RecipeResults from './RecipeResults';
@@ -17,6 +18,7 @@ export {
   Instructions,
   RecipeContainer,
   RecipeHeader,
+  RecipeModal,
   RecipePreview,
   RecipePreviewButtons,
   RecipeResults,

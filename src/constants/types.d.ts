@@ -114,3 +114,5 @@ type PreviousRecipeResults = () => void;
 type NextRecipeResults = () => void;
 
 type loadSingleRecipe = (recipe: Recipe) => void;
+
+type ToggleModal = () => void;

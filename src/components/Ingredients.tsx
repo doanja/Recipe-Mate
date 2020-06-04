@@ -1,7 +1,6 @@
 import React from 'react';
 import { Ingredient } from './';
 import { ListGroup } from 'react-bootstrap';
-import '../App.css';
 
 interface IngredientsProps {
   ingredients?: Array<ExtendedIngredients>;

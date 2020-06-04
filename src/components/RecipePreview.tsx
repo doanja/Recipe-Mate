@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
-import '../App.css';
 
 interface RecipePreview {
   recipe: Recipe;

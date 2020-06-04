@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RecipePreviewButtons, Tags } from './';
 import { Card, Row, Col, ListGroup } from 'react-bootstrap';
-import '../App.css';
 
 interface RecipeHeaderProps {
   recipe?: Recipe;
