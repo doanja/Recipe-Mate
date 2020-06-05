@@ -3,6 +3,7 @@ import Ingredients from './Ingredients';
 import Instruction from './Instruction';
 import Instructions from './Instructions';
 import NutritionFacts from './NutritionFacts';
+import RecipeCard from './RecipeCard';
 import RecipeContainer from './RecipeContainer';
 import RecipeHeader from './RecipeHeader';
 import RecipeModal from './RecipeModal';
@@ -18,6 +19,7 @@ export {
   Instruction,
   Instructions,
   NutritionFacts,
+  RecipeCard,
   RecipeContainer,
   RecipeHeader,
   RecipeModal,

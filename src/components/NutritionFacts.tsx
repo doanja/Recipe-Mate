@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 
 interface NutritionFactsProps {
-  nutrients?: Array<Nutrients>;
+  nutrients?: Nutrients[];
 }
 
 const NutritionFacts: React.FC<NutritionFactsProps> = ({ nutrients }) => {

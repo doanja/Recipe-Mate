@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import './App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('cfa6a01f5c164f0ab3fca508dcb9128d');
+  const client = new RecipeService('81c2119f628a42bd8d7dc5abbaea9ad2');
 
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
@@ -69,15 +69,15 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   };
 
-  const previousSearchResults = () => {
+  const loadPrevious = () => {
     if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
 
-  const nextSearchResults = () => {
+  const loadNext = () => {
     setSearchOffset(searchOffset + 2);
   };
 
-  const loadSingleRecipe: loadSingleRecipe = recipe => {
+  const LoadRecipe: LoadRecipe = recipe => {
     setSearchedRecipes([]);
     setRecipe(recipe);
   };
@@ -87,14 +87,14 @@ const App: React.FC = () => {
       <SearchBar getRecipe={getRecipeId} />
 
       {recipe ? (
-        <RecipeContainer recipe={recipe} />
+        <RecipeContainer recipe={recipe} LoadRecipe={LoadRecipe} preview={false} />
       ) : searchedRecipes ? (
         <SearchResults
           recipes={searchedRecipes}
-          loadSingleRecipe={loadSingleRecipe}
+          LoadRecipe={LoadRecipe}
           searchQuery={searchQuery}
-          previousSearchResults={previousSearchResults}
-          nextSearchResults={nextSearchResults}
+          loadPrevious={loadPrevious}
+          loadNext={loadNext}
         />
       ) : null}
     </Container>

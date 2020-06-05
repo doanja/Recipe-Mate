@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag } from '@fortawesome/free-solid-svg-icons';
 
 interface TagsProps {
-  tags: Array<string>;
+  tags: string[];
 }
 
 const Tags: React.FC<TagsProps> = ({ tags }) => {

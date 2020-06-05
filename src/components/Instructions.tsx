@@ -3,7 +3,7 @@ import { Instruction } from './';
 import { ListGroup } from 'react-bootstrap';
 
 interface InstructionsProps {
-  instructions?: Array<string>;
+  instructions: string[] | null;
 }
 
 const Instructions: React.FC<InstructionsProps> = ({ instructions }) => {

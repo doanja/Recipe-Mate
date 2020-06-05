@@ -1,23 +1,23 @@
 import React from 'react';
+import { RecipeContainer } from './';
 import { Container } from 'react-bootstrap';
-import RecipePreview from './RecipePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchResultsProps {
-  recipes: Array<Recipe>;
-  loadSingleRecipe: loadSingleRecipe;
+  recipes: Recipe[];
+  LoadRecipe: LoadRecipe;
   searchQuery: string;
-  previousSearchResults: PreviousSearchResults;
-  nextSearchResults: NextSearchResults;
+  loadPrevious: LoadPrevious;
+  loadNext: LoadNext;
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({
   recipes,
-  loadSingleRecipe,
+  LoadRecipe,
   searchQuery,
-  previousSearchResults,
-  nextSearchResults,
+  loadPrevious,
+  loadNext,
 }) => {
   return (
     <Container fluid className='my-3'>
@@ -27,23 +27,15 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
       <React.Fragment>
         {recipes.map((recipe, key) => (
-          <RecipePreview key={key} recipe={recipe} loadSingleRecipe={loadSingleRecipe} />
+          <RecipeContainer key={key} recipe={recipe} LoadRecipe={LoadRecipe} preview={true} />
         ))}
       </React.Fragment>
 
       <hr />
 
       <div className='d-block'>
-        <FontAwesomeIcon
-          icon={faArrowLeft}
-          className='icon float-left'
-          onClick={previousSearchResults}
-        />
-        <FontAwesomeIcon
-          icon={faArrowRight}
-          className='icon float-right'
-          onClick={nextSearchResults}
-        />
+        <FontAwesomeIcon icon={faArrowLeft} className='icon float-left' onClick={loadPrevious} />
+        <FontAwesomeIcon icon={faArrowRight} className='icon float-right' onClick={loadNext} />
       </div>
     </Container>
   );

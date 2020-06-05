@@ -3,7 +3,7 @@ import { Ingredient } from './';
 import { ListGroup } from 'react-bootstrap';
 
 interface IngredientsProps {
-  ingredients?: Array<ExtendedIngredients>;
+  ingredients?: ExtendedIngredients[];
 }
 
 const Ingredients: React.FC<IngredientsProps> = ({ ingredients }) => {

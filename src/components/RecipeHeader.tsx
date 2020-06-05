@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RecipeButtonGroup, Tags } from './';
-import { Card, Row, Col, ListGroup } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 
 interface RecipeHeaderProps {
   recipe?: Recipe;
@@ -12,7 +12,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
   const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-    const arr: Array<string> = [];
+    const arr: string[] = [];
 
     if (recipe?.cheap) arr.push('cheap');
     if (recipe?.dairyFree) arr.push('dairy free');
@@ -36,12 +36,10 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
         </Col>
         <Col md={8} className='card-bg'>
           <Card.Body className='text-dark'>
-            <Card.Header>{`Prep. Time: ${recipe?.preparationMinutes} minute(s) ~ Ready In ${recipe?.readyInMinutes}`}</Card.Header>
-            <ListGroup variant='flush'>
-              <ListGroup.Item>{`Serves: ${recipe?.servings}`}</ListGroup.Item>
-              <ListGroup.Item>{`Likes: ${recipe?.aggregateLikes}`}</ListGroup.Item>
-              <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
-            </ListGroup>
+            <Card.Title>
+              {`Ready in ${recipe?.readyInMinutes} minutes and serves ${recipe?.servings}`}
+            </Card.Title>
+
             <RecipeButtonGroup recipe={recipe} />
             <Tags tags={tags} />
           </Card.Body>
