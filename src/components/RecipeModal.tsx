@@ -11,7 +11,7 @@ interface ModalProps {
 const RecipeModal: React.FC<ModalProps> = ({ toggleModal, showModal, modalHeading, modalBody }) => {
   return (
     <Modal show={showModal} onHide={toggleModal}>
-      <Modal.Header closeButton>
+      <Modal.Header className='bg-dark text-light'>
         <Modal.Title>{modalHeading}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{modalBody}</Modal.Body>

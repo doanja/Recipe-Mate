@@ -17,8 +17,8 @@ const NutritionInfo: React.FC<NutritionInfoProps> = ({ nutrients }) => {
       <tbody>
         {nutrients?.map((nutrient, index) => (
           <tr key={index}>
-            <th>{`${nutrient?.title} ${nutrient?.amount}`}</th>
-            <th>{`${nutrient?.percentOfDailyNeeds}%`}</th>
+            <td>{`${nutrient?.title} ${nutrient?.amount}`}</td>
+            <td>{`${nutrient?.percentOfDailyNeeds}%`}</td>
           </tr>
         ))}
       </tbody>
