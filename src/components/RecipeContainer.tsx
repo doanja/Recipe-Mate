@@ -3,11 +3,11 @@ import { RecipeCard, Ingredients, Instructions } from './';
 
 interface RecipeContainerProps {
   recipe: Recipe;
-  LoadRecipe: LoadRecipe;
+  loadRecipe: LoadRecipe;
   preview: boolean;
 }
 
-const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, LoadRecipe, preview }) => {
+const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, preview }) => {
   const [instructions, setInstructions] = useState<string[] | null>(null);
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -37,7 +37,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, LoadRecipe, p
         recipe={recipe}
         ingredients={ingredients}
         tags={tags}
-        LoadRecipe={LoadRecipe}
+        loadRecipe={loadRecipe}
         preview={preview}
       />
       {!preview ? (

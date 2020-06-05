@@ -6,7 +6,7 @@ interface RecipeCardProps {
   recipe: Recipe;
   ingredients: string[];
   tags: string[];
-  LoadRecipe: LoadRecipe;
+  loadRecipe: LoadRecipe;
   preview: boolean;
 }
 
@@ -14,11 +14,11 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   recipe,
   ingredients,
   tags,
-  LoadRecipe,
+  loadRecipe,
   preview,
 }) => {
   return preview ? (
-    <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => LoadRecipe(recipe)}>
+    <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>
       <Card.Header>{recipe.title}</Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image card-bg'>
@@ -34,7 +34,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
             <Button
               variant='dark'
               className='px-2 recipe-preview'
-              onClick={() => LoadRecipe(recipe)}
+              onClick={() => loadRecipe(recipe)}
               block>
               View Details
             </Button>

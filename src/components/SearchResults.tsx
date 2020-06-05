@@ -6,7 +6,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchResultsProps {
   recipes: Recipe[];
-  LoadRecipe: LoadRecipe;
+  loadRecipe: LoadRecipe;
   searchQuery: string;
   loadPrevious: LoadPrevious;
   loadNext: LoadNext;
@@ -14,7 +14,7 @@ interface SearchResultsProps {
 
 const SearchResults: React.FC<SearchResultsProps> = ({
   recipes,
-  LoadRecipe,
+  loadRecipe,
   searchQuery,
   loadPrevious,
   loadNext,
@@ -27,7 +27,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
       <React.Fragment>
         {recipes.map((recipe, key) => (
-          <RecipeContainer key={key} recipe={recipe} LoadRecipe={LoadRecipe} preview={true} />
+          <RecipeContainer key={key} recipe={recipe} loadRecipe={loadRecipe} preview={true} />
         ))}
       </React.Fragment>
 

@@ -77,7 +77,7 @@ const App: React.FC = () => {
     setSearchOffset(searchOffset + 2);
   };
 
-  const LoadRecipe: LoadRecipe = recipe => {
+  const loadRecipe: LoadRecipe = recipe => {
     setSearchedRecipes([]);
     setRecipe(recipe);
   };
@@ -87,11 +87,11 @@ const App: React.FC = () => {
       <SearchBar getRecipe={getRecipeId} />
 
       {recipe ? (
-        <RecipeContainer recipe={recipe} LoadRecipe={LoadRecipe} preview={false} />
+        <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} />
       ) : searchedRecipes ? (
         <SearchResults
           recipes={searchedRecipes}
-          LoadRecipe={LoadRecipe}
+          loadRecipe={loadRecipe}
           searchQuery={searchQuery}
           loadPrevious={loadPrevious}
           loadNext={loadNext}
