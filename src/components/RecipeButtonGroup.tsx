@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { NutritionFacts, RecipeModal } from '.';
+import { NutritionFacts, RecipeModal } from './';
 
 interface RecipeButtonGroupProps {
-  recipe?: Recipe;
+  recipe: Recipe;
 }
 
 export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe }) => {

@@ -3,7 +3,7 @@ import { Instruction } from './';
 import { ListGroup } from 'react-bootstrap';
 
 interface InstructionsProps {
-  instructions: string[] | null;
+  instructions: string[];
 }
 
 const Instructions: React.FC<InstructionsProps> = ({ instructions }) => {
@@ -13,7 +13,7 @@ const Instructions: React.FC<InstructionsProps> = ({ instructions }) => {
         <p className='d-inline text-light'>Instructions</p>
       </ListGroup.Item>
 
-      {instructions?.map((instructions, index) => (
+      {instructions.map((instructions, index) => (
         <Instruction key={index} instruction={instructions} />
       ))}
     </ListGroup>

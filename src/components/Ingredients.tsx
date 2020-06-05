@@ -3,7 +3,7 @@ import { Ingredient } from './';
 import { ListGroup } from 'react-bootstrap';
 
 interface IngredientsProps {
-  ingredients?: ExtendedIngredients[];
+  ingredients: ExtendedIngredients[];
 }
 
 const Ingredients: React.FC<IngredientsProps> = ({ ingredients }) => {
@@ -13,7 +13,7 @@ const Ingredients: React.FC<IngredientsProps> = ({ ingredients }) => {
         <p className='d-inline text-light'>Ingredients</p>
       </ListGroup.Item>
 
-      {ingredients?.map((ingredient, index) => (
+      {ingredients.map((ingredient, index) => (
         <Ingredient key={index} ingredient={ingredient.originalString} />
       ))}
     </ListGroup>

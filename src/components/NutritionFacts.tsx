@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 
 interface NutritionFactsProps {
-  nutrients?: Nutrients[];
+  nutrients: Nutrients[];
 }
 
 const NutritionFacts: React.FC<NutritionFactsProps> = ({ nutrients }) => {
@@ -15,10 +15,10 @@ const NutritionFacts: React.FC<NutritionFactsProps> = ({ nutrients }) => {
         </tr>
       </thead>
       <tbody>
-        {nutrients?.map((nutrient, index) => (
+        {nutrients.map((nutrient, index) => (
           <tr key={index}>
-            <td>{`${nutrient?.title} ${nutrient?.amount}`}</td>
-            <td>{`${nutrient?.percentOfDailyNeeds}%`}</td>
+            <td>{`${nutrient.title} ${nutrient.amount}`}</td>
+            <td>{`${nutrient.percentOfDailyNeeds}%`}</td>
           </tr>
         ))}
       </tbody>

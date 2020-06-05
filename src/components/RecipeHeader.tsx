@@ -2,7 +2,7 @@ import React from 'react';
 import { RecipeButtonGroup, Tags } from './';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 
-interface RecipeCardProps {
+interface RecipeHeaderProps {
   recipe: Recipe;
   ingredients: string[];
   tags: string[];
@@ -10,7 +10,7 @@ interface RecipeCardProps {
   preview: boolean;
 }
 
-const RecipeCard: React.FC<RecipeCardProps> = ({
+const RecipeHeader: React.FC<RecipeHeaderProps> = ({
   recipe,
   ingredients,
   tags,
@@ -44,15 +44,15 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
     </Card>
   ) : (
     <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
-      <Card.Header>{recipe?.title}</Card.Header>
+      <Card.Header>{recipe.title}</Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image card-bg'>
-          <img src={recipe?.image} alt={recipe?.title} />
+          <img src={recipe.image} alt={recipe.title} />
         </Col>
         <Col md={8} className='card-bg'>
           <Card.Body className='text-dark'>
             <Card.Title>
-              {`Ready in ${recipe?.readyInMinutes} minutes and serves ${recipe?.servings}`}
+              {`Ready in ${recipe.readyInMinutes} minutes and serves ${recipe.servings}`}
             </Card.Title>
 
             <RecipeButtonGroup recipe={recipe} />
@@ -64,4 +64,4 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
   );
 };
 
-export default RecipeCard;
+export default RecipeHeader;

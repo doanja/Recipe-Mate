@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RecipeCard, Ingredients, Instructions } from './';
+import { RecipeHeader, Ingredients, Instructions } from './';
 
 interface RecipeContainerProps {
   recipe: Recipe;
@@ -8,7 +8,7 @@ interface RecipeContainerProps {
 }
 
 const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, preview }) => {
-  const [instructions, setInstructions] = useState<string[] | null>(null);
+  const [instructions, setInstructions] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
 
@@ -33,7 +33,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
 
   return (
     <div className='mb-3'>
-      <RecipeCard
+      <RecipeHeader
         recipe={recipe}
         ingredients={ingredients}
         tags={tags}
@@ -42,7 +42,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
       />
       {!preview ? (
         <React.Fragment>
-          <Ingredients ingredients={recipe?.extendedIngredients} />{' '}
+          <Ingredients ingredients={recipe?.extendedIngredients} />
           <Instructions instructions={instructions} />
         </React.Fragment>
       ) : null}
