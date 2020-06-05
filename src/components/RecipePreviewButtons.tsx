@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import { NutritionInfo, RecipeModal } from './';
 
 interface RecipePreviewButtonsProps {
@@ -19,17 +19,25 @@ export const RecipePreviewButtons: React.FC<RecipePreviewButtonsProps> = ({ reci
         modalHeading={'Nutrition Facts'}
         modalBody={<NutritionInfo nutrients={recipe?.nutrition.nutrients} />}
       />
-      <div className='mt-2 text-center'>
-        <Button variant='dark' className='px-2 recipe-preview w-50' onClick={toggleModal}>
+      <ButtonGroup className='mt-2 w-100'>
+        <Button variant='dark' size='sm' className='recipe-preview' onClick={toggleModal}>
           Nutrition Facts
         </Button>
         <Button
           variant='dark'
-          className='px-2 recipe-preview w-50'
-          onClick={() => console.log('button clicked recipe?.sourceUrl')}>
+          size='sm'
+          className='recipe-preview'
+          onClick={() => console.log('TODO: load similar recipes')}>
+          Similar Recipes
+        </Button>
+        <Button
+          variant='dark'
+          size='sm'
+          className='recipe-preview'
+          onClick={() => window.open(recipe?.sourceUrl, '_blank')}>
           Source
         </Button>
-      </div>
+      </ButtonGroup>
     </React.Fragment>
   );
 };
