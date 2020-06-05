@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar, RecipeResults, RecipeContainer } from './components/';
+import { SearchBar, SearchResults, RecipeContainer } from './components/';
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import './App.css';
@@ -69,11 +69,11 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   };
 
-  const previousRecipeResults = () => {
+  const previousSearchResults = () => {
     if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
 
-  const nextRecipeResults = () => {
+  const nextSearchResults = () => {
     setSearchOffset(searchOffset + 2);
   };
 
@@ -89,12 +89,12 @@ const App: React.FC = () => {
       {recipe ? (
         <RecipeContainer recipe={recipe} />
       ) : searchedRecipes ? (
-        <RecipeResults
+        <SearchResults
           recipes={searchedRecipes}
           loadSingleRecipe={loadSingleRecipe}
           searchQuery={searchQuery}
-          previousRecipeResults={previousRecipeResults}
-          nextRecipeResults={nextRecipeResults}
+          previousSearchResults={previousSearchResults}
+          nextSearchResults={nextSearchResults}
         />
       ) : null}
     </Container>

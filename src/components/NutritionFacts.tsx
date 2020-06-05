@@ -1,11 +1,11 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-interface NutritionInfoProps {
+interface NutritionFactsProps {
   nutrients?: Array<Nutrients>;
 }
 
-const NutritionInfo: React.FC<NutritionInfoProps> = ({ nutrients }) => {
+const NutritionFacts: React.FC<NutritionFactsProps> = ({ nutrients }) => {
   return (
     <Table striped bordered hover size='sm' variant='dark'>
       <thead>
@@ -26,4 +26,4 @@ const NutritionInfo: React.FC<NutritionInfoProps> = ({ nutrients }) => {
   );
 };
 
-export default NutritionInfo;
+export default NutritionFacts;

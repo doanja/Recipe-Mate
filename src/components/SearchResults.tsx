@@ -4,20 +4,20 @@ import RecipePreview from './RecipePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-interface RecipeResultsProps {
+interface SearchResultsProps {
   recipes: Array<Recipe>;
   loadSingleRecipe: loadSingleRecipe;
   searchQuery: string;
-  previousRecipeResults: PreviousRecipeResults;
-  nextRecipeResults: NextRecipeResults;
+  previousSearchResults: PreviousSearchResults;
+  nextSearchResults: NextSearchResults;
 }
 
-const RecipeResults: React.FC<RecipeResultsProps> = ({
+const SearchResults: React.FC<SearchResultsProps> = ({
   recipes,
   loadSingleRecipe,
   searchQuery,
-  previousRecipeResults,
-  nextRecipeResults,
+  previousSearchResults,
+  nextSearchResults,
 }) => {
   return (
     <Container fluid className='my-3'>
@@ -37,16 +37,16 @@ const RecipeResults: React.FC<RecipeResultsProps> = ({
         <FontAwesomeIcon
           icon={faArrowLeft}
           className='icon float-left'
-          onClick={previousRecipeResults}
+          onClick={previousSearchResults}
         />
         <FontAwesomeIcon
           icon={faArrowRight}
           className='icon float-right'
-          onClick={nextRecipeResults}
+          onClick={nextSearchResults}
         />
       </div>
     </Container>
   );
 };
 
-export default RecipeResults;
+export default SearchResults;

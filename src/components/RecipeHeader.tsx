@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RecipePreviewButtons, Tags } from './';
+import { RecipeButtonGroup, Tags } from './';
 import { Card, Row, Col, ListGroup } from 'react-bootstrap';
 
 interface RecipeHeaderProps {
@@ -42,7 +42,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe }) => {
               <ListGroup.Item>{`Likes: ${recipe?.aggregateLikes}`}</ListGroup.Item>
               <ListGroup.Item>{`Weight Watchers Score: ${recipe?.weightWatcherSmartPoints}`}</ListGroup.Item>
             </ListGroup>
-            <RecipePreviewButtons recipe={recipe} />
+            <RecipeButtonGroup recipe={recipe} />
             <Tags tags={tags} />
           </Card.Body>
         </Col>

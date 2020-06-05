@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { NutritionInfo, RecipeModal } from './';
+import { NutritionFacts, RecipeModal } from '.';
 
-interface RecipePreviewButtonsProps {
+interface RecipeButtonGroupProps {
   recipe?: Recipe;
 }
 
-export const RecipePreviewButtons: React.FC<RecipePreviewButtonsProps> = ({ recipe }) => {
+export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe }) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
@@ -17,7 +17,7 @@ export const RecipePreviewButtons: React.FC<RecipePreviewButtonsProps> = ({ reci
         showModal={showModal}
         toggleModal={toggleModal}
         modalHeading={'Nutrition Facts'}
-        modalBody={<NutritionInfo nutrients={recipe?.nutrition.nutrients} />}
+        modalBody={<NutritionFacts nutrients={recipe?.nutrition.nutrients} />}
       />
       <ButtonGroup className='mt-2 w-100'>
         <Button variant='dark' size='sm' className='recipe-preview' onClick={toggleModal}>
@@ -42,4 +42,4 @@ export const RecipePreviewButtons: React.FC<RecipePreviewButtonsProps> = ({ reci
   );
 };
 
-export default RecipePreviewButtons;
+export default RecipeButtonGroup;
