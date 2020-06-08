@@ -29,7 +29,10 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
             <Card.Title>
               {`Ready in ${recipe.readyInMinutes} Minutes and Serves ${recipe.servings}`}
             </Card.Title>
-            <Card.Text>{`Ingredients: ${ingredients.join(', ')}`}</Card.Text>
+            <Card.Text>
+              <p className='font-weight-bold d-inline'>Ingredients: </p>
+              <p className='d-inline'>{`${ingredients.join(', ')}`}</p>
+            </Card.Text>
           </Card.Body>
           <Card.Footer className='py-2 mt-5'>
             <Button
