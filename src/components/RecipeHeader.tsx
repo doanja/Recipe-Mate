@@ -27,12 +27,12 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
         <Col md={8} className='card-bg'>
           <Card.Body className='text-dark'>
             <Card.Title>
-              {`Ready in ${recipe.readyInMinutes} minutes and serves ${recipe.servings}`}
+              {`Ready in ${recipe.readyInMinutes} Minutes and Serves ${recipe.servings}`}
             </Card.Title>
-            <Card.Text>Ingredients:</Card.Text>
-            <Card.Text>{`${ingredients.join(', ')}`}</Card.Text>
+            <Card.Text>{`Ingredients: ${ingredients.join(', ')}`}</Card.Text>
             <Button
               variant='dark'
+              size='sm'
               className='px-2 recipe-preview'
               onClick={() => loadRecipe(recipe)}
               block>
@@ -49,15 +49,13 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
         <Col md={4} className='recipe-image card-bg'>
           <img src={recipe.image} alt={recipe.title} />
         </Col>
-        <Col md={8} className='card-bg'>
-          <Card.Body className='text-dark'>
-            <Card.Title>
-              {`Ready in ${recipe.readyInMinutes} minutes and serves ${recipe.servings}`}
-            </Card.Title>
-
+        <Col md={8} className='card-bg text-dark'>
+          <Card.Body>
             <RecipeButtonGroup recipe={recipe} />
-            <Tags tags={tags} />
           </Card.Body>
+          <Card.Footer className='py-2 mt-5'>
+            <Tags tags={tags} />
+          </Card.Footer>
         </Col>
       </Row>
     </Card>

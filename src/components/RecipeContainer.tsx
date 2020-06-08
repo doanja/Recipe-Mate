@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RecipeHeader, Ingredients, Instructions } from './';
+import { RecipeHeader, Ingredients, Instructions, RecipeModal } from './';
 
 interface RecipeContainerProps {
   recipe: Recipe;
@@ -12,27 +12,38 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
 
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal: ToggleModal = () => setShowModal(!showModal);
+
   useEffect(() => {
     const tags: string[] = [];
 
-    if (recipe?.cheap) tags.push('cheap');
-    if (recipe?.dairyFree) tags.push('dairy free');
-    if (recipe?.glutenFree) tags.push('gluten free');
-    if (recipe?.lowFodmap) tags.push('load food map');
-    if (recipe?.sustainable) tags.push('sustainable');
-    if (recipe?.vegan) tags.push('vegan');
-    if (recipe?.vegetarian) tags.push('vegetarian');
-    if (recipe?.veryHealthy) tags.push('healthy');
-    if (recipe?.veryPopular) tags.push('popular');
+    if (recipe.cheap) tags.push('cheap');
+    if (recipe.dairyFree) tags.push('dairy free');
+    if (recipe.glutenFree) tags.push('gluten free');
+    if (recipe.lowFodmap) tags.push('load food map');
+    if (recipe.sustainable) tags.push('sustainable');
+    if (recipe.vegan) tags.push('vegan');
+    if (recipe.vegetarian) tags.push('vegetarian');
+    if (recipe.veryHealthy) tags.push('healthy');
+    if (recipe.veryPopular) tags.push('popular');
 
     setTags(tags);
 
-    setInstructions(recipe.analyzedInstructions[0].steps.map(step => step.step));
+    if(recipe.analyzedInstructions.length > 0) setInstructions(recipe.analyzedInstructions[0].steps.map(step => step.step));
     setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
+
+    if (!recipe.analyzedInstructions) toggleModal();
   }, [recipe]);
 
   return (
     <div className='mb-3'>
+      <RecipeModal
+        showModal={showModal}
+        toggleModal={toggleModal}
+        modalHeading={'Warning'}
+        modalBody={<p>There are no instructions for this recipe.</p>}
+      />
       <RecipeHeader
         recipe={recipe}
         ingredients={ingredients}
@@ -42,7 +53,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
       />
       {!preview ? (
         <React.Fragment>
-          <Ingredients ingredients={recipe?.extendedIngredients} />
+          <Ingredients ingredients={recipe.extendedIngredients} />
           <Instructions instructions={instructions} />
         </React.Fragment>
       ) : null}

@@ -8,11 +8,11 @@ interface TagsProps {
 
 const Tags: React.FC<TagsProps> = ({ tags }) => {
   return tags ? (
-    <div className='mt-2 text-center'>
+    <div className='text-center'>
       {tags.map((tag, index) => (
         <div key={index} className='mr-2 d-inline'>
           <FontAwesomeIcon icon={faTag} />
-          <p className='d-inline'>{tag}</p>
+          <small className='d-inline'>{tag}</small>
         </div>
       ))}
     </div>
