@@ -11,8 +11,7 @@ const Tags: React.FC<TagsProps> = ({ tags }) => {
     <div className='text-center'>
       {tags.map((tag, index) => (
         <div key={index} className='mr-2 d-inline'>
-          <FontAwesomeIcon icon={faTag} />
-          <small className='d-inline'>{tag}</small>
+          <FontAwesomeIcon icon={faTag} /> <small className='d-inline'>{tag}</small>
         </div>
       ))}
     </div>

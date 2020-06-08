@@ -24,12 +24,14 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
         <Col md={4} className='recipe-image card-bg'>
           <img src={recipe.image} alt={recipe.title} />
         </Col>
-        <Col md={8} className='card-bg'>
-          <Card.Body className='text-dark'>
+        <Col md={8} className='card-bg text-dark'>
+          <Card.Body>
             <Card.Title>
               {`Ready in ${recipe.readyInMinutes} Minutes and Serves ${recipe.servings}`}
             </Card.Title>
             <Card.Text>{`Ingredients: ${ingredients.join(', ')}`}</Card.Text>
+          </Card.Body>
+          <Card.Footer className='py-2 mt-5'>
             <Button
               variant='dark'
               size='sm'
@@ -38,7 +40,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
               block>
               View Details
             </Button>
-          </Card.Body>
+          </Card.Footer>
         </Col>
       </Row>
     </Card>
