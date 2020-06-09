@@ -1,6 +1,6 @@
 import React from 'react';
 import { RecipeContainer } from './';
-import { Container } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,24 +20,25 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   loadNext,
 }) => {
   return (
-    <Container fluid className='my-3'>
-      <h3>Search Results for '{searchQuery}'</h3>
-
-      <hr />
-
-      <React.Fragment>
-        {recipes.map((recipe, key) => (
-          <RecipeContainer key={key} recipe={recipe} loadRecipe={loadRecipe} preview={true} />
-        ))}
-      </React.Fragment>
-
-      <hr />
-
-      <div className='d-block'>
-        <FontAwesomeIcon icon={faArrowLeft} className='icon float-left' onClick={loadPrevious} />
-        <FontAwesomeIcon icon={faArrowRight} className='icon float-right' onClick={loadNext} />
+    <div className='mt-3 search-results'>
+      <div className='box box-1 text-center'>Search Results for '{searchQuery}'</div>
+      <div className='box box-2'>
+        {recipes.length > 0 ? (
+          recipes.map((recipe, key) => (
+            <RecipeContainer key={key} recipe={recipe} loadRecipe={loadRecipe} preview={true} />
+          ))
+        ) : (
+          <div className='text-center'>
+            <Spinner animation='grow' />
+          </div>
+        )}
       </div>
-    </Container>
+
+      <div className='box box-3'>
+        <FontAwesomeIcon icon={faArrowLeft} className='icon ' onClick={loadPrevious} />
+        <FontAwesomeIcon icon={faArrowRight} className='icon ' onClick={loadNext} />
+      </div>
+    </div>
   );
 };
 

@@ -83,7 +83,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container className='main'>
       <SearchBar getRecipe={getRecipeId} />
 
       {recipe ? (
