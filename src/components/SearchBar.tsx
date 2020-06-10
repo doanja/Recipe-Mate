@@ -21,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
     <InputGroup className='mt-3'>
       <FormControl placeholder='Search Recipe' value={input} onChange={handleChange} />
       <InputGroup.Append>
-        <Button variant='outline-secondary' onClick={handleSubmit}>
+        <Button variant='dark' onClick={handleSubmit}>
           Search
         </Button>
       </InputGroup.Append>

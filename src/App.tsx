@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar, SearchResults, RecipeContainer } from './components/';
+import { SearchBar, SearchResults, RecipeContainer } from './components';
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
-import './App.css';
+import './styles/reset.css';
+import './styles/App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('b6dd430ecf7d43e09887975b303ed667');
+  const client = new RecipeService('3494ddb8e2df48efb0c8653c4b18e661');
 
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
@@ -83,21 +84,22 @@ const App: React.FC = () => {
   };
 
   return (
-    <Container className='main'>
-      <SearchBar getRecipe={getRecipeId} />
+    <div className='wrap'>
+      <Container>
+        <SearchBar getRecipe={getRecipeId} />
 
-      {recipe ? (
-        <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} />
-      ) : searchedRecipes ? (
-        <SearchResults
-          recipes={searchedRecipes}
-          loadRecipe={loadRecipe}
-          searchQuery={searchQuery}
-          loadPrevious={loadPrevious}
-          loadNext={loadNext}
-        />
-      ) : null}
-    </Container>
+        {recipe ? (
+          <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} />
+        ) : searchedRecipes ? (
+          <SearchResults
+            recipes={searchedRecipes}
+            loadRecipe={loadRecipe}
+            loadPrevious={loadPrevious}
+            loadNext={loadNext}
+          />
+        ) : null}
+      </Container>
+    </div>
   );
 };
 
