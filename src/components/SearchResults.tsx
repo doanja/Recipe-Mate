@@ -41,7 +41,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
           </div>
         ) : (
           <div className='icon-spinner'>
-            <Spinner animation='grow' className='mt-5' />
+            <Spinner animation='border' variant='light' />
           </div>
         )}
       </div>
