@@ -9,6 +9,6 @@
   box-sizing: border-box;
 }
 
-* {
-  overflow: hidden; /* or auto */
+html {
+  background-color: #44475a;
 }
