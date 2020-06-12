@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar, SearchResults, RecipeContainer } from './components';
+import { SearchBar, SearchResults, RecipeContainer, RecipeModal } from './components';
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import './styles/reset.css';
 import './styles/App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('3494ddb8e2df48efb0c8653c4b18e661');
-
+  const client = new RecipeService('5e11e08600e0497aafc804fda4a81608');
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
-
   const [searchQuery, setSearchQuery] = useState('');
-
   const [searchOffset, setSearchOffset] = useState(0);
-
   const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
   // TODO: remove this, used for testing in development only
   useEffect(() => {
@@ -64,17 +62,21 @@ const App: React.FC = () => {
         instructionsRequired
       )
       .then(res => {
-        // TODO: check if no recipes is found, render modal
-        setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
+        if (res.data.results.length === 0) {
+          setShowModal(true);
+          setSearchQuery('');
+        } else {
+          setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
+        }
       })
       .catch(err => console.log(err));
   };
 
-  const loadPrevious = () => {
+  const loadPrevious = (): void => {
     if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
 
-  const loadNext = () => {
+  const loadNext = (): void => {
     setSearchOffset(searchOffset + 2);
   };
 
@@ -86,6 +88,13 @@ const App: React.FC = () => {
   return (
     <div className='wrap'>
       <Container>
+        <RecipeModal
+          showModal={showModal}
+          toggleModal={toggleModal}
+          modalHeading={'Warning'}
+          modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
+        />
+
         <SearchBar getRecipe={getRecipeId} />
 
         {recipe ? (

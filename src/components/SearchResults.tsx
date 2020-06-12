@@ -2,7 +2,7 @@ import React from 'react';
 import { RecipeContainer } from './';
 import { Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltLeft, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface SearchResultsProps {
   recipes: Recipe[];
@@ -27,14 +27,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             ))}
 
             <FontAwesomeIcon
-              icon={faLongArrowAltLeft}
-              size='3x'
+              icon={faArrowLeft}
+              size='1x'
               className='icon float-left'
               onClick={loadPrevious}
             />
             <FontAwesomeIcon
-              icon={faLongArrowAltRight}
-              size='3x'
+              icon={faArrowRight}
+              size='1x'
               className='icon float-right'
               onClick={loadNext}
             />

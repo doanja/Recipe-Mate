@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent } from 'react';
-import { Form, InputGroup, Button, FormControl, FormGroup } from 'react-bootstrap';
+import React, { useState, FormEvent } from 'react';
+import { Form, InputGroup, Button } from 'react-bootstrap';
 
 interface SearchBarProps {
   getRecipe: getRecipe;
@@ -8,12 +8,12 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
   const [input, setInput] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log(input);
+  const handleSubmit = (e: React.FormEvent): void => {
+    e.preventDefault();
     getRecipe(input);
     setInput('');
   };
@@ -21,7 +21,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <InputGroup className='mt-3'>
-        <Form.Control type='text' placeholder='Search a recipe' value={input} onChange={setInput} />
+        <Form.Control
+          type='text'
+          placeholder='Search a recipe'
+          value={input}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+        />
         <InputGroup.Append>
           <Button variant='dark' type='submit' onClick={handleSubmit}>
             Search
