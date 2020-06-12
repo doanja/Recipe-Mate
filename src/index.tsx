@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
+import './styles/main.min.css';
+import './styles/reset.min.css';
 import App from './App';
 
 // Importing the Bootstrap CSS

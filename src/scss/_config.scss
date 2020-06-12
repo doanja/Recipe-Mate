@@ -1,0 +1,21 @@
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$roboto: 'Roboto', sans-serif;
+$arvo: 'Arvo', sans-serif;
+
+// set custom colors
+$primary-color: #44475a;
+$secondary-color: #6272a4;
+$dark: #282a36;
+$light: #f8f8f2;
+
+// override bootstrap theme colors
+$theme-colors: (
+  'primary': $primary-color,
+  'light': $light,
+  'dark': $dark,
+);
+
+// set font family
+$font-family-sans-serif: $arvo;

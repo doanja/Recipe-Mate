@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal } from './components';
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
-import './styles/reset.css';
-import './styles/App.css';
 
 const App: React.FC = () => {
-  const client = new RecipeService('5e11e08600e0497aafc804fda4a81608');
+  const client = new RecipeService('a4ad5586733441a0bd5a32a87a709650');
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');

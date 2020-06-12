@@ -21,10 +21,10 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
     <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>
       <Card.Header>{recipe.title}</Card.Header>
       <Row noGutters={true}>
-        <Col md={4} className='recipe-image card-bg'>
+        <Col md={4} className='recipe-image bg-light'>
           <img src={recipe.image} alt={recipe.title} />
         </Col>
-        <Col md={8} className='card-bg text-dark'>
+        <Col md={8} className='bg-light text-dark'>
           <Card.Body>
             <Card.Title>
               {`Ready in ${recipe.readyInMinutes} Minutes and Serves ${recipe.servings}`}
@@ -51,10 +51,10 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
     <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
       <Card.Header>{recipe.title}</Card.Header>
       <Row noGutters={true}>
-        <Col md={4} className='recipe-image card-bg'>
+        <Col md={4} className='recipe-image bg-light'>
           <img src={recipe.image} alt={recipe.title} />
         </Col>
-        <Col md={8} className='card-bg text-dark'>
+        <Col md={8} className='bg-light text-dark'>
           <Card.Body>
             <RecipeButtonGroup recipe={recipe} />
           </Card.Body>
