@@ -35,13 +35,15 @@ html,
 }
 
 .card-text {
-  font-size: 14px;
+  font-size: 16px;
   font-family: $arvo;
 }
 
-.card-header {
-  font-family: $roboto;
-  font-size: 16px;
+.card-header,
+.card-title {
+  font-family: $openSans;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .recipe-image img {
@@ -69,8 +71,7 @@ html,
   color: $light;
 }
 
-.bg-dark,
-.text-dark {
+.bg-dark {
   background-color: $dark;
 }
 
