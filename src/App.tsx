@@ -36,7 +36,7 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   }, [recipeIds]);
 
-  const getRecipeId: getRecipe = (
+  const getRecipeId: GetRecipe = (
     query,
     cuisine,
     diet,

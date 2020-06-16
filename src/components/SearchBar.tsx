@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 
 interface SearchBarProps {
-  getRecipe: getRecipe;
+  getRecipe: GetRecipe;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
