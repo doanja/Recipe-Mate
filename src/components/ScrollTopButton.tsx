@@ -23,7 +23,7 @@ export const ScrollTopButton: React.FC = () => {
       icon={faArrowAltCircleUp}
       onClick={scrollTop}
       size='3x'
-      className='scrollTop'
+      className='scroll-button'
       style={{ display: showScroll ? 'inline' : 'none' }}
     />
   );
