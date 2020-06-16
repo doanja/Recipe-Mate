@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal } from './components';
+
 import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
+import { ScrollTopButton } from './components/ScrollTopButton';
 
 const App: React.FC = () => {
   const client = new RecipeService('7be2123de3e24f5185b83eef3cdf3a67');
@@ -106,6 +108,7 @@ const App: React.FC = () => {
           />
         ) : null}
       </Container>
+      <ScrollTopButton />
     </div>
   );
 };

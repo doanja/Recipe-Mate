@@ -8,7 +8,6 @@ html,
 
 .wrap {
   height: 100%;
-  min-height: 100vh;
 }
 
 .icon {
@@ -24,10 +23,6 @@ html,
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-}
-
-.search-results {
-  min-height: 100vh;
 }
 
 .done {
@@ -77,4 +72,26 @@ html,
 
 .bg-light {
   background-color: $light;
+}
+
+.scrollTop {
+  position: fixed;
+  width: 100%;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.4s;
+  opacity: 0.75;
+  color: $dark;
+  border: 1px solid $secondary-color;
+  background-color: $secondary-color;
+  border-radius: 50%;
+
+  &:hover {
+    color: $secondary-color;
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+  }
 }
