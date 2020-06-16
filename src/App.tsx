@@ -27,6 +27,8 @@ const App: React.FC = () => {
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
+    setSearchedRecipes([]);
+
     const loadRecipes = async () => {
       return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
     };
@@ -73,7 +75,16 @@ const App: React.FC = () => {
   };
 
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
-    console.log('hi');
+    console.log('id :>> ', id);
+    console.log('number :>> ', number);
+
+    setRecipe(null);
+    setRecipeIds([]);
+
+    client
+      .getSimilarRecipes(id, number)
+      .then(res => setRecipeIds(res.data.map((recipe: any) => recipe.id)))
+      .catch(err => console.log(err));
   };
 
   const loadPrevious = (): void => {

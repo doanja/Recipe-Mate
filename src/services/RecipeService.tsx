@@ -32,6 +32,8 @@ export class RecipeService {
   }
 
   public getSimilarRecipes(id: number, number: number): Promise<AxiosResponse<any>> {
-    return axios.get<any>(`https://api.spoonacular.com/recipes/${id}/similar&number=${number}`);
+    return axios.get<any>(
+      `https://api.spoonacular.com/recipes/${id}/similar?&number=${number}&apiKey=${this.apiKey}`
+    );
   }
 }
