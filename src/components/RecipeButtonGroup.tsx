@@ -4,9 +4,13 @@ import { NutritionFacts, RecipeModal } from './';
 
 interface RecipeButtonGroupProps {
   recipe: Recipe;
+  getSimilarRecipes: GetSimilarRecipes;
 }
 
-export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe }) => {
+export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({
+  recipe,
+  getSimilarRecipes,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
@@ -26,7 +30,7 @@ export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe }) 
         variant='dark'
         size='sm'
         className='recipe-preview'
-        onClick={() => console.log('TODO: load similar recipes')}
+        onClick={() => getSimilarRecipes(recipe.id, 2)}
         block>
         Similar Recipes
       </Button>

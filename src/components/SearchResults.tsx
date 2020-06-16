@@ -9,6 +9,7 @@ interface SearchResultsProps {
   loadRecipe: LoadRecipe;
   loadPrevious: LoadPrevious;
   loadNext: LoadNext;
+  getSimilarRecipes: GetSimilarRecipes;
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({
@@ -16,6 +17,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   loadRecipe,
   loadPrevious,
   loadNext,
+  getSimilarRecipes,
 }) => {
   return (
     <div className='search-results'>
@@ -23,7 +25,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         {recipes.length > 0 ? (
           <div className='clearfix'>
             {recipes.map((recipe, key) => (
-              <RecipeContainer key={key} recipe={recipe} loadRecipe={loadRecipe} preview={true} />
+              <RecipeContainer
+                key={key}
+                recipe={recipe}
+                loadRecipe={loadRecipe}
+                preview={true}
+                getSimilarRecipes={getSimilarRecipes}
+              />
             ))}
 
             <FontAwesomeIcon

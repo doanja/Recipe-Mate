@@ -8,6 +8,7 @@ interface RecipeHeaderProps {
   tags: string[];
   loadRecipe: LoadRecipe;
   preview: boolean;
+  getSimilarRecipes: GetSimilarRecipes;
 }
 
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({
@@ -16,6 +17,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
   tags,
   loadRecipe,
   preview,
+  getSimilarRecipes,
 }) => {
   return preview ? (
     <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>
@@ -56,7 +58,7 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({
         </Col>
         <Col md={8} className='bg-light text-dark'>
           <Card.Body>
-            <RecipeButtonGroup recipe={recipe} />
+            <RecipeButtonGroup recipe={recipe} getSimilarRecipes={getSimilarRecipes} />
           </Card.Body>
           <Card.Footer className='py-2 mt-5'>
             <Tags tags={tags} />

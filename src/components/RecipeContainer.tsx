@@ -5,9 +5,15 @@ interface RecipeContainerProps {
   recipe: Recipe;
   loadRecipe: LoadRecipe;
   preview: boolean;
+  getSimilarRecipes: GetSimilarRecipes;
 }
 
-const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, preview }) => {
+const RecipeContainer: React.FC<RecipeContainerProps> = ({
+  recipe,
+  loadRecipe,
+  preview,
+  getSimilarRecipes,
+}) => {
   const [instructions, setInstructions] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -30,8 +36,10 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
 
     setTags(tags);
 
-    if(recipe.analyzedInstructions.length > 0) setInstructions(recipe.analyzedInstructions[0].steps.map(step => step.step));
-    setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
+    if (recipe.analyzedInstructions.length > 0) {
+      setInstructions(recipe.analyzedInstructions[0].steps.map(step => step.step));
+      setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
+    }
 
     if (!recipe.analyzedInstructions) toggleModal();
   }, [recipe]);
@@ -50,6 +58,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
         tags={tags}
         loadRecipe={loadRecipe}
         preview={preview}
+        getSimilarRecipes={getSimilarRecipes}
       />
       {!preview ? (
         <React.Fragment>

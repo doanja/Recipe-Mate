@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { ScrollTopButton } from './components/ScrollTopButton';
 
 const App: React.FC = () => {
-  const client = new RecipeService('7be2123de3e24f5185b83eef3cdf3a67');
+  const client = new RecipeService('15640069e60a4eebb7d844af90b60207');
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,6 +72,10 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   };
 
+  const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
+    console.log('hi');
+  };
+
   const loadPrevious = (): void => {
     if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
@@ -98,13 +102,19 @@ const App: React.FC = () => {
         <SearchBar getRecipe={getRecipeId} />
 
         {recipe ? (
-          <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} />
+          <RecipeContainer
+            recipe={recipe}
+            loadRecipe={loadRecipe}
+            preview={false}
+            getSimilarRecipes={getSimilarRecipes}
+          />
         ) : searchedRecipes ? (
           <SearchResults
             recipes={searchedRecipes}
             loadRecipe={loadRecipe}
             loadPrevious={loadPrevious}
             loadNext={loadNext}
+            getSimilarRecipes={getSimilarRecipes}
           />
         ) : null}
       </Container>
