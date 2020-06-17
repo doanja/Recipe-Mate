@@ -23,7 +23,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     <div className='search-results'>
       <div>
         {recipes.length > 0 ? (
-          <div className='clearfix'>
+          <div className='mb-3 clearfix'>
             {recipes.map((recipe, key) => (
               <RecipeContainer
                 key={key}

@@ -130,6 +130,8 @@ type GetRecipeById = (id: number, apiKey?: string, includeNutrition?: boolean) =
 
 type GetSimilarRecipes = (id: number, number: number) => void;
 
+type LoadRandomRecipe = () => void;
+
 type LoadPrevious = () => void;
 
 type LoadNext = () => void;

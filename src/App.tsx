@@ -16,13 +16,7 @@ const App: React.FC = () => {
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
   useEffect(() => {
-    client
-      .getRandomRecipes(4)
-      .then(res => {
-        console.log(res.data.recipes);
-        setSearchedRecipes(res.data.recipes);
-      })
-      .catch(err => console.log(err));
+    loadRandomRecipes();
   }, []);
 
   // handles loading additional recipes when arrow buttons are clicked
@@ -90,16 +84,28 @@ const App: React.FC = () => {
   };
 
   const loadPrevious = (): void => {
-    if (searchOffset > 2) setSearchOffset(searchOffset - 2);
+    if (!searchQuery) loadRandomRecipes();
+    else if (searchOffset > 2) setSearchOffset(searchOffset - 2);
   };
 
   const loadNext = (): void => {
-    setSearchOffset(searchOffset + 2);
+    if (!searchQuery) loadRandomRecipes();
+    else setSearchOffset(searchOffset + 2);
   };
 
   const loadRecipe: LoadRecipe = recipe => {
     setSearchedRecipes([]);
     setRecipe(recipe);
+  };
+
+  const loadRandomRecipes: LoadRandomRecipe = () => {
+    client
+      .getRandomRecipes(4)
+      .then(res => {
+        console.log(res.data.recipes);
+        setSearchedRecipes(res.data.recipes);
+      })
+      .catch(err => console.log(err));
   };
 
   return (
