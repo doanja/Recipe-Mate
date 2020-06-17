@@ -15,9 +15,14 @@ const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
-  // TODO: remove this, used for testing in development only
   useEffect(() => {
-    getRecipeId('cake');
+    client
+      .getRandomRecipes(4)
+      .then(res => {
+        console.log(res.data.recipes);
+        setSearchedRecipes(res.data.recipes);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   // handles loading additional recipes when arrow buttons are clicked
@@ -75,9 +80,6 @@ const App: React.FC = () => {
   };
 
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
-    console.log('id :>> ', id);
-    console.log('number :>> ', number);
-
     setRecipe(null);
     setRecipeIds([]);
 

@@ -36,4 +36,10 @@ export class RecipeService {
       `https://api.spoonacular.com/recipes/${id}/similar?&number=${number}&apiKey=${this.apiKey}`
     );
   }
+
+  public getRandomRecipes(number: number): Promise<AxiosResponse<any>> {
+    return axios.get<any>(
+      `https://api.spoonacular.com/recipes/random?number=${number}&apiKey=${this.apiKey}`
+    );
+  }
 }
