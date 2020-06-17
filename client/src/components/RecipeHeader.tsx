@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecipeButtonGroup, Tags } from './';
+import { RecipeButtonGroup, Tags } from '.';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 
 interface RecipeHeaderProps {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ingredient } from './';
+import { Ingredient } from '.';
 import { ListGroup } from 'react-bootstrap';
 
 interface IngredientsProps {
