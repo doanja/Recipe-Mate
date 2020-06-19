@@ -7,11 +7,13 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 
 const App: React.FC = () => {
   const client = new RecipeService('15640069e60a4eebb7d844af90b60207');
+
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOffset, setSearchOffset] = useState(0);
   const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
+
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
@@ -37,31 +39,13 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   }, [recipeIds]);
 
-  const getRecipeId: GetRecipe = (
-    query,
-    cuisine,
-    diet,
-    excludeIngrediuents,
-    intolerances,
-    offset,
-    number,
-    instructionsRequired
-  ) => {
+  const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
     setSearchQuery(query);
     setRecipe(null);
     setRecipeIds([]);
 
     client
-      .getRecipe(
-        query,
-        cuisine,
-        diet,
-        excludeIngrediuents,
-        intolerances,
-        offset,
-        number,
-        instructionsRequired
-      )
+      .getRecipe(query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired)
       .then(res => {
         if (res.data.results.length === 0) {
           setShowModal(true);
@@ -121,12 +105,7 @@ const App: React.FC = () => {
         <SearchBar getRecipe={getRecipeId} />
 
         {recipe ? (
-          <RecipeContainer
-            recipe={recipe}
-            loadRecipe={loadRecipe}
-            preview={false}
-            getSimilarRecipes={getSimilarRecipes}
-          />
+          <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} getSimilarRecipes={getSimilarRecipes} />
         ) : searchedRecipes ? (
           <SearchResults
             recipes={searchedRecipes}

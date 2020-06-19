@@ -1,15 +1,14 @@
-import { Dispatch } from 'redux';
-import { RESET_SEASRCHED_RECIPES, SET_SEARCHED_RECIPES, RecipeDispatchTypes } from './recipeActionTypes';
+import { RESET_SEARCHED_RECIPES, SET_SEARCHED_RECIPES, RecipeActionTypes } from './recipeActionTypes';
 
-export const setSearchedRecipes = (recipes: Recipe[]): RecipeDispatchTypes => {
+export const setSearchedRecipes = (recipes: Recipe[]): RecipeActionTypes => {
   return {
     type: SET_SEARCHED_RECIPES,
     payload: recipes,
   };
 };
 
-export const resetSearchedRecipes = (): RecipeDispatchTypes => {
+export const resetSearchedRecipes = (): RecipeActionTypes => {
   return {
-    type: RESET_SEASRCHED_RECIPES,
+    type: RESET_SEARCHED_RECIPES,
   };
 };
