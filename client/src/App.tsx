@@ -8,13 +8,13 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from './Store';
-import { setSearchedRecipes } from './actions/recipeActions';
+import { setSearchedRecipes, clearSearchcedRecipes } from './actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const searchedRecipes = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
   // const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
@@ -37,15 +37,15 @@ const App: React.FC = () => {
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
-    // setSearchedRecipes([]);
+    dispatch(clearSearchcedRecipes());
 
     const loadRecipes = async () => {
       return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
     };
 
-    // loadRecipes()
-    //   .then(res => setSearchedRecipes(res.map(newRecipe => newRecipe.data)))
-    //   .catch(err => console.log(err));
+    loadRecipes()
+      .then(res => dispatch(setSearchedRecipes(res.map(newRecipe => newRecipe.data))))
+      .catch(err => console.log(err));
   }, [recipeIds]);
 
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
@@ -87,7 +87,7 @@ const App: React.FC = () => {
   };
 
   const loadRecipe: LoadRecipe = recipe => {
-    // setSearchedRecipes([]);
+    dispatch(clearSearchcedRecipes());
     setRecipe(recipe);
   };
 
@@ -95,8 +95,8 @@ const App: React.FC = () => {
     client
       .getRandomRecipes(4)
       .then(res => {
-        console.log(res.data.recipes);
-        // setSearchedRecipes(res.data.recipes);
+        // console.log('res.data.recipes :>> ', res.data.recipes);
+        dispatch(setSearchedRecipes(res.data.recipes));
       })
       .catch(err => console.log(err));
   };

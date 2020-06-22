@@ -1,4 +1,4 @@
-import { RecipeState, SearchedRecipeActionTypes, SET_SEARCHED_RECIPES, RESET_SEARCHED_RECIPES } from '../actions/recipeActionTypes';
+import { RecipeState, SearchedRecipeActionTypes, SET_SEARCHED_RECIPES, CLEAR_SEARCHED_RECIPES } from '../actions/recipeActionTypes';
 
 const initialState: RecipeState = {
   searchedRecipes: [],
@@ -7,10 +7,8 @@ const initialState: RecipeState = {
 const recipeReducer = (state = initialState, action: SearchedRecipeActionTypes): RecipeState => {
   switch (action.type) {
     case SET_SEARCHED_RECIPES:
-      return {
-        searchedRecipes: [...state.searchedRecipes, action.payload],
-      };
-    case RESET_SEARCHED_RECIPES:
+      return { searchedRecipes: [...action.payload] };
+    case CLEAR_SEARCHED_RECIPES:
       return {
         searchedRecipes: [],
       };

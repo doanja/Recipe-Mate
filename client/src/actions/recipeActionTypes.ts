@@ -1,5 +1,5 @@
 export const SET_SEARCHED_RECIPES = 'SET_SEARCHED_RECIPES';
-export const RESET_SEARCHED_RECIPES = 'RESET_SESARCHED_RECIPES';
+export const CLEAR_SEARCHED_RECIPES = 'RESET_SESARCHED_RECIPES';
 
 export interface RecipeState {
   searchedRecipes: Recipe[];
@@ -7,11 +7,11 @@ export interface RecipeState {
 
 interface SetSearchedRecipes {
   type: typeof SET_SEARCHED_RECIPES;
-  payload: Recipe;
+  payload: Recipe[];
 }
 
 interface ClearSearchedRecipes {
-  type: typeof RESET_SEARCHED_RECIPES;
+  type: typeof CLEAR_SEARCHED_RECIPES;
 }
 
 export type SearchedRecipeActionTypes = SetSearchedRecipes | ClearSearchedRecipes;
