@@ -5,10 +5,19 @@ import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import { ScrollTopButton } from './components/ScrollTopButton';
 
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { RootStore } from './Store';
+import { setSearchedRecipes } from './actions/recipeActions';
+
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
-  const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
+  // redux
+  const searchedRecipes = useSelector((state: RootStore) => state.recipe);
+  const dispatch = useDispatch();
+
+  // const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOffset, setSearchOffset] = useState(0);
@@ -28,15 +37,15 @@ const App: React.FC = () => {
 
   // calls API and gets the recipe for each ID
   useEffect(() => {
-    setSearchedRecipes([]);
+    // setSearchedRecipes([]);
 
     const loadRecipes = async () => {
       return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
     };
 
-    loadRecipes()
-      .then(res => setSearchedRecipes(res.map(newRecipe => newRecipe.data)))
-      .catch(err => console.log(err));
+    // loadRecipes()
+    //   .then(res => setSearchedRecipes(res.map(newRecipe => newRecipe.data)))
+    //   .catch(err => console.log(err));
   }, [recipeIds]);
 
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
@@ -78,7 +87,7 @@ const App: React.FC = () => {
   };
 
   const loadRecipe: LoadRecipe = recipe => {
-    setSearchedRecipes([]);
+    // setSearchedRecipes([]);
     setRecipe(recipe);
   };
 
@@ -87,7 +96,7 @@ const App: React.FC = () => {
       .getRandomRecipes(4)
       .then(res => {
         console.log(res.data.recipes);
-        setSearchedRecipes(res.data.recipes);
+        // setSearchedRecipes(res.data.recipes);
       })
       .catch(err => console.log(err));
   };

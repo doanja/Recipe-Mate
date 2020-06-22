@@ -1,13 +1,13 @@
-import { SET_SEARCHED_RECIPES, RESET_SEARCHED_RECIPES, RecipeActionTypes } from './recipeActionTypes';
+import { SET_SEARCHED_RECIPES, RESET_SEARCHED_RECIPES, SearchedRecipeActionTypes } from './recipeActionTypes';
 
-export const setSearchedRecipes = (recipes: Recipe): RecipeActionTypes => {
+export const setSearchedRecipes = (recipes: Recipe): SearchedRecipeActionTypes => {
   return {
     type: SET_SEARCHED_RECIPES,
     payload: recipes,
   };
 };
 
-export const resetSearchedRecipes = (): RecipeActionTypes => {
+export const resetSearchedRecipes = (): SearchedRecipeActionTypes => {
   return {
     type: RESET_SEARCHED_RECIPES,
   };
