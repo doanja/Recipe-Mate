@@ -1,6 +1,6 @@
 # Recipe Hub TS
 
-Recipe Hub TS is a single page web app (SPA) that allows users to search and browse for recipes. Recipes are organized in an user friendly way that allow both desktop and mobile users to have a better cooking expierience. Easily check ingredients, and step-by-step instructions off.
+Recipe Hub TS is a single page web app (SPA) that allows users to search and browse for recipes. Recipes are organized in an user friendly way that allow both desktop and mobile users to easily check off ingredients for various recipes, and follow step-by-step instructions without clutter.
 
 ## Demo
 
