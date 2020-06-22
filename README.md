@@ -1,22 +1,17 @@
-# React Pokedex
+# Recipe Hub TS
 
-React Pokedex is a full stack React application built with the MERN stack that leverages the PokeAPI for data and organizes into Bootstrap cards for a simplistic viewing experience. Users can signup and login to view their favorite Pokemon. User information is stored in a Mongo database with Passport.js and JWT for authentication.
+Recipe Hub TS is a single page web app (SPA) that allows users to search and browse for recipes. Recipes are organized in an user friendly way that allow both desktop and mobile users to have a better cooking expierience. Easily check ingredients, and step-by-step instructions off.
 
-## Usage
+## Demo
 
-View live demo [here](https://doanja-pokedex.herokuapp.com/).
-
-1. Click on a Pokemon card on the the home page or search for a Pokemon.
+View live demo [here](https://doanja-recipe-hub.herokuapp.com/).
 
 ## Built With
 
-- React
-- Bootstrap / CSS / Styled Components
-- React Router
-- Axios
-- Express.js / Passport.js / JWT
-- MongoDB / Mongoose.js
+- React / JavaScript
+- Bootstrap / CSS / SCSS
+- TypeScript
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/React-Pokedex/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/Recipe-Hub-TS/blob/master/client/LICENSE) file for details
