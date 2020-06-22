@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { ScrollTopButton } from './components/ScrollTopButton';
 
 const App: React.FC = () => {
-  const client = new RecipeService('15640069e60a4eebb7d844af90b60207');
+  const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
   const [recipeIds, setRecipeIds] = useState([]);
