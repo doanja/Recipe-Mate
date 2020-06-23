@@ -10,6 +10,8 @@ import {
   INCREMENT_SEARCH_OFFSET,
   DECREMENT_SEARCH_OFFSET,
   RESET_SEARCH_OFFSET,
+  SET_RECIPE,
+  CLEAR_RECIPE,
 } from '../actions/recipeActionTypes';
 
 const initialState: RecipeState = {
@@ -17,6 +19,7 @@ const initialState: RecipeState = {
   recipeIds: [],
   searchQuery: '',
   searchOffset: 0,
+  recipe: null,
 };
 
 const recipeReducer = (state = initialState, action: RecipeActionTypes): RecipeState => {
@@ -39,6 +42,10 @@ const recipeReducer = (state = initialState, action: RecipeActionTypes): RecipeS
       return { ...state, searchOffset: state.searchOffset - 2 };
     case RESET_SEARCH_OFFSET:
       return { ...state, searchOffset: 0 };
+    case SET_RECIPE:
+      return { ...state, recipe: action.payload };
+    case CLEAR_RECIPE:
+      return { ...state, recipe: null };
     default:
       return state;
   }

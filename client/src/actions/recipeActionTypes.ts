@@ -11,11 +11,15 @@ export const INCREMENT_SEARCH_OFFSET = 'INCREMENT_SEARCH_OFFSET';
 export const DECREMENT_SEARCH_OFFSET = 'DECREMENT_SEARCH_OFFSET';
 export const RESET_SEARCH_OFFSET = 'RESET_SEARCH_OFFSET';
 
+export const SET_RECIPE = 'SET_RECIPE';
+export const CLEAR_RECIPE = 'CLEAR_RECIPE';
+
 export interface RecipeState {
   searchedRecipes: Recipe[]; // array of recipes
   recipeIds: number[]; // array of recipe IDs
   searchQuery: string; // current searched word(s)
   searchOffset: number; // offset to scroll through search results
+  recipe: Recipe | null; // used for the single detailed recipe
 }
 
 interface SetSearchedRecipes {
@@ -57,6 +61,15 @@ interface ResetSearchOffset {
   type: typeof RESET_SEARCH_OFFSET;
 }
 
+interface SetRecipe {
+  type: typeof SET_RECIPE;
+  payload: Recipe;
+}
+
+interface ClearRecipe {
+  type: typeof CLEAR_RECIPE;
+}
+
 export type RecipeActionTypes =
   | SetSearchedRecipes
   | ClearSearchedRecipes
@@ -66,4 +79,6 @@ export type RecipeActionTypes =
   | ClearSearchQuery
   | IncrementSearchOffset
   | DecrementSearchOffset
+  | SetRecipe
+  | ClearRecipe
   | ResetSearchOffset;

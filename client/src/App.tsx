@@ -18,16 +18,16 @@ import {
   incrementSearchOffset,
   decrementSearchOffset,
   resetSearchOffset,
+  setRecipe,
+  clearRecipe,
 } from './actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const { searchedRecipes, recipeIds, searchQuery, searchOffset } = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
-
-  const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
 
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
@@ -56,7 +56,7 @@ const App: React.FC = () => {
 
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
     dispatch(setSearchQuery(query));
-    setRecipe(null);
+    dispatch(clearRecipe());
     dispatch(clearRecipeIds());
 
     client
@@ -73,7 +73,7 @@ const App: React.FC = () => {
   };
 
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
-    setRecipe(null);
+    dispatch(clearRecipe());
     dispatch(clearRecipeIds());
 
     client
@@ -94,7 +94,7 @@ const App: React.FC = () => {
 
   const loadRecipe: LoadRecipe = recipe => {
     dispatch(clearSearchcedRecipes());
-    setRecipe(recipe);
+    dispatch(setRecipe(recipe));
   };
 
   const loadRandomRecipes: LoadRandomRecipe = () => {

@@ -9,6 +9,8 @@ import {
   INCREMENT_SEARCH_OFFSET,
   DECREMENT_SEARCH_OFFSET,
   RESET_SEARCH_OFFSET,
+  SET_RECIPE,
+  CLEAR_RECIPE,
 } from './recipeActionTypes';
 
 export const setSearchedRecipes = (recipes: Recipe[]): RecipeActionTypes => {
@@ -45,4 +47,12 @@ export const decrementSearchOffset = (): RecipeActionTypes => {
 
 export const resetSearchOffset = (): RecipeActionTypes => {
   return { type: RESET_SEARCH_OFFSET };
+};
+
+export const setRecipe = (recipe: Recipe): RecipeActionTypes => {
+  return { type: SET_RECIPE, payload: recipe };
+};
+
+export const clearRecipe = (): RecipeActionTypes => {
+  return { type: CLEAR_RECIPE };
 };
