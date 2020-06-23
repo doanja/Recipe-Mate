@@ -8,17 +8,15 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from './Store';
-import { setSearchedRecipes, clearSearchcedRecipes } from './actions/recipeActions';
+import { setSearchedRecipes, clearSearchcedRecipes, setRecipeIds, clearRecipeIds } from './actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const { searchedRecipes } = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes, recipeIds } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
-  // const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
-  const [recipeIds, setRecipeIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOffset, setSearchOffset] = useState(0);
   const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
@@ -51,7 +49,7 @@ const App: React.FC = () => {
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
     setSearchQuery(query);
     setRecipe(null);
-    setRecipeIds([]);
+    dispatch(clearRecipeIds());
 
     client
       .getRecipe(query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired)
@@ -60,7 +58,7 @@ const App: React.FC = () => {
           setShowModal(true);
           setSearchQuery('');
         } else {
-          setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
+          dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
         }
       })
       .catch(err => console.log(err));
@@ -68,11 +66,11 @@ const App: React.FC = () => {
 
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
     setRecipe(null);
-    setRecipeIds([]);
+    dispatch(clearRecipeIds());
 
     client
       .getSimilarRecipes(id, number)
-      .then(res => setRecipeIds(res.data.map((recipe: any) => recipe.id)))
+      .then(res => dispatch(setRecipeIds(res.data.map((recipe: any) => recipe.id))))
       .catch(err => console.log(err));
   };
 

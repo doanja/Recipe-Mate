@@ -1,8 +1,12 @@
 export const SET_SEARCHED_RECIPES = 'SET_SEARCHED_RECIPES';
 export const CLEAR_SEARCHED_RECIPES = 'RESET_SESARCHED_RECIPES';
 
+export const SET_RECIPE_IDS = 'SET_RECIPE_IDS';
+export const CLEAR_RECIPE_IDS = 'CLEAR_RECIPE_IDS';
+
 export interface RecipeState {
   searchedRecipes: Recipe[];
+  recipeIds: number[];
 }
 
 interface SetSearchedRecipes {
@@ -14,33 +18,13 @@ interface ClearSearchedRecipes {
   type: typeof CLEAR_SEARCHED_RECIPES;
 }
 
-export type SearchedRecipeActionTypes = SetSearchedRecipes | ClearSearchedRecipes;
+interface SetRecipeIds {
+  type: typeof SET_RECIPE_IDS;
+  payload: number[];
+}
 
-//
+interface ClearRecipeIds {
+  type: typeof CLEAR_RECIPE_IDS;
+}
 
-// export interface Message {
-//   user: string;
-//   message: string;
-//   timestamp: number;
-// }
-
-// export interface ChatState {
-//   messages: Message[];
-// }
-
-// export const SEND_MESSAGE = 'SEND_MESSAGE';
-// export const DELETE_MESSAGE = 'DELETE_MESSAGE';
-
-// interface SendMessageAction {
-//   type: typeof SEND_MESSAGE;
-//   payload: Message;
-// }
-
-// interface DeleteMessageAction {
-//   type: typeof DELETE_MESSAGE;
-//   meta: {
-//     timestamp: number;
-//   };
-// }
-
-// export type ChatActionTypes = SendMessageAction | DeleteMessageAction;
+export type SearchedRecipeActionTypes = SetSearchedRecipes | ClearSearchedRecipes | SetRecipeIds | ClearRecipeIds;

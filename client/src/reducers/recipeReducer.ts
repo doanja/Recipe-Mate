@@ -1,43 +1,30 @@
-import { RecipeState, SearchedRecipeActionTypes, SET_SEARCHED_RECIPES, CLEAR_SEARCHED_RECIPES } from '../actions/recipeActionTypes';
+import {
+  RecipeState,
+  SearchedRecipeActionTypes,
+  SET_SEARCHED_RECIPES,
+  CLEAR_SEARCHED_RECIPES,
+  SET_RECIPE_IDS,
+  CLEAR_RECIPE_IDS,
+} from '../actions/recipeActionTypes';
 
 const initialState: RecipeState = {
   searchedRecipes: [],
+  recipeIds: [],
 };
 
 const recipeReducer = (state = initialState, action: SearchedRecipeActionTypes): RecipeState => {
   switch (action.type) {
     case SET_SEARCHED_RECIPES:
-      return { searchedRecipes: [...action.payload] };
+      return { ...state, searchedRecipes: [...action.payload] };
     case CLEAR_SEARCHED_RECIPES:
-      return {
-        searchedRecipes: [],
-      };
+      return { ...state, searchedRecipes: [] };
+    case SET_RECIPE_IDS:
+      return { ...state, recipeIds: [...action.payload] };
+    case CLEAR_RECIPE_IDS:
+      return { ...state, recipeIds: [] };
     default:
       return state;
   }
 };
 
 export default recipeReducer;
-
-//
-
-// import { ChatState, ChatActionTypes, SEND_MESSAGE, DELETE_MESSAGE } from '../actions/recipeActionTypes';
-
-// const initialState2: ChatState = {
-//   messages: [],
-// };
-
-// export function chatReducer(state = initialState2, action: ChatActionTypes): ChatState {
-//   switch (action.type) {
-//     case SEND_MESSAGE:
-//       return {
-//         messages: [...state.messages, action.payload],
-//       };
-//     case DELETE_MESSAGE:
-//       return {
-//         messages: state.messages.filter(message => message.timestamp !== action.meta.timestamp),
-//       };
-//     default:
-//       return state;
-//   }
-// }
