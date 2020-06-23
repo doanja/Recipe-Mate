@@ -8,16 +8,15 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from './Store';
-import { setSearchedRecipes, clearSearchcedRecipes, setRecipeIds, clearRecipeIds } from './actions/recipeActions';
+import { setSearchedRecipes, clearSearchcedRecipes, setRecipeIds, clearRecipeIds, setSearchQuery, clearSearchQuery } from './actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const { searchedRecipes, recipeIds } = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes, recipeIds, searchQuery } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
-  const [searchQuery, setSearchQuery] = useState('');
   const [searchOffset, setSearchOffset] = useState(0);
   const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
 
@@ -47,7 +46,7 @@ const App: React.FC = () => {
   }, [recipeIds]);
 
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
-    setSearchQuery(query);
+    dispatch(setSearchQuery(query));
     setRecipe(null);
     dispatch(clearRecipeIds());
 
@@ -56,7 +55,7 @@ const App: React.FC = () => {
       .then(res => {
         if (res.data.results.length === 0) {
           setShowModal(true);
-          setSearchQuery('');
+          dispatch(clearSearchQuery());
         } else {
           dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
         }
