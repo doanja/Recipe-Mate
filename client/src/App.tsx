@@ -8,16 +8,25 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from './Store';
-import { setSearchedRecipes, clearSearchcedRecipes, setRecipeIds, clearRecipeIds, setSearchQuery, clearSearchQuery } from './actions/recipeActions';
+import {
+  setSearchedRecipes,
+  clearSearchcedRecipes,
+  setRecipeIds,
+  clearRecipeIds,
+  setSearchQuery,
+  clearSearchQuery,
+  incrementSearchOffset,
+  decrementSearchOffset,
+  resetSearchOffset,
+} from './actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const { searchedRecipes, recipeIds, searchQuery } = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes, recipeIds, searchQuery, searchOffset } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
-  const [searchOffset, setSearchOffset] = useState(0);
   const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
 
   const [showModal, setShowModal] = useState(false);
@@ -75,12 +84,12 @@ const App: React.FC = () => {
 
   const loadPrevious = (): void => {
     if (!searchQuery) loadRandomRecipes();
-    else if (searchOffset > 2) setSearchOffset(searchOffset - 2);
+    else if (searchOffset > 2) dispatch(decrementSearchOffset());
   };
 
   const loadNext = (): void => {
     if (!searchQuery) loadRandomRecipes();
-    else setSearchOffset(searchOffset + 2);
+    else dispatch(incrementSearchOffset());
   };
 
   const loadRecipe: LoadRecipe = recipe => {

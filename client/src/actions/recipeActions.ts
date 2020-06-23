@@ -6,6 +6,9 @@ import {
   SET_SEARCH_QUERY,
   CLEAR_SEARCH_QUERY,
   RecipeActionTypes,
+  INCREMENT_SEARCH_OFFSET,
+  DECREMENT_SEARCH_OFFSET,
+  RESET_SEARCH_OFFSET,
 } from './recipeActionTypes';
 
 export const setSearchedRecipes = (recipes: Recipe[]): RecipeActionTypes => {
@@ -30,4 +33,16 @@ export const setSearchQuery = (searchQuery: string): RecipeActionTypes => {
 
 export const clearSearchQuery = (): RecipeActionTypes => {
   return { type: CLEAR_SEARCH_QUERY };
+};
+
+export const incrementSearchOffset = (): RecipeActionTypes => {
+  return { type: INCREMENT_SEARCH_OFFSET };
+};
+
+export const decrementSearchOffset = (): RecipeActionTypes => {
+  return { type: DECREMENT_SEARCH_OFFSET };
+};
+
+export const resetSearchOffset = (): RecipeActionTypes => {
+  return { type: RESET_SEARCH_OFFSET };
 };

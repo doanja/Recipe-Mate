@@ -7,12 +7,16 @@ import {
   CLEAR_RECIPE_IDS,
   SET_SEARCH_QUERY,
   CLEAR_SEARCH_QUERY,
+  INCREMENT_SEARCH_OFFSET,
+  DECREMENT_SEARCH_OFFSET,
+  RESET_SEARCH_OFFSET,
 } from '../actions/recipeActionTypes';
 
 const initialState: RecipeState = {
   searchedRecipes: [],
   recipeIds: [],
   searchQuery: '',
+  searchOffset: 0,
 };
 
 const recipeReducer = (state = initialState, action: RecipeActionTypes): RecipeState => {
@@ -29,6 +33,12 @@ const recipeReducer = (state = initialState, action: RecipeActionTypes): RecipeS
       return { ...state, searchQuery: action.payload };
     case CLEAR_SEARCH_QUERY:
       return { ...state, searchQuery: '' };
+    case INCREMENT_SEARCH_OFFSET:
+      return { ...state, searchOffset: state.searchOffset + 2 };
+    case DECREMENT_SEARCH_OFFSET:
+      return { ...state, searchOffset: state.searchOffset - 2 };
+    case RESET_SEARCH_OFFSET:
+      return { ...state, searchOffset: 0 };
     default:
       return state;
   }
