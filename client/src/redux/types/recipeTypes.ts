@@ -9,7 +9,6 @@ export const CLEAR_SEARCH_QUERY = 'CLEAR_SEARCH_QUERY';
 
 export const INCREMENT_SEARCH_OFFSET = 'INCREMENT_SEARCH_OFFSET';
 export const DECREMENT_SEARCH_OFFSET = 'DECREMENT_SEARCH_OFFSET';
-export const RESET_SEARCH_OFFSET = 'RESET_SEARCH_OFFSET';
 
 export const SET_RECIPE = 'SET_RECIPE';
 export const CLEAR_RECIPE = 'CLEAR_RECIPE';
@@ -57,10 +56,6 @@ interface DecrementSearchOffset {
   type: typeof DECREMENT_SEARCH_OFFSET;
 }
 
-interface ResetSearchOffset {
-  type: typeof RESET_SEARCH_OFFSET;
-}
-
 interface SetRecipe {
   type: typeof SET_RECIPE;
   payload: Recipe;
@@ -80,5 +75,4 @@ export type RecipeActionTypes =
   | IncrementSearchOffset
   | DecrementSearchOffset
   | SetRecipe
-  | ClearRecipe
-  | ResetSearchOffset;
+  | ClearRecipe;
