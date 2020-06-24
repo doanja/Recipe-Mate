@@ -11,7 +11,7 @@ import {
   RESET_SEARCH_OFFSET,
   SET_RECIPE,
   CLEAR_RECIPE,
-} from './recipeActionTypes';
+} from '../types/recipeTypes';
 
 export const setSearchedRecipes = (recipes: Recipe[]): RecipeActionTypes => {
   return { type: SET_SEARCHED_RECIPES, payload: recipes };

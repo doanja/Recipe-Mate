@@ -12,7 +12,7 @@ import {
   RESET_SEARCH_OFFSET,
   SET_RECIPE,
   CLEAR_RECIPE,
-} from '../actions/recipeActionTypes';
+} from '../types/recipeTypes';
 
 const initialState: RecipeState = {
   searchedRecipes: [],

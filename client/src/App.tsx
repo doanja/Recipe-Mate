@@ -7,7 +7,7 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from './Store';
+import { RootStore } from './redux/Store';
 import {
   setSearchedRecipes,
   clearSearchcedRecipes,
@@ -20,7 +20,7 @@ import {
   resetSearchOffset,
   setRecipe,
   clearRecipe,
-} from './actions/recipeActions';
+} from './redux/actions/recipeActions';
 
 const App: React.FC = () => {
   const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
@@ -29,6 +29,7 @@ const App: React.FC = () => {
   const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
+  // modal
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
@@ -41,19 +42,28 @@ const App: React.FC = () => {
     if (searchQuery) getRecipeId(searchQuery, searchOffset);
   }, [searchOffset, searchQuery]);
 
-  // calls API and gets the recipe for each ID
+  // calls API and gets the Recipe for each recipe ID
   useEffect(() => {
     dispatch(clearSearchcedRecipes());
 
-    const loadRecipes = async () => {
-      return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
-    };
+    const loadRecipes = async () => Promise.all(recipeIds.map(id => client.getRecipeById(id)));
 
     loadRecipes()
       .then(res => dispatch(setSearchedRecipes(res.map(newRecipe => newRecipe.data))))
       .catch(err => console.log(err));
   }, [recipeIds]);
 
+  /**
+   *
+   * @param query
+   * @param cuisine
+   * @param diet
+   * @param excludeIngrediuents
+   * @param intolerances
+   * @param offset
+   * @param number
+   * @param instructionsRequired
+   */
   const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
     dispatch(setSearchQuery(query));
     dispatch(clearRecipe());
@@ -65,13 +75,16 @@ const App: React.FC = () => {
         if (res.data.results.length === 0) {
           setShowModal(true);
           dispatch(clearSearchQuery());
-        } else {
-          dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
-        }
+        } else dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
       })
       .catch(err => console.log(err));
   };
 
+  /**
+   * Renders similar recipes
+   * @param {number} id the id of the recipe
+   * @param {number} number the number of recipes to render
+   */
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
     dispatch(clearRecipe());
     dispatch(clearRecipeIds());
@@ -82,28 +95,40 @@ const App: React.FC = () => {
       .catch(err => console.log(err));
   };
 
+  /**
+   * Loads previous set of search results
+   * @return {void}
+   */
   const loadPrevious = (): void => {
     if (!searchQuery) loadRandomRecipes();
     else if (searchOffset > 2) dispatch(decrementSearchOffset());
   };
 
+  /**
+   * Loads next set of search results
+   * @return {void}
+   */
   const loadNext = (): void => {
     if (!searchQuery) loadRandomRecipes();
     else dispatch(incrementSearchOffset());
   };
 
+  /**
+   * Renders a single recipe
+   * @param {recipe} recipe
+   */
   const loadRecipe: LoadRecipe = recipe => {
     dispatch(clearSearchcedRecipes());
     dispatch(setRecipe(recipe));
   };
 
+  /**
+   * function to load random recipes to display on the landing page
+   */
   const loadRandomRecipes: LoadRandomRecipe = () => {
     client
       .getRandomRecipes(4)
-      .then(res => {
-        // console.log('res.data.recipes :>> ', res.data.recipes);
-        dispatch(setSearchedRecipes(res.data.recipes));
-      })
+      .then(res => dispatch(setSearchedRecipes(res.data.recipes)))
       .catch(err => console.log(err));
   };
 
