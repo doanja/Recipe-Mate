@@ -17,7 +17,6 @@ import {
   clearSearchQuery,
   incrementSearchOffset,
   decrementSearchOffset,
-  resetSearchOffset,
   setRecipe,
   clearRecipe,
 } from './redux/actions/recipeActions';
@@ -33,6 +32,7 @@ const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
+  // renders random recipes on component mount
   useEffect(() => {
     loadRandomRecipes();
   }, []);
@@ -54,23 +54,19 @@ const App: React.FC = () => {
   }, [recipeIds]);
 
   /**
-   *
-   * @param query
-   * @param cuisine
-   * @param diet
-   * @param excludeIngrediuents
-   * @param intolerances
-   * @param offset
-   * @param number
-   * @param instructionsRequired
+   * Calls API to build an array of recipe IDs
+   * @param {string} query the recipe to be searched
+   * @param {number} offset the search result offset
+   * @param {number} number the number of recipes to render
+   * @return {void}
    */
-  const getRecipeId: GetRecipe = (query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired) => {
+  const getRecipeId: GetRecipeId = (query, offset, number) => {
     dispatch(setSearchQuery(query));
     dispatch(clearRecipe());
     dispatch(clearRecipeIds());
 
     client
-      .getRecipe(query, cuisine, diet, excludeIngrediuents, intolerances, offset, number, instructionsRequired)
+      .getRecipe(query, offset, number)
       .then(res => {
         if (res.data.results.length === 0) {
           setShowModal(true);
@@ -84,6 +80,7 @@ const App: React.FC = () => {
    * Renders similar recipes
    * @param {number} id the id of the recipe
    * @param {number} number the number of recipes to render
+   * @return {void}
    */
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
     dispatch(clearRecipe());
@@ -99,7 +96,7 @@ const App: React.FC = () => {
    * Loads previous set of search results
    * @return {void}
    */
-  const loadPrevious = (): void => {
+  const loadPrevious: LoadPrevious = () => {
     if (!searchQuery) loadRandomRecipes();
     else if (searchOffset > 2) dispatch(decrementSearchOffset());
   };
@@ -108,7 +105,7 @@ const App: React.FC = () => {
    * Loads next set of search results
    * @return {void}
    */
-  const loadNext = (): void => {
+  const loadNext: LoadNext = () => {
     if (!searchQuery) loadRandomRecipes();
     else dispatch(incrementSearchOffset());
   };
@@ -116,6 +113,7 @@ const App: React.FC = () => {
   /**
    * Renders a single recipe
    * @param {recipe} recipe
+   * @return {void}
    */
   const loadRecipe: LoadRecipe = recipe => {
     dispatch(clearSearchcedRecipes());
@@ -124,6 +122,7 @@ const App: React.FC = () => {
 
   /**
    * function to load random recipes to display on the landing page
+   * @return {void}
    */
   const loadRandomRecipes: LoadRandomRecipe = () => {
     client
@@ -142,7 +141,7 @@ const App: React.FC = () => {
           modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
         />
 
-        <SearchBar getRecipe={getRecipeId} />
+        <SearchBar getRecipeId={getRecipeId} />
 
         {recipe ? (
           <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} getSimilarRecipes={getSimilarRecipes} />

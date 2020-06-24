@@ -114,19 +114,7 @@ type ProductMatch = {
   title: string;
 };
 
-type GetRecipe = (
-  query: string,
-  offset?: number,
-  number?: number,
-  instructionsRequired?: boolean,
-  cuisine?: string,
-  diet?: string,
-  excludeIngredients?: string,
-  intolerances?: string,
-  apiKey?: string
-) => void;
-
-type GetRecipeById = (id: number, apiKey?: string, includeNutrition?: boolean) => Recipe;
+type GetRecipeId = (query: string, offset?: number, number?: number) => void;
 
 type GetSimilarRecipes = (id: number, number: number) => void;
 
