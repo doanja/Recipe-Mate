@@ -13,12 +13,15 @@ export const DECREMENT_SEARCH_OFFSET = 'DECREMENT_SEARCH_OFFSET';
 export const SET_RECIPE = 'SET_RECIPE';
 export const CLEAR_RECIPE = 'CLEAR_RECIPE';
 
+export const GET_SIMILAR_RECIPES = 'GET_SIMILAR_RECIPES';
+
 export interface RecipeState {
   searchedRecipes: Recipe[]; // array of recipes
   recipeIds: number[]; // array of recipe IDs
   searchQuery: string; // current searched word(s)
   searchOffset: number; // offset to scroll through search results
   recipe: Recipe | null; // used for the single detailed recipe
+  // getSimilarRecipes: GetSimilarRecipes
 }
 
 interface SetSearchedRecipes {
