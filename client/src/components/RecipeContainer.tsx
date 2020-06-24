@@ -8,12 +8,7 @@ interface RecipeContainerProps {
   getSimilarRecipes: GetSimilarRecipes;
 }
 
-const RecipeContainer: React.FC<RecipeContainerProps> = ({
-  recipe,
-  loadRecipe,
-  preview,
-  getSimilarRecipes,
-}) => {
+const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, preview, getSimilarRecipes }) => {
   const [instructions, setInstructions] = useState<string[]>([]);
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
@@ -41,7 +36,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({
       setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
     }
 
-    if (!recipe.analyzedInstructions) toggleModal();
+    if (!recipe.analyzedInstructions || !recipe.analyzedInstructions.length) toggleModal();
   }, [recipe]);
 
   return (
