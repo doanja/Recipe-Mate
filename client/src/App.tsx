@@ -5,16 +5,34 @@ import { RecipeService } from './services/RecipeService';
 import Container from 'react-bootstrap/Container';
 import { ScrollTopButton } from './components/ScrollTopButton';
 
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { RootStore } from './redux/Store';
+import {
+  setSearchedRecipes,
+  clearSearchcedRecipes,
+  setRecipeIds,
+  clearRecipeIds,
+  setSearchQuery,
+  clearSearchQuery,
+  incrementSearchOffset,
+  decrementSearchOffset,
+  setRecipe,
+  clearRecipe,
+} from './redux/actions/recipeActions';
+
 const App: React.FC = () => {
-  const client = new RecipeService('15640069e60a4eebb7d844af90b60207');
-  const [searchedRecipes, setSearchedRecipes] = useState<Recipe[] | null>(null); // array of recipes
-  const [recipeIds, setRecipeIds] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchOffset, setSearchOffset] = useState(0);
-  const [recipe, setRecipe] = useState<Recipe | null>(null); // used for the single detailed recipe
+  const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
+
+  // redux
+  const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe } = useSelector((state: RootStore) => state.recipe);
+  const dispatch = useDispatch();
+
+  // modal
   const [showModal, setShowModal] = useState(false);
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
+  // renders random recipes on component mount
   useEffect(() => {
     loadRandomRecipes();
   }, []);
@@ -24,87 +42,92 @@ const App: React.FC = () => {
     if (searchQuery) getRecipeId(searchQuery, searchOffset);
   }, [searchOffset, searchQuery]);
 
-  // calls API and gets the recipe for each ID
+  // calls API and gets the Recipe for each recipe ID
   useEffect(() => {
-    setSearchedRecipes([]);
+    dispatch(clearSearchcedRecipes());
 
-    const loadRecipes = async () => {
-      return Promise.all(recipeIds.map(id => client.getRecipeById(id)));
-    };
+    const loadRecipes = async () => Promise.all(recipeIds.map(id => client.getRecipeById(id)));
 
     loadRecipes()
-      .then(res => setSearchedRecipes(res.map(newRecipe => newRecipe.data)))
+      .then(res => dispatch(setSearchedRecipes(res.map(newRecipe => newRecipe.data))))
       .catch(err => console.log(err));
   }, [recipeIds]);
 
-  const getRecipeId: GetRecipe = (
-    query,
-    cuisine,
-    diet,
-    excludeIngrediuents,
-    intolerances,
-    offset,
-    number,
-    instructionsRequired
-  ) => {
-    setSearchQuery(query);
-    setRecipe(null);
-    setRecipeIds([]);
+  /**
+   * Calls API to build an array of recipe IDs
+   * @param {string} query the recipe to be searched
+   * @param {number} offset the search result offset
+   * @param {number} number the number of recipes to render
+   * @return {void}
+   */
+  const getRecipeId: GetRecipeId = (query, offset, number) => {
+    dispatch(setSearchQuery(query));
+    dispatch(clearRecipe());
+    dispatch(clearRecipeIds());
 
     client
-      .getRecipe(
-        query,
-        cuisine,
-        diet,
-        excludeIngrediuents,
-        intolerances,
-        offset,
-        number,
-        instructionsRequired
-      )
+      .getRecipe(query, offset, number)
       .then(res => {
         if (res.data.results.length === 0) {
           setShowModal(true);
-          setSearchQuery('');
-        } else {
-          setRecipeIds(res.data.results.map((recipe: any) => recipe.id));
-        }
+          dispatch(clearSearchQuery());
+        } else dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
       })
       .catch(err => console.log(err));
   };
 
+  /**
+   * Renders similar recipes
+   * @param {number} id the id of the recipe
+   * @param {number} number the number of recipes to render
+   * @return {void}
+   */
   const getSimilarRecipes: GetSimilarRecipes = (id, number) => {
-    setRecipe(null);
-    setRecipeIds([]);
+    dispatch(clearRecipe());
+    dispatch(clearRecipeIds());
 
     client
       .getSimilarRecipes(id, number)
-      .then(res => setRecipeIds(res.data.map((recipe: any) => recipe.id)))
+      .then(res => dispatch(setRecipeIds(res.data.map((recipe: any) => recipe.id))))
       .catch(err => console.log(err));
   };
 
-  const loadPrevious = (): void => {
+  /**
+   * Loads previous set of search results
+   * @return {void}
+   */
+  const loadPrevious: LoadPrevious = () => {
     if (!searchQuery) loadRandomRecipes();
-    else if (searchOffset > 2) setSearchOffset(searchOffset - 2);
+    else if (searchOffset > 2) dispatch(decrementSearchOffset());
   };
 
-  const loadNext = (): void => {
+  /**
+   * Loads next set of search results
+   * @return {void}
+   */
+  const loadNext: LoadNext = () => {
     if (!searchQuery) loadRandomRecipes();
-    else setSearchOffset(searchOffset + 2);
+    else dispatch(incrementSearchOffset());
   };
 
+  /**
+   * Renders a single recipe
+   * @param {recipe} recipe
+   * @return {void}
+   */
   const loadRecipe: LoadRecipe = recipe => {
-    setSearchedRecipes([]);
-    setRecipe(recipe);
+    dispatch(clearSearchcedRecipes());
+    dispatch(setRecipe(recipe));
   };
 
+  /**
+   * function to load random recipes to display on the landing page
+   * @return {void}
+   */
   const loadRandomRecipes: LoadRandomRecipe = () => {
     client
       .getRandomRecipes(4)
-      .then(res => {
-        console.log(res.data.recipes);
-        setSearchedRecipes(res.data.recipes);
-      })
+      .then(res => dispatch(setSearchedRecipes(res.data.recipes)))
       .catch(err => console.log(err));
   };
 
@@ -118,15 +141,10 @@ const App: React.FC = () => {
           modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
         />
 
-        <SearchBar getRecipe={getRecipeId} />
+        <SearchBar getRecipeId={getRecipeId} />
 
         {recipe ? (
-          <RecipeContainer
-            recipe={recipe}
-            loadRecipe={loadRecipe}
-            preview={false}
-            getSimilarRecipes={getSimilarRecipes}
-          />
+          <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} getSimilarRecipes={getSimilarRecipes} />
         ) : searchedRecipes ? (
           <SearchResults
             recipes={searchedRecipes}

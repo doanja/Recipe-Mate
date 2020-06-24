@@ -1,11 +1,11 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 
 interface SearchBarProps {
-  getRecipe: GetRecipe;
+  getRecipeId: GetRecipeId;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ getRecipeId }) => {
   const [input, setInput] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ getRecipe }) => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    getRecipe(input);
+    getRecipeId(input);
     setInput('');
   };
 
