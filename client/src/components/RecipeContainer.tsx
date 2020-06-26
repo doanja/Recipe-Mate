@@ -36,7 +36,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
       setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
     }
 
-    if (!recipe.analyzedInstructions || !recipe.analyzedInstructions.length) toggleModal();
+    if (!recipe.analyzedInstructions) toggleModal();
   }, [recipe]);
 
   return (
