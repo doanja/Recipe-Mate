@@ -55,4 +55,17 @@ type LoadNext = () => void;
 
 type LoadRecipe = (recipe: Recipe) => void;
 
-type ToggleModal = () => void;
+// type ToggleModal = () => void;
+
+type ToggleModal = (errorText?: string) => void;
+
+type SignupFormValues = {
+  email: string;
+  password: string;
+  password_2: string;
+};
+
+type LoginFormValues = {
+  email: string;
+  password: string;
+};

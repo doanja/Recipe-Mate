@@ -11,6 +11,12 @@ import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import Tags from './Tags';
 
+import Todo from './Todo';
+import TodoForm from './form/TodoForm';
+import TodoList from './TodoList';
+import CustomModal from './CustomModal';
+import NavigationBar from './NavigationBar';
+
 export {
   Ingredient,
   Ingredients,
@@ -24,4 +30,9 @@ export {
   SearchResults,
   SearchBar,
   Tags,
+  Todo,
+  TodoForm,
+  TodoList,
+  CustomModal,
+  NavigationBar,
 };

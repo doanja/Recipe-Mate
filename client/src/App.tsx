@@ -7,7 +7,7 @@ import { ScrollTopButton } from './components/ScrollTopButton';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from './redux/Store';
+import { RootStore } from './redux/store';
 import {
   setSearchedRecipes,
   clearSearchcedRecipes,

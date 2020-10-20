@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-export class RecipeService {
+export default class RecipeService {
   private readonly apiKey: string;
 
   constructor(apiKey: string) {
