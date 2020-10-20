@@ -1,5 +1,5 @@
-import TodoRoute from './todo.route';
+import FavoritesRoute from './favorites.route';
 import UserRoute from './user.route';
 import AuthRoute from './auth.route';
 
-export { TodoRoute, UserRoute, AuthRoute };
+export { FavoritesRoute , UserRoute, AuthRoute };
