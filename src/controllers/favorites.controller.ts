@@ -30,7 +30,7 @@ export const addFavorite = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
-export const updateTodo = async (req: Request, res: Response): Promise<void> => {
+export const removeFavorite = async (req: Request, res: Response): Promise<void> => {
   try {
     await User.findOneAndUpdate(
       { _id: req.accessToken?._id },

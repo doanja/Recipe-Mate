@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addFavorite, getFavorites } from '../controllers/favorites.controller';
+import { addFavorite, getFavorites, removeFavorite } from '../controllers/favorites.controller';
 import { verifyAccessToken } from '../middleware/verifyToken';
 
 export default class FavoritesRoute {
@@ -12,7 +12,6 @@ export default class FavoritesRoute {
   public initializeRoutes() {
     this.router.get('/favorites', [verifyAccessToken], getFavorites);
     this.router.post('/favorites', [verifyAccessToken], addFavorite);
-    // this.router.put('/todo/:id', [verifyAccessToken], updateTodo);
-    // this.router.delete('/todo/:id', [verifyAccessToken], deleteTodo);
+    this.router.put('/favorites', [verifyAccessToken], removeFavorite);
   }
 }
