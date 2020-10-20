@@ -1,5 +1,5 @@
-import FavoritesRoute from './favorites.route';
+import RecipeRoute from './recipe.route';
 import UserRoute from './user.route';
 import AuthRoute from './auth.route';
 
-export { FavoritesRoute , UserRoute, AuthRoute };
+export { RecipeRoute, UserRoute, AuthRoute };

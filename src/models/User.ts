@@ -14,7 +14,7 @@ const UserSchema: Schema = new Schema(
       trim: true,
       required: true,
     },
-    favorites:[{ type: String, trim: true }]
+    recipes: [{ type: String, trim: true }],
   },
   { timestamps: true }
 );
