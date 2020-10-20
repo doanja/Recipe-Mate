@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal } from './components';
 
-import { RecipeService } from './services/RecipeService';
+import { RecipeService } from './services';
 import Container from 'react-bootstrap/Container';
 import { ScrollTopButton } from './components/ScrollTopButton';
 
