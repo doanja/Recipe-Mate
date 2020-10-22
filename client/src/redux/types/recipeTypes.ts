@@ -6,8 +6,8 @@ export interface RecipeState {
   readonly recipe: Recipe | null; // used for the single detailed recipe
 }
 
-export interface SearchedRecipes {
-  searchedRecipes: Recipe[];
+export interface FavoriteRecipes {
+  favoriteRecipes: string[];
 }
 
 export enum RecipeActionTypes {

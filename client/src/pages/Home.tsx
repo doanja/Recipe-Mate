@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal, ScrollTopButton, NavigationBar } from '../components';
-import { RecipeService } from '../services';
+import { SpoonacularService } from '../services';
 import Container from 'react-bootstrap/Container';
 
 // redux
@@ -20,7 +20,7 @@ import {
 } from '../redux/actions/recipeActions';
 
 const Home: React.FC = () => {
-  const client = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
+  const client = new SpoonacularService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
   const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe } = useSelector((state: RootStore) => state.recipe);

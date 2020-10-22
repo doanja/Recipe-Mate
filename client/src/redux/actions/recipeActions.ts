@@ -1,10 +1,10 @@
-import { RecipeActionTypes, RecipeState, SearchedRecipes } from '../types/recipeTypes';
+import { RecipeActionTypes, RecipeState, FavoriteRecipes } from '../types/recipeTypes';
 import { ActionCreator, Action, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { RecipeService } from '../../services';
 import { AxiosResponse } from 'axios';
 
-const api = new RecipeService('1390eaa38d7b4cc682699d95c9e9d149');
+const api = new RecipeService();
 
 export type AppThunk = ActionCreator<ThunkAction<void, RecipeState, null, Action<string>>>;
 
