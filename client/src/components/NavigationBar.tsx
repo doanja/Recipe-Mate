@@ -25,17 +25,24 @@ const NavigationBar: React.FC = () => {
       <Navbar.Brand href='/'>
         <FontAwesomeIcon icon={faPencilAlt} size='1x' /> To Do List
       </Navbar.Brand>
-      {loginStatus ? (
-        <Fragment>
-          <Nav className='mr-auto'>
-            <Nav.Link href='/home'>Home</Nav.Link>
-            <Nav.Link href='/saved'>Saved</Nav.Link>
-          </Nav>
-          <Nav className='ml-auto'>
-            <Nav.Link href='/login'>Logout</Nav.Link>
-          </Nav>
-        </Fragment>
-      ) : null}
+
+      <Fragment>
+        <Nav className='mr-auto'>
+          <Nav.Link href='/home'>Home</Nav.Link>
+          <Nav.Link href='/saved'>Saved</Nav.Link>
+        </Nav>
+        <Nav className='ml-auto'>
+          {loginStatus ? (
+            <Nav.Link href='/login' onClick={() => logout()}>
+              Logout
+            </Nav.Link>
+          ) : (
+            <Nav.Link href='/login' onClick={() => logout()}>
+              Login
+            </Nav.Link>
+          )}
+        </Nav>
+      </Fragment>
     </Navbar>
   );
 };
