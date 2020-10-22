@@ -23,9 +23,9 @@ const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe, ingredients, tags, 
           <Card.Body>
             <Card.Title>{`Ready in ${recipe.readyInMinutes} Minutes and Serves ${recipe.servings}`}</Card.Title>
 
-            <Card.Text className='font-weight-bold '>
-              Ingredients: <em className='font-weight-normal'>{`${ingredients.join(', ')}`}</em>
-            </Card.Text>
+            <Card.Title>
+              Ingredients: <em>{`${ingredients.join(', ')}`}</em>
+            </Card.Title>
           </Card.Body>
           <Card.Footer className='py-2 mt-5'>
             <Button variant='dark' size='sm' className='px-2 recipe-preview' onClick={() => loadRecipe(recipe)} block>

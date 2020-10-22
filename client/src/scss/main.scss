@@ -4,6 +4,7 @@
 html,
 .wrap {
   background-color: $primary-color;
+  font-family: $openSans;
 }
 
 .wrap {
@@ -31,12 +32,10 @@ html,
 
 .card-text {
   font-size: 16px;
-  font-family: $arvo;
 }
 
 .card-header,
 .card-title {
-  font-family: $openSans;
   font-size: 14px;
   font-weight: bold;
 }
