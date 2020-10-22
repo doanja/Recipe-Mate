@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal, ScrollTopButton, NavigationBar } from '../components';
 import { RecipeService } from '../services';
 import Container from 'react-bootstrap/Container';
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
 
   // renders random recipes on component mount
   useEffect(() => {
-    loadRandomRecipes();
+    // loadRandomRecipes();
   }, []);
 
   // handles loading additional recipes when arrow buttons are clicked
@@ -130,34 +130,32 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Fragment>
+    <div className='wrap'>
       <NavigationBar />
-      <div className='wrap'>
-        <Container>
-          <RecipeModal
-            showModal={showModal}
-            toggleModal={toggleModal}
-            modalHeading={'Warning'}
-            modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
+      <Container>
+        <RecipeModal
+          showModal={showModal}
+          toggleModal={toggleModal}
+          modalHeading={'Warning'}
+          modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
+        />
+
+        <SearchBar getRecipeId={getRecipeId} />
+
+        {recipe ? (
+          <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} getSimilarRecipes={getSimilarRecipes} />
+        ) : searchedRecipes ? (
+          <SearchResults
+            recipes={searchedRecipes}
+            loadRecipe={loadRecipe}
+            loadPrevious={loadPrevious}
+            loadNext={loadNext}
+            getSimilarRecipes={getSimilarRecipes}
           />
-
-          <SearchBar getRecipeId={getRecipeId} />
-
-          {recipe ? (
-            <RecipeContainer recipe={recipe} loadRecipe={loadRecipe} preview={false} getSimilarRecipes={getSimilarRecipes} />
-          ) : searchedRecipes ? (
-            <SearchResults
-              recipes={searchedRecipes}
-              loadRecipe={loadRecipe}
-              loadPrevious={loadPrevious}
-              loadNext={loadNext}
-              getSimilarRecipes={getSimilarRecipes}
-            />
-          ) : null}
-        </Container>
-        <ScrollTopButton />
-      </div>
-    </Fragment>
+        ) : null}
+      </Container>
+      <ScrollTopButton />
+    </div>
   );
 };
 

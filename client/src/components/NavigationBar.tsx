@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { Navbar } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,13 +26,15 @@ const NavigationBar: React.FC = () => {
         <FontAwesomeIcon icon={faPencilAlt} size='1x' /> To Do List
       </Navbar.Brand>
       {loginStatus ? (
-        <Navbar.Collapse className='justify-content-end'>
-          <Navbar.Text>
-            <a href='/login' onClick={() => logout()}>
-              Logout
-            </a>
-          </Navbar.Text>
-        </Navbar.Collapse>
+        <Fragment>
+          <Nav className='mr-auto'>
+            <Nav.Link href='/home'>Home</Nav.Link>
+            <Nav.Link href='/saved'>Saved</Nav.Link>
+          </Nav>
+          <Nav className='ml-auto'>
+            <Nav.Link href='/login'>Logout</Nav.Link>
+          </Nav>
+        </Fragment>
       ) : null}
     </Navbar>
   );
