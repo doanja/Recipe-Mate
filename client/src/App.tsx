@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import { Home, Login, Signup, PageNotFound } from './containers/';
+import { Home, Login, Signup, PageNotFound } from './pages';
 import { CustomModal } from './components';
 
 // redux
