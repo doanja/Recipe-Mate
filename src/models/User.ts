@@ -14,7 +14,7 @@ const UserSchema: Schema = new Schema(
       trim: true,
       required: true,
     },
-    recipes: [{ type: String, trim: true }],
+    recipes: [{ type: Number, trim: true }],
   },
   { timestamps: true }
 );

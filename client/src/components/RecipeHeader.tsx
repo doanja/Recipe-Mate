@@ -11,6 +11,8 @@ interface RecipeHeaderProps {
   getSimilarRecipes: GetSimilarRecipes;
 }
 
+// TODO: add icon to favorite recipe
+
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({ recipe, ingredients, tags, loadRecipe, preview, getSimilarRecipes }) => {
   return preview ? (
     <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>

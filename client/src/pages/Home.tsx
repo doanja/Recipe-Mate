@@ -19,7 +19,11 @@ import {
   clearRecipe,
 } from '../redux/actions/recipeActions';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  favoriteRecipes?: number[];
+}
+
+const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
   const client = new SpoonacularService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
@@ -32,8 +36,7 @@ const Home: React.FC = () => {
 
   // renders random recipes on component mount
   useEffect(() => {
-    // TODO: uncomment this
-    // loadRandomRecipes();
+    favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
   }, []);
 
   // handles loading additional recipes when arrow buttons are clicked
@@ -43,6 +46,7 @@ const Home: React.FC = () => {
 
   // calls API and gets the Recipe for each recipe ID
   useEffect(() => {
+    console.log('recipeIds :>> ', recipeIds);
     dispatch(clearSearchcedRecipes());
 
     const loadRecipes = async () => Promise.all(recipeIds.map(id => client.getRecipeById(id)));

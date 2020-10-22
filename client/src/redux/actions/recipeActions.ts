@@ -48,7 +48,7 @@ export const clearRecipe = () => {
   return { type: RecipeActionTypes.CLEAR_RECIPE };
 };
 
-export const getTodoList: AppThunk = () => {
+export const getFavoriteRecipes: AppThunk = () => {
   return async (dispatch: Dispatch) => {
     try {
       const req: AxiosResponse<any> = await api.getFavoriteRecipes();
