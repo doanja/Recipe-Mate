@@ -47,3 +47,63 @@ export const setRecipe = (recipe: Recipe) => {
 export const clearRecipe = () => {
   return { type: RecipeActionTypes.CLEAR_RECIPE };
 };
+
+export const getTodoList: AppThunk = () => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const req: AxiosResponse<any> = await api.getFavoriteRecipes();
+      const recipes: string[] = req.data;
+
+      return dispatch({
+        type: RecipeActionTypes.GET_FAVORITE_RECIPES,
+        payload: recipes,
+        token: req.headers.authorization,
+      });
+    } catch (error) {
+      return dispatch({
+        type: RecipeActionTypes.REQUEST_FAILED,
+        error: error.response.data.name,
+      });
+    }
+  };
+};
+
+export const addFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: string) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const req: AxiosResponse<any> = await api.addFavoriteRecipe(recipeId);
+      const recipes: string[] = req.data;
+
+      return dispatch({
+        type: RecipeActionTypes.ADD_FAVORITE_RECIPE,
+        payload: recipes,
+        token: req.headers.authorization,
+      });
+    } catch (error) {
+      return dispatch({
+        type: RecipeActionTypes.REQUEST_FAILED,
+        error: error.response.data.name,
+      });
+    }
+  };
+};
+
+export const removeFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: string) => {
+  return async (dispatch: Dispatch) => {
+    try {
+      const req: AxiosResponse<any> = await api.removeFavoriteRecipe(recipeId);
+      const recipes: string[] = req.data;
+
+      return dispatch({
+        type: RecipeActionTypes.REMOVE_FAVORITE_RECIPE,
+        payload: recipes,
+        token: req.headers.authorization,
+      });
+    } catch (error) {
+      return dispatch({
+        type: RecipeActionTypes.REQUEST_FAILED,
+        error: error.response.data.name,
+      });
+    }
+  };
+};

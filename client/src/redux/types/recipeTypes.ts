@@ -4,6 +4,9 @@ export interface RecipeState {
   readonly searchQuery: string; // current searched word(s)
   readonly searchOffset: number; // offset to scroll through search results
   readonly recipe: Recipe | null; // used for the single detailed recipe
+  readonly favoriteRecipes: string[];
+  readonly error?: string;
+  readonly token: string;
 }
 
 export interface FavoriteRecipes {
@@ -21,4 +24,8 @@ export enum RecipeActionTypes {
   DECREMENT_SEARCH_OFFSET = 'DECREMENT_SEARCH_OFFSET',
   SET_RECIPE = 'SET_RECIPE',
   CLEAR_RECIPE = 'CLEAR_RECIPE',
+  GET_FAVORITE_RECIPES = 'GET_FAVORITE_RECIPES',
+  ADD_FAVORITE_RECIPE = 'ADD_FAVORITE_RECIPE',
+  REMOVE_FAVORITE_RECIPE = 'REMOVE_FAVORITE_RECIPE',
+  REQUEST_FAILED = 'REQUEST_FAILED',
 }

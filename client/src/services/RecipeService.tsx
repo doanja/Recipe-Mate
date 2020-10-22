@@ -5,11 +5,11 @@ export default class RecipeService {
     return axios.get<any>('/favorites');
   }
 
-  public addFavoriteRecipe(): Promise<AxiosResponse<any>> {
-    return axios.put<any>('/favorites/add');
+  public addFavoriteRecipe(recipeId: string): Promise<AxiosResponse<any>> {
+    return axios.put<any>('/favorites/add', { recipeId });
   }
 
-  public removeFavoriteRecipe(): Promise<AxiosResponse<any>> {
-    return axios.put<any>('/favorites/remove');
+  public removeFavoriteRecipe(recipeId: string): Promise<AxiosResponse<any>> {
+    return axios.put<any>('/favorites/remove', { recipeId });
   }
 }

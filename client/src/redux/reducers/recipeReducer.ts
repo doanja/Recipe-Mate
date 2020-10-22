@@ -7,6 +7,9 @@ const initialState: RecipeState = {
   searchQuery: '',
   searchOffset: 0,
   recipe: null,
+  favoriteRecipes: [],
+  error: undefined,
+  token: '',
 };
 
 const recipeReducer: Reducer<RecipeState> = (state = initialState, action) => {
@@ -31,6 +34,14 @@ const recipeReducer: Reducer<RecipeState> = (state = initialState, action) => {
       return { ...state, recipe: action.payload };
     case RecipeActionTypes.CLEAR_RECIPE:
       return { ...state, recipe: null };
+    case RecipeActionTypes.GET_FAVORITE_RECIPES:
+      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+    case RecipeActionTypes.ADD_FAVORITE_RECIPE:
+      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+    case RecipeActionTypes.REMOVE_FAVORITE_RECIPE:
+      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+    case RecipeActionTypes.REQUEST_FAILED:
+      return { ...state, error: action.error };
     default:
       return state;
   }
