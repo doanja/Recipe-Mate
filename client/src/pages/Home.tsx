@@ -32,6 +32,7 @@ const Home: React.FC = () => {
 
   // renders random recipes on component mount
   useEffect(() => {
+    // TODO: uncomment this
     // loadRandomRecipes();
   }, []);
 

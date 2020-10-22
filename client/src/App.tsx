@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import { Home, Login, Signup, PageNotFound } from './pages';
+import { Home, Login, Signup, PageNotFound, Saved } from './pages';
 import { CustomModal } from './components';
 
 // redux
@@ -26,8 +26,9 @@ const App: React.FC = () => {
         <Router>
           <Switch>
             <Route exact path='/' component={Signup} />
-            <Route exact path='/home' component={Home} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/saved' component={Saved} />
             <Route path='*' component={PageNotFound} />
           </Switch>
         </Router>
