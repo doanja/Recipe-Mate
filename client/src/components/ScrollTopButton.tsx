@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp } from '@fortawesome/free-regular-svg-icons';
 
-export const ScrollTopButton: React.FC = () => {
+const ScrollTopButton: React.FC = () => {
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
@@ -28,3 +28,5 @@ export const ScrollTopButton: React.FC = () => {
     />
   );
 };
+
+export default ScrollTopButton;

@@ -7,6 +7,7 @@ import RecipeHeader from './RecipeHeader';
 import RecipeContainer from './RecipeContainer';
 import RecipeModal from './RecipeModal';
 import RecipeButtonGroup from './RecipeButtonGroup';
+import ScrollTopButton from './ScrollTopButton';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
 import Tags from './Tags';
@@ -24,6 +25,7 @@ export {
   RecipeContainer,
   RecipeModal,
   RecipeButtonGroup,
+  ScrollTopButton,
   SearchResults,
   SearchBar,
   Tags,

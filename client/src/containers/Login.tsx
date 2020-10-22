@@ -25,7 +25,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loginStatus) history.push('/todo');
+    if (loginStatus) history.push('/home');
   }, []);
 
   const login = (values: LoginFormValues) => {
@@ -40,9 +40,13 @@ const Login: React.FC = () => {
         dispatch(setLoginStatus(true));
 
         axios.defaults.headers.common.Authorization = accessToken;
-        history.push('/todo');
+        history.push('/home');
       })
-      .catch(err => dispatch(toggleModal(!showModal, err.response.data.error.message, 'Error Logging In')));
+      .catch(err => {
+        console.log('err :>> ', err);
+        console.log('err.response.data :>> ', err.response.data);
+        dispatch(toggleModal(!showModal, err.response.data.error.message, 'Error Logging In'));
+      });
   };
 
   const formik = useFormik({
