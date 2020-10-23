@@ -48,15 +48,20 @@ export const clearRecipe = () => {
   return { type: RecipeActionTypes.CLEAR_RECIPE };
 };
 
+export const setIsLoading = () => {
+  return { type: RecipeActionTypes.SET_IS_LOADING };
+};
+
 export const getFavoriteRecipes: AppThunk = () => {
   return async (dispatch: Dispatch) => {
+    dispatch(setIsLoading());
     try {
       const req: AxiosResponse<any> = await api.getFavoriteRecipes();
-      const recipes: string[] = req.data;
+      const recipeIds: number[] = req.data.recipes;
 
       return dispatch({
         type: RecipeActionTypes.GET_FAVORITE_RECIPES,
-        payload: recipes,
+        payload: recipeIds,
         token: req.headers.authorization,
       });
     } catch (error) {
@@ -72,11 +77,11 @@ export const addFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, Fav
   return async (dispatch: Dispatch) => {
     try {
       const req: AxiosResponse<any> = await api.addFavoriteRecipe(recipeId);
-      const recipes: string[] = req.data;
+      const recipeIds: number[] = req.data.recipes;
 
       return dispatch({
         type: RecipeActionTypes.ADD_FAVORITE_RECIPE,
-        payload: recipes,
+        payload: recipeIds,
         token: req.headers.authorization,
       });
     } catch (error) {
@@ -92,11 +97,11 @@ export const removeFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, 
   return async (dispatch: Dispatch) => {
     try {
       const req: AxiosResponse<any> = await api.removeFavoriteRecipe(recipeId);
-      const recipes: string[] = req.data;
+      const recipeIds: number[] = req.data.recipes;
 
       return dispatch({
         type: RecipeActionTypes.REMOVE_FAVORITE_RECIPE,
-        payload: recipes,
+        payload: recipeIds,
         token: req.headers.authorization,
       });
     } catch (error) {

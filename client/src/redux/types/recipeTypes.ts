@@ -7,6 +7,7 @@ export interface RecipeState {
   readonly favoriteRecipes: number[];
   readonly error?: string;
   readonly token: string;
+  readonly isLoading: boolean;
 }
 
 export interface FavoriteRecipes {
@@ -28,4 +29,5 @@ export enum RecipeActionTypes {
   ADD_FAVORITE_RECIPE = 'ADD_FAVORITE_RECIPE',
   REMOVE_FAVORITE_RECIPE = 'REMOVE_FAVORITE_RECIPE',
   REQUEST_FAILED = 'REQUEST_FAILED',
+  SET_IS_LOADING = 'SET_IS_LOADING',
 }

@@ -27,7 +27,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
   const client = new SpoonacularService('1390eaa38d7b4cc682699d95c9e9d149');
 
   // redux
-  const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe } = useSelector((state: RootStore) => state.recipe);
+  const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe, isLoading } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
   // modal
@@ -37,7 +37,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
   // renders random recipes on component mount
   useEffect(() => {
     favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
-  }, []);
+  }, [isLoading]);
 
   // handles loading additional recipes when arrow buttons are clicked
   useEffect(() => {
@@ -46,7 +46,6 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
 
   // calls API and gets the Recipe for each recipe ID
   useEffect(() => {
-    console.log('recipeIds :>> ', recipeIds);
     dispatch(clearSearchcedRecipes());
 
     const loadRecipes = async () => Promise.all(recipeIds.map(id => client.getRecipeById(id)));

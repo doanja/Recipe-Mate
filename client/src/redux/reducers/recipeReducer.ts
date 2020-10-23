@@ -10,6 +10,7 @@ const initialState: RecipeState = {
   favoriteRecipes: [],
   error: undefined,
   token: '',
+  isLoading: false,
 };
 
 const recipeReducer: Reducer<RecipeState> = (state = initialState, action) => {
@@ -35,13 +36,16 @@ const recipeReducer: Reducer<RecipeState> = (state = initialState, action) => {
     case RecipeActionTypes.CLEAR_RECIPE:
       return { ...state, recipe: null };
     case RecipeActionTypes.GET_FAVORITE_RECIPES:
-      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+      return { ...state, error: state.error, isLoading: false, favoriteRecipes: action.payload, token: action.token };
     case RecipeActionTypes.ADD_FAVORITE_RECIPE:
-      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+      return { ...state, error: state.error, isLoading: false, favoriteRecipes: action.payload, token: action.token };
     case RecipeActionTypes.REMOVE_FAVORITE_RECIPE:
-      return { ...state, error: state.error, favoriteRecipes: action.payload, token: action.token };
+      return { ...state, error: state.error, isLoading: false, favoriteRecipes: action.payload, token: action.token };
     case RecipeActionTypes.REQUEST_FAILED:
       return { ...state, error: action.error };
+    case RecipeActionTypes.SET_IS_LOADING:
+      return { ...state, isLoading: true };
+
     default:
       return state;
   }
