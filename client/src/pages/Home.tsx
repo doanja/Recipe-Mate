@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
 
   // renders random recipes on component mount
   useEffect(() => {
-    favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
+    // favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
   }, [isLoading]);
 
   // handles loading additional recipes when arrow buttons are clicked
