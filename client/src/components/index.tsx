@@ -9,6 +9,7 @@ import RecipeHeaderWrapper from './RecipeHeaderWrapper';
 import RecipeContainer from './RecipeContainer';
 import RecipeModal from './RecipeModal';
 import RecipeButtonGroup from './RecipeButtonGroup';
+import SaveIcon from './SaveIcon';
 import ScrollTopButton from './ScrollTopButton';
 import SearchResults from './SearchResults';
 import SearchBar from './SearchBar';
@@ -28,6 +29,7 @@ export {
   RecipeContainer,
   RecipeModal,
   RecipeButtonGroup,
+  SaveIcon,
   ScrollTopButton,
   SearchResults,
   SearchBar,

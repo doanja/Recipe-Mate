@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecipeButtonGroup, Tags } from './';
+import { RecipeButtonGroup, Tags, SaveIcon } from './';
 import { Card, Row, Col } from 'react-bootstrap';
 
 interface RecipeHeaderDetailedProps {
@@ -11,7 +11,10 @@ interface RecipeHeaderDetailedProps {
 const RecipeHeaderDetailed: React.FC<RecipeHeaderDetailedProps> = ({ recipe, getSimilarRecipes, tags }) => {
   return (
     <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
-      <Card.Header>{recipe.title}</Card.Header>
+      <Card.Header>
+        {recipe.title}
+        <SaveIcon recipeId={recipe.id} />
+      </Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image bg-light'>
           <img src={recipe.image} alt={recipe.title} />

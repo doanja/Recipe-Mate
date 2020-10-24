@@ -1,4 +1,5 @@
 import React from 'react';
+import { SaveIcon } from './';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 
 interface RecipeHeaderPreviewProps {
@@ -10,7 +11,10 @@ interface RecipeHeaderPreviewProps {
 const RecipeHeaderPreview: React.FC<RecipeHeaderPreviewProps> = ({ recipe, ingredients, loadRecipe }) => {
   return (
     <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>
-      <Card.Header>{recipe.title}</Card.Header>
+      <Card.Header>
+        {recipe.title}
+        <SaveIcon recipeId={recipe.id} />
+      </Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image bg-light'>
           <img src={recipe.image} alt={recipe.title} />

@@ -13,7 +13,7 @@ interface SaveIconProps {
   recipeId: number;
 }
 
-export const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
+const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
   const history = useHistory();
 
   // redux
@@ -43,3 +43,5 @@ export const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
     </Button>
   );
 };
+
+export default SaveIcon;
