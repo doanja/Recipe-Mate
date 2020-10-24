@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Button } from 'react-bootstrap';
 import { NutritionFacts, RecipeModal } from '.';
 
@@ -12,7 +12,7 @@ export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe, ge
   const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <RecipeModal
         showModal={showModal}
         toggleModal={toggleModal}
@@ -29,7 +29,7 @@ export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe, ge
       <Button variant='dark' size='sm' className='recipe-preview' onClick={() => window.open(recipe?.sourceUrl, '_blank')} block>
         Source
       </Button>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

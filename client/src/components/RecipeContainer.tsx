@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { RecipeHeader, Ingredients, Instructions, RecipeModal } from '.';
+import React, { useState, useEffect, Fragment } from 'react';
+import { RecipeHeaderWrapper, Ingredients, Instructions, RecipeModal } from '.';
 
 interface RecipeContainerProps {
   recipe: Recipe;
@@ -47,7 +47,7 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
         modalHeading={'Warning'}
         modalBody={<p>There are no instructions for this recipe.</p>}
       />
-      <RecipeHeader
+      <RecipeHeaderWrapper
         recipe={recipe}
         ingredients={ingredients}
         tags={tags}
@@ -56,10 +56,10 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
         getSimilarRecipes={getSimilarRecipes}
       />
       {!preview ? (
-        <React.Fragment>
+        <Fragment>
           <Ingredients ingredients={recipe.extendedIngredients} />
           <Instructions instructions={instructions} />
-        </React.Fragment>
+        </Fragment>
       ) : null}
     </div>
   );
