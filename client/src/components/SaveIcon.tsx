@@ -18,7 +18,7 @@ const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
 
   // redux
   const { loginStatus } = useSelector((state: RootStore) => state.auth);
-  const { favoriteRecipes } = useSelector((state: RootStore) => state.recipe);
+  const { favoriteRecipes, isLoading } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
   const [isSaved, setIsSaved] = useState(false);
@@ -33,15 +33,18 @@ const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
     } else history.push('/');
   };
 
-  return loginStatus ? (
-    <Button variant='outline-secondary' onClick={saveRecipe}>
-      <FontAwesomeIcon icon={faSave} />
-    </Button>
-  ) : (
-    <Button variant='outline-secondary' onClick={saveRecipe}>
-      <FontAwesomeIcon icon={faTrash} />
-    </Button>
+  return (
+    <div style={{ zIndex: 1000 }}>
+      {loginStatus ? (
+        <Button variant='outline-secondary' onClick={saveRecipe}>
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
+      ) : (
+        <Button variant='outline-secondary' onClick={saveRecipe}>
+          <FontAwesomeIcon icon={faSave} />
+        </Button>
+      )}
+    </div>
   );
 };
-
 export default SaveIcon;
