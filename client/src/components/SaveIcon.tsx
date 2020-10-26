@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,31 +17,30 @@ const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
 
   // redux
   const { loginStatus } = useSelector((state: RootStore) => state.auth);
-  const { favoriteRecipes, isLoading } = useSelector((state: RootStore) => state.recipe);
+  const { favoriteRecipes } = useSelector((state: RootStore) => state.recipe);
   const dispatch = useDispatch();
 
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    if (favoriteRecipes.includes(recipeId)) setIsSaved(true);
+    if (favoriteRecipes.includes(recipeId)) {
+      console.log('useEffect() => this recipe is included in arr of recipes ids');
+      setIsSaved(true);
+    }
   }, [favoriteRecipes]);
 
   const saveRecipe = () => {
     if (loginStatus) {
-      isSaved ? dispatch(addFavoriteRecipe(recipeId)) : dispatch(removeFavoriteRecipe(recipeId));
+      isSaved ? dispatch(removeFavoriteRecipe(recipeId)) : dispatch(addFavoriteRecipe(recipeId));
     } else history.push('/');
   };
 
   return (
-    <div style={{ zIndex: 1000 }}>
-      {loginStatus ? (
-        <Button variant='outline-secondary' onClick={saveRecipe}>
-          <FontAwesomeIcon icon={faTrash} />
-        </Button>
+    <div style={{ zIndex: 10 }}>
+      {isSaved ? (
+        <FontAwesomeIcon className='icon-favorite' icon={faTrash} onClick={saveRecipe} />
       ) : (
-        <Button variant='outline-secondary' onClick={saveRecipe}>
-          <FontAwesomeIcon icon={faSave} />
-        </Button>
+        <FontAwesomeIcon className='icon-favorite' icon={faStar} onClick={saveRecipe} />
       )}
     </div>
   );

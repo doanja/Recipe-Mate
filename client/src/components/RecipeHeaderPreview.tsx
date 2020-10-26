@@ -10,10 +10,12 @@ interface RecipeHeaderPreviewProps {
 
 const RecipeHeaderPreview: React.FC<RecipeHeaderPreviewProps> = ({ recipe, ingredients, loadRecipe }) => {
   return (
-    <Card className='mt-3 recipe-preview' bg='dark' text='light' onClick={() => loadRecipe(recipe)}>
-      <Card.Header>
+    <Card className='mt-3 recipe-preview' bg='dark' text='light'>
+      <Card.Header className='d-block'>
         {recipe.title}
-        <SaveIcon recipeId={recipe.id} />
+        <div className='float-right'>
+          <SaveIcon recipeId={recipe.id} />
+        </div>
       </Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image bg-light'>

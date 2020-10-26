@@ -11,9 +11,11 @@ interface RecipeHeaderDetailedProps {
 const RecipeHeaderDetailed: React.FC<RecipeHeaderDetailedProps> = ({ recipe, getSimilarRecipes, tags }) => {
   return (
     <Card className='mt-3 recipe-detailed' bg='dark' text='light'>
-      <Card.Header>
+      <Card.Header className='d-block'>
         {recipe.title}
-        <SaveIcon recipeId={recipe.id} />
+        <div className='float-right'>
+          <SaveIcon recipeId={recipe.id} />
+        </div>
       </Card.Header>
       <Row noGutters={true}>
         <Col md={4} className='recipe-image bg-light'>
