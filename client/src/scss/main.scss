@@ -4,7 +4,10 @@
 html,
 .wrap {
   background-color: $primary-color;
-  font-family: $openSans;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 .wrap {

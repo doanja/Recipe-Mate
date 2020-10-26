@@ -23,10 +23,7 @@ const SaveIcon: React.FC<SaveIconProps> = ({ recipeId }) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    if (favoriteRecipes.includes(recipeId)) {
-      console.log('useEffect() => this recipe is included in arr of recipes ids');
-      setIsSaved(true);
-    }
+    if (favoriteRecipes.includes(recipeId)) setIsSaved(true);
   }, [favoriteRecipes]);
 
   const saveRecipe = () => {
