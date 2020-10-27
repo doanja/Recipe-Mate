@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,9 +25,9 @@ const NavigationBar: React.FC = () => {
 
   return (
     <Navbar bg='dark' variant='dark'>
-      <Navbar className='mx-5 w-100'>
-        <Navbar.Brand href='/'>
-          <FontAwesomeIcon icon={faPencilAlt} size='1x' /> To Do List
+      <Container>
+        <Navbar.Brand className='brand' href='/'>
+          Recipe Mate
         </Navbar.Brand>
 
         <Nav className='ml-auto'>
@@ -40,7 +40,7 @@ const NavigationBar: React.FC = () => {
             {loginStatus ? 'Logout' : 'Login'}
           </Button>
         </Nav>
-      </Navbar>
+      </Container>
     </Navbar>
   );
 };
