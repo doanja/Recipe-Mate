@@ -1,6 +1,6 @@
-# Recipe Hub TS
+# Recipe Mate
 
-Recipe Hub TS is a single page web app (SPA) that allows users to search and browse for recipes. Recipes are organized in an user friendly way that allow both desktop and mobile users to easily check off ingredients for various recipes, and follow step-by-step instructions without clutter.
+Recipe Mate is a single page web app (SPA) that allows users to search and browse for recipes. Recipes are organized in an user friendly way that allow both desktop and mobile users to easily check off ingredients for various recipes, and follow step-by-step instructions without clutter.
 
 ## Demo
 
@@ -14,4 +14,4 @@ View live demo [here](https://doanja-recipe-hub.herokuapp.com/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/Recipe-Hub-TS/blob/master/client/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/doanja-Recipe-Mate/blob/master/client/LICENSE) file for details
