@@ -6,6 +6,10 @@ html,
   background-color: $primary-color;
 }
 
+body {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 .wrap {
   height: 100%;
 }
@@ -15,6 +19,24 @@ html,
   &:hover {
     cursor: pointer;
     color: $dark;
+  }
+}
+
+.icon-favorite {
+  color: rgb(255, 255, 123);
+  &:hover {
+    cursor: pointer;
+    color: $secondary-color;
+  }
+}
+
+.icon-navbar {
+  color: $light;
+  font-size: 20px;
+
+  &:hover {
+    cursor: pointer;
+    color: $secondary-color;
   }
 }
 
@@ -31,12 +53,10 @@ html,
 
 .card-text {
   font-size: 16px;
-  font-family: $arvo;
 }
 
 .card-header,
 .card-title {
-  font-family: $openSans;
   font-size: 14px;
   font-weight: bold;
 }
@@ -52,7 +72,6 @@ html,
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.75);
 
   &.recipe-preview:hover {
-    cursor: pointer;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 1);
     transition: 0.2s;
   }
@@ -94,4 +113,16 @@ html,
     border: 1px solid $dark;
     background-color: $dark;
   }
+}
+
+.red {
+  border: 1px solid red;
+}
+
+.blue {
+  border: 1px solid blue;
+}
+
+.brand {
+  font-family: 'Arvo', serif;
 }
