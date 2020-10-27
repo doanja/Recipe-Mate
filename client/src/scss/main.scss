@@ -7,7 +7,7 @@ html,
 }
 
 body {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Arvo', sans-serif !important;
 }
 
 .wrap {
@@ -26,7 +26,17 @@ body {
   color: rgb(255, 255, 123);
   &:hover {
     cursor: pointer;
-    color: $light;
+    color: $secondary-color;
+  }
+}
+
+.icon-navbar {
+  color: $light;
+  font-size: 20px;
+
+  &:hover {
+    cursor: pointer;
+    color: $secondary-color;
   }
 }
 
@@ -103,4 +113,12 @@ body {
     border: 1px solid $dark;
     background-color: $dark;
   }
+}
+
+.red {
+  border: 1px solid red;
+}
+
+.blue {
+  border: 1px solid blue;
 }

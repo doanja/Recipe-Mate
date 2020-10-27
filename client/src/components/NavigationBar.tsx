@@ -1,7 +1,8 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +10,8 @@ import { RootStore } from '../redux/store';
 import { clearAccessToken, clearLoginStatus, clearRefreshToken } from '../redux/actions/authActions';
 
 const NavigationBar: React.FC = () => {
+  const history = useHistory();
+
   // redux
   const { loginStatus } = useSelector((state: RootStore) => state.auth);
   const dispatch = useDispatch();
@@ -22,25 +25,22 @@ const NavigationBar: React.FC = () => {
 
   return (
     <Navbar bg='dark' variant='dark'>
-      <Navbar.Brand href='/'>
-        <FontAwesomeIcon icon={faPencilAlt} size='1x' /> To Do List
-      </Navbar.Brand>
+      <Navbar className='mx-5 w-100'>
+        <Navbar.Brand href='/'>
+          <FontAwesomeIcon icon={faPencilAlt} size='1x' /> To Do List
+        </Navbar.Brand>
 
-      <Nav className='mr-auto'>
-        <Nav.Link href='/home'>Home</Nav.Link>
-        <Nav.Link href='/saved'>Saved</Nav.Link>
-      </Nav>
-      <Nav className='ml-auto'>
-        {loginStatus ? (
-          <Nav.Link href='/login' onClick={() => logout()}>
-            Logout
-          </Nav.Link>
-        ) : (
-          <Nav.Link href='/login' onClick={() => logout()}>
-            Login
-          </Nav.Link>
-        )}
-      </Nav>
+        <Nav className='ml-auto'>
+          <div className='my-auto mr-3'>
+            <FontAwesomeIcon className='mx-2 icon-navbar' icon={faHome} onClick={() => history.push('/home')} />
+            <FontAwesomeIcon className='mx-2 icon-navbar' icon={faHeart} onClick={() => history.push('/saved')} />
+          </div>
+
+          <Button variant='outline-light' size='sm' onClick={() => logout()}>
+            {loginStatus ? 'Logout' : 'Login'}
+          </Button>
+        </Nav>
+      </Navbar>
     </Navbar>
   );
 };

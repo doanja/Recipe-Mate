@@ -16,23 +16,21 @@ const App: React.FC = () => {
 
   return (
     <div className='wrap'>
-      <Container>
-        <CustomModal
-          showModal={showModal}
-          toggleModal={() => dispatch(toggleModal(!showModal, modalBody, 'Error'))}
-          title={modalTitle}
-          body={<p>{modalBody}</p>}
-        />
-        <Router>
-          <Switch>
-            <Route exact path='/' component={Signup} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/saved' component={Saved} />
-            <Route path='*' component={PageNotFound} />
-          </Switch>
-        </Router>
-      </Container>
+      <CustomModal
+        showModal={showModal}
+        toggleModal={() => dispatch(toggleModal(!showModal, modalBody, 'Error'))}
+        title={modalTitle}
+        body={<p>{modalBody}</p>}
+      />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Signup} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/saved' component={Saved} />
+          <Route path='*' component={PageNotFound} />
+        </Switch>
+      </Router>
     </div>
   );
 };

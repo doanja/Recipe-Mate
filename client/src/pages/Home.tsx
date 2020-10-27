@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { SearchBar, SearchResults, RecipeContainer, RecipeModal, ScrollTopButton, NavigationBar } from '../components';
 import { SpoonacularService } from '../services';
 import Container from 'react-bootstrap/Container';
@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
 
   // renders random recipes on component mount
   useEffect(() => {
-    favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
+    // favoriteRecipes ? dispatch(setRecipeIds(favoriteRecipes)) : loadRandomRecipes();
   }, [isLoading]);
 
   // handles loading additional recipes when arrow buttons are clicked
@@ -134,7 +134,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
   };
 
   return (
-    <div className='wrap'>
+    <Fragment>
       <NavigationBar />
       <Container>
         <RecipeModal
@@ -159,7 +159,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
         ) : null}
       </Container>
       <ScrollTopButton />
-    </div>
+    </Fragment>
   );
 };
 
