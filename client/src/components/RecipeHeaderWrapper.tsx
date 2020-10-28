@@ -10,8 +10,6 @@ interface RecipeHeaderWrapperProps {
   preview: boolean;
 }
 
-// TODO: add icon to favorite recipe
-
 const RecipeHeaderWrapper: React.FC<RecipeHeaderWrapperProps> = ({ recipe, ingredients, tags, loadRecipe, preview, getSimilarRecipes }) => {
   return preview ? (
     <RecipeHeaderPreview recipe={recipe} ingredients={ingredients} loadRecipe={loadRecipe} />

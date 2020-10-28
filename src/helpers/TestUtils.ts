@@ -1,16 +1,8 @@
-import { Todo, User } from '../models';
+import { User } from '../models';
 
 export const deleteUserByEmail = async (email: string): Promise<void> => {
   try {
     await User.deleteOne({ email });
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const deleteTodoById = async (_id: string): Promise<void> => {
-  try {
-    await Todo.deleteOne({ _id });
   } catch (error) {
     throw error;
   }
