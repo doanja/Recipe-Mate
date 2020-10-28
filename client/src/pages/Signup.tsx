@@ -20,7 +20,7 @@ const Signup: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loginStatus) history.push('/home');
+    if (loginStatus) history.push('/');
   }, []);
 
   const api = new AuthService();

@@ -25,7 +25,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loginStatus) history.push('/home');
+    if (loginStatus) history.push('/');
   }, []);
 
   const login = (values: LoginFormValues) => {
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
         dispatch(setLoginStatus(true));
 
         axios.defaults.headers.common.Authorization = accessToken;
-        history.push('/home');
+        history.push('/');
       })
       .catch(err => {
         console.log('err :>> ', err);
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
           </Button>
 
           <div className='text-center'>
-            <Link className='text-dark' to='/'>
+            <Link className='text-dark' to='/signup'>
               Not enrolled? Sign up now.
             </Link>
           </div>

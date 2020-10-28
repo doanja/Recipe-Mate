@@ -27,13 +27,13 @@ const NavigationBar: React.FC = () => {
   return (
     <Navbar bg='dark' variant='dark'>
       <Container>
-        <Navbar.Brand className='brand' href='/home'>
+        <Navbar.Brand className='brand' href='/'>
           Recipe Mate
         </Navbar.Brand>
 
         <Nav className='ml-auto'>
           <div className='my-auto mr-3'>
-            <FontAwesomeIcon className='mx-2 icon-navbar' icon={faHome} onClick={() => history.push('/home')} />
+            <FontAwesomeIcon className='mx-2 icon-navbar' icon={faHome} onClick={() => history.push('/')} />
             <FontAwesomeIcon className='mx-2 icon-navbar' icon={faHeart} onClick={() => history.push('/saved')} />
           </div>
 

@@ -23,9 +23,9 @@ const App: React.FC = () => {
       />
       <Router>
         <Switch>
-          <Route exact path='/' component={Signup} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/home' component={Home} />
+          <Route exact path='/signup' component={Signup} />
           <Route exact path='/saved' component={Saved} />
           <Route path='*' component={PageNotFound} />
         </Switch>
