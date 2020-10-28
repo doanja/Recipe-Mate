@@ -4,7 +4,7 @@ Recipe Mate is a single page web app (SPA) that allows users to search and brows
 
 ## Demo
 
-View live demo [here](https://doanja-recipe-hub.herokuapp.com/).
+View live demo [here](https://doanja-recipe-mate.herokuapp.com/).
 
 ## Built With
 
@@ -14,4 +14,4 @@ View live demo [here](https://doanja-recipe-hub.herokuapp.com/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/doanja-Recipe-Mate/blob/master/client/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/Recipe-Mate/blob/master/client/LICENSE) file for details
