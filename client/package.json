@@ -1,5 +1,5 @@
 {
-  "name": "recipe-hub-ts",
+  "name": "recipe-mate",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:4000",

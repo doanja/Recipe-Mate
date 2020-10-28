@@ -38,7 +38,6 @@ const loadFromLocalStorage = () => {
   }
 };
 
-// const Store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 const store = createStore(rootReducer, loadFromLocalStorage(), composeWithDevTools(applyMiddleware(thunk)));
 
 // sync store.auth to local storage
@@ -46,5 +45,4 @@ store.subscribe(() => saveToLocalStorage(store.getState().auth));
 
 export type RootStore = ReturnType<typeof rootReducer>;
 
-// export default Store;
 export default store;
