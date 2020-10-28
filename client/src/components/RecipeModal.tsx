@@ -16,7 +16,7 @@ const RecipeModal: React.FC<ModalProps> = ({ toggleModal, showModal, modalHeadin
       </Modal.Header>
       <Modal.Body>{modalBody}</Modal.Body>
       <Modal.Footer>
-        <Button variant='dark' onClick={toggleModal}>
+        <Button variant='dark' onClick={() => toggleModal()}>
           Close
         </Button>
       </Modal.Footer>

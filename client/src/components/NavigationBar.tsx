@@ -21,12 +21,13 @@ const NavigationBar: React.FC = () => {
     dispatch(clearRefreshToken());
     dispatch(clearLoginStatus());
     window.localStorage.removeItem('store');
+    history.push('/login');
   };
 
   return (
     <Navbar bg='dark' variant='dark'>
       <Container>
-        <Navbar.Brand className='brand' href='/'>
+        <Navbar.Brand className='brand' href='/home'>
           Recipe Mate
         </Navbar.Brand>
 

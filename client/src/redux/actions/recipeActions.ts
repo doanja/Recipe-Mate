@@ -73,7 +73,7 @@ export const getFavoriteRecipes: AppThunk = () => {
   };
 };
 
-export const addFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: string) => {
+export const addFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: number) => {
   return async (dispatch: Dispatch) => {
     try {
       const req: AxiosResponse<any> = await api.addFavoriteRecipe(recipeId);
@@ -93,7 +93,7 @@ export const addFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, Fav
   };
 };
 
-export const removeFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: string) => {
+export const removeFavoriteRecipe: ActionCreator<ThunkAction<void, RecipeState, FavoriteRecipes, Action<string>>> = (recipeId: number) => {
   return async (dispatch: Dispatch) => {
     try {
       const req: AxiosResponse<any> = await api.removeFavoriteRecipe(recipeId);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RecipeContainer } from '.';
+import { RecipeContainer } from './';
 import { Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';

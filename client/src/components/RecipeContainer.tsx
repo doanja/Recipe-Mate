@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { RecipeHeaderWrapper, Ingredients, Instructions, RecipeModal } from '.';
+import { RecipeHeaderWrapper, Ingredients, Instructions, RecipeModal } from './';
 
 interface RecipeContainerProps {
   recipe: Recipe;

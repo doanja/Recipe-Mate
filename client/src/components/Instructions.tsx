@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instruction } from '.';
+import { Instruction } from './';
 import { ListGroup } from 'react-bootstrap';
 
 interface InstructionsProps {

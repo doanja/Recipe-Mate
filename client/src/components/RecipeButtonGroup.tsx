@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { Button } from 'react-bootstrap';
-import { NutritionFacts, RecipeModal } from '.';
+import { NutritionFacts, RecipeModal } from './';
 
 interface RecipeButtonGroupProps {
   recipe: Recipe;
@@ -20,7 +20,7 @@ export const RecipeButtonGroup: React.FC<RecipeButtonGroupProps> = ({ recipe, ge
         modalBody={recipe?.nutrition ? <NutritionFacts nutrients={recipe?.nutrition.nutrients} /> : <p>No nutrition facts for this recipe.</p>}
       />
 
-      <Button variant='dark' size='sm' className='recipe-preview' onClick={toggleModal} block>
+      <Button variant='dark' size='sm' className='recipe-preview' onClick={() => toggleModal()} block>
         Nutrition Facts
       </Button>
       <Button variant='dark' size='sm' className='recipe-preview' onClick={() => getSimilarRecipes(recipe.id, 2)} block>
