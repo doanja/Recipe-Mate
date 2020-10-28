@@ -10,7 +10,7 @@ import { CustomInput } from '../components/CustomInput';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import { toggleModal } from '../redux/actions/modalActions';
 
 const Signup: React.FC = () => {

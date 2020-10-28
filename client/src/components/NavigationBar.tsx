@@ -6,7 +6,7 @@ import { faHeart, faHome } from '@fortawesome/free-solid-svg-icons';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import { clearAccessToken, clearLoginStatus, clearRefreshToken } from '../redux/actions/authActions';
 
 const NavigationBar: React.FC = () => {

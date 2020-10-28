@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import {
   setSearchedRecipes,
   clearSearchcedRecipes,

@@ -4,7 +4,7 @@ import App from './App';
 
 // redux
 import { Provider } from 'react-redux';
-import Store from './redux/store';
+import Store from './redux/Store';
 
 // styles
 import 'bootstrap/dist/css/bootstrap.min.css';

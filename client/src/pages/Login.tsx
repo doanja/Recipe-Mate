@@ -11,7 +11,7 @@ import { CustomInput } from '../components/CustomInput';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import { setAccessToken, setLoginStatus, setRefreshToken } from '../redux/actions/authActions';
 import { toggleModal } from '../redux/actions/modalActions';
 

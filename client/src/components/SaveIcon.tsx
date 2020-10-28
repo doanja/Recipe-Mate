@@ -5,7 +5,7 @@ import { faTrash, faStar } from '@fortawesome/free-solid-svg-icons';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import { addFavoriteRecipe, removeFavoriteRecipe } from '../redux/actions/recipeActions';
 
 interface SaveIconProps {

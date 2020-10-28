@@ -7,7 +7,7 @@ import axios from 'axios';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from '../redux/store';
+import { RootStore } from '../redux/Store';
 import { getFavoriteRecipes } from '../redux/actions/recipeActions';
 import { clearAccessToken, clearLoginStatus, clearRefreshToken, setAccessToken } from '../redux/actions/authActions';
 import { checkTokenExp } from '../helper';

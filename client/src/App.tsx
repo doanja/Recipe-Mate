@@ -5,7 +5,7 @@ import { CustomModal } from './components';
 
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { RootStore } from './redux/store';
+import { RootStore } from './redux/Store';
 import { toggleModal } from './redux/actions/modalActions';
 
 const App: React.FC = () => {
