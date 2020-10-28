@@ -14,4 +14,4 @@ View live demo [here](https://doanja-recipe-mate.herokuapp.com/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/Recipe-Mate/blob/master/client/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/doanja/Recipe-Mate/blob/master/LICENSE) file for details
