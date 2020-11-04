@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { SearchBar, SearchResults, RecipeContainer, RecipeModal, ScrollTopButton, NavigationBar } from '../components';
+import React, { useEffect, Fragment } from 'react';
+import { SearchBar, SearchResults, RecipeContainer, ScrollTopButton, NavigationBar } from '../components';
 import { SpoonacularService } from '../services';
 import Container from 'react-bootstrap/Container';
 
@@ -18,6 +18,7 @@ import {
   setRecipe,
   clearRecipe,
 } from '../redux/actions/recipeActions';
+import { toggleModal } from '../redux/actions/modalActions';
 
 interface HomeProps {
   favoriteRecipes?: number[];
@@ -28,11 +29,8 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
 
   // redux
   const { searchedRecipes, recipeIds, searchQuery, searchOffset, recipe, isLoading } = useSelector((state: RootStore) => state.recipe);
+  const { showModal } = useSelector((state: RootStore) => state.modal);
   const dispatch = useDispatch();
-
-  // modal
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal: ToggleModal = () => setShowModal(!showModal);
 
   // renders random recipes on component mount
   useEffect(() => {
@@ -71,7 +69,7 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
       .getRecipe(query, offset, number)
       .then(res => {
         if (res.data.results.length === 0) {
-          setShowModal(true);
+          dispatch(toggleModal(!showModal, `No results found for '${searchQuery}'.`, `Error searching for ${searchQuery}`));
           dispatch(clearSearchQuery());
         } else dispatch(setRecipeIds(res.data.results.map((recipe: any) => recipe.id)));
       })
@@ -137,13 +135,6 @@ const Home: React.FC<HomeProps> = ({ favoriteRecipes }) => {
     <Fragment>
       <NavigationBar />
       <Container>
-        <RecipeModal
-          showModal={showModal}
-          toggleModal={toggleModal}
-          modalHeading={'Warning'}
-          modalBody={<p>{`No results found for '${searchQuery}'.`}</p>}
-        />
-
         <SearchBar getRecipeId={getRecipeId} />
 
         {recipe ? (

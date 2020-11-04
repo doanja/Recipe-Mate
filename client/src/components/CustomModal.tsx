@@ -6,11 +6,11 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 interface ModalProps {
   toggleModal: ToggleModal;
   showModal: boolean;
-  title: string;
   body: JSX.Element;
+  title: string;
 }
 
-const CustomModal: React.FC<ModalProps> = ({ toggleModal, showModal, title, body }) => {
+const CustomModal: React.FC<ModalProps> = ({ toggleModal, showModal, body, title }) => {
   return (
     <Modal show={showModal} onHide={toggleModal} backdrop={true} animation={true}>
       <Modal.Header className='bg-dark text-light'>

@@ -7,7 +7,6 @@ import RecipeHeaderDetailed from './RecipeHeaderDetailed';
 import RecipeHeaderPreview from './RecipeHeaderPreview';
 import RecipeHeaderWrapper from './RecipeHeaderWrapper';
 import RecipeContainer from './RecipeContainer';
-import RecipeModal from './RecipeModal';
 import RecipeButtonGroup from './RecipeButtonGroup';
 import SaveIcon from './SaveIcon';
 import ScrollTopButton from './ScrollTopButton';
@@ -27,7 +26,6 @@ export {
   RecipeHeaderPreview,
   RecipeHeaderWrapper,
   RecipeContainer,
-  RecipeModal,
   RecipeButtonGroup,
   SaveIcon,
   ScrollTopButton,

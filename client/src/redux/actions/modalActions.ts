@@ -1,6 +1,6 @@
 import { ModalActionTypes } from '../types/modalTypes';
 
-export const toggleModal = (showModal: boolean, modalBody: string, modalTitle: string) => {
+export const toggleModal = (showModal: boolean, modalBody: JSX.Element | string, modalTitle: string) => {
   return { type: ModalActionTypes.TOGGLE_MODAL, showModal, modalBody, modalTitle };
 };
 

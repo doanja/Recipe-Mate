@@ -1,5 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { RecipeHeaderWrapper, Ingredients, Instructions, RecipeModal } from './';
+import { RecipeHeaderWrapper, Ingredients, Instructions } from './';
+
+// redux
+import { useSelector, useDispatch } from 'react-redux';
+import { RootStore } from '../redux/Store';
+import { toggleModal } from '../redux/actions/modalActions';
 
 interface RecipeContainerProps {
   recipe: Recipe;
@@ -13,8 +18,9 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
   const [ingredients, setIngredients] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
 
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal: ToggleModal = () => setShowModal(!showModal);
+  // redux
+  const { showModal } = useSelector((state: RootStore) => state.modal);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const tags: string[] = [];
@@ -36,17 +42,11 @@ const RecipeContainer: React.FC<RecipeContainerProps> = ({ recipe, loadRecipe, p
       setIngredients(recipe.extendedIngredients.map(ingredient => ingredient.name));
     }
 
-    if (!recipe.analyzedInstructions) toggleModal();
+    if (!recipe.analyzedInstructions) dispatch(toggleModal(!showModal, <p>There are no instructions for this recipe.</p>, 'Warning'));
   }, [recipe]);
 
   return (
     <div className='mb-3'>
-      <RecipeModal
-        showModal={showModal}
-        toggleModal={toggleModal}
-        modalHeading={'Warning'}
-        modalBody={<p>There are no instructions for this recipe.</p>}
-      />
       <RecipeHeaderWrapper
         recipe={recipe}
         ingredients={ingredients}

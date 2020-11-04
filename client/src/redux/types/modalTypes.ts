@@ -1,6 +1,6 @@
 export interface ModalState {
   showModal: boolean;
-  modalBody: string;
+  modalBody: JSX.Element | string;
   modalTitle: string;
 }
 
