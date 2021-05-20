@@ -12,7 +12,7 @@ View live demo [here](https://doanja-recipe-mate.herokuapp.com/).
 - React
 - Redux
 - Node
-- SCSS
+- SASS
 - MongoDB
 
 ## License
